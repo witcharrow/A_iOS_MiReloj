@@ -1,0 +1,84 @@
+
+/* Class = "IBUILabel"; text = "Desactivada"; ObjectID = "0Do-vC-Q0s"; */
+"0Do-vC-Q0s.text" = "Desactivada";
+
+/* Class = "IBUILabel"; text = "seleccionaSONIDO"; ObjectID = "0YL-I5-x5x"; */
+"0YL-I5-x5x.text" = "Elige Sonido";
+
+/* Class = "IBUINavigationItem"; title = "añadirAlarma"; ObjectID = "2Bg-fB-cNu"; */
+"2Bg-fB-cNu.title" = "Añadir Alarma";
+
+/* Class = "IBUILabel"; text = "Activada"; ObjectID = "2pz-XF-uhl"; */
+"2pz-XF-uhl.text" = "Activada";
+
+/* Class = "IBUILabel"; text = "DOW"; ObjectID = "7QF-iD-Ar0"; */
+"7QF-iD-Ar0.text" = "Muestra día de la Semana";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "8Ev-Qe-j3U"; */
+"8Ev-Qe-j3U.text" = "Label";
+
+/* Class = "IBUILabel"; text = "2014"; ObjectID = "BWX-tm-9k5"; */
+"BWX-tm-9k5.text" = "2014";
+
+/* Class = "IBUIBarButtonItem"; title = "OK"; ObjectID = "DAX-KP-kBr"; */
+"DAX-KP-kBr.title" = "OK";
+
+/* Class = "IBUILabel"; text = "VibracionBRRRR"; ObjectID = "DLg-QP-pM3"; */
+"DLg-QP-pM3.text" = "Vibracion";
+
+/* Class = "IBUILabel"; text = "FECHA RESULTADO"; ObjectID = "G4L-pT-jKx"; */
+"G4L-pT-jKx.text" = "Fecha Resultado";
+
+/* Class = "IBUILabel"; text = "MONDAY"; ObjectID = "GKr-hi-VdJ"; */
+"GKr-hi-VdJ.text" = "Lunes";
+
+/* Class = "IBUILabel"; text = "24"; ObjectID = "L9N-By-Ebl"; */
+"L9N-By-Ebl.text" = "24";
+
+/* Class = "IBUINavigationItem"; title = "opcionesRELOJ"; ObjectID = "Mdb-ou-t3D"; */
+"Mdb-ou-t3D.title" = "Opciones De Fecha";
+
+/* Class = "IBUIBarButtonItem"; title = "Done"; ObjectID = "NKx-Sy-Vqq"; */
+"NKx-Sy-Vqq.title" = "Hecho";
+
+/* Class = "IBUILabel"; text = "seleccionaSONIDO"; ObjectID = "RIu-vL-2pa"; */
+"RIu-vL-2pa.text" = "Selecciona Sonido";
+
+/* Class = "IBUITabBarItem"; title = "Alarm/ALARMA"; ObjectID = "Tqb-oO-mSu"; */
+"Tqb-oO-mSu.title" = "Alarma";
+
+/* Class = "IBUILabel"; text = "VibracionBRRRR"; ObjectID = "Ue0-Xq-2N4"; */
+"Ue0-Xq-2N4.text" = "Vibracion";
+
+/* Class = "IBUIBarButtonItem"; title = "Cancel"; ObjectID = "VYY-v1-dOS"; */
+"VYY-v1-dOS.title" = "Cancela";
+
+/* Class = "IBUINavigationItem"; title = "Title"; ObjectID = "cbB-Af-pRd"; */
+"cbB-Af-pRd.title" = "Mi Reloj";
+
+/* Class = "IBUILabel"; text = "SEPTEMBER"; ObjectID = "dSL-Ck-7F6"; */
+"dSL-Ck-7F6.text" = "ej: Septiembre";
+
+/* Class = "IBUILabel"; text = "YEAR"; ObjectID = "gDc-FT-7PA"; */
+"gDc-FT-7PA.text" = "Muestra el Año";
+
+/* Class = "IBUILabel"; text = "DOM"; ObjectID = "lkg-P9-gXZ"; */
+"lkg-P9-gXZ.text" = "Muestra el Día del Mes";
+
+/* Class = "IBUITabBarItem"; title = "Clock/RELOJ"; ObjectID = "nBE-GX-PN9"; */
+"nBE-GX-PN9.title" = "Reloj";
+
+/* Class = "IBUITableViewController"; title = "Master"; ObjectID = "pGg-6v-bdr"; */
+"pGg-6v-bdr.title" = "Master";
+
+/* Class = "IBUITableViewSection"; headerTitle = "NameNOMBRE"; ObjectID = "pZb-bj-WXB"; */
+"pZb-bj-WXB.headerTitle" = "NameNOMBRE";
+
+/* Class = "IBUITableViewSection"; headerTitle = "NameNOMBRE"; ObjectID = "rh5-ii-T8k"; */
+"rh5-ii-T8k.headerTitle" = "NameNOMBRE";
+
+/* Class = "IBUILabel"; text = "MONTH"; ObjectID = "t9v-rL-JXb"; */
+"t9v-rL-JXb.text" = "Muestra el Mes";
+
+/* Class = "IBUINavigationItem"; title = "listaAlarmas"; ObjectID = "tQt-TN-PWz"; */
+"tQt-TN-PWz.title" = "Lista de Alarmas";

@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  MiReloj
+
+  Created by user11394 on 11/05/14.
+  Copyright (c) 2014 Alejandro Marijuán. All rights reserved.
+*/
+
+/*CellDetailRelojOptionTVC*/
+"_opcionesReloj"="Opciones Fecha";
+"_dayOfWeek"="Mostrar día de la Semana";
+"_monday"="ej: Lunes, Martes, Miércoles...";
+"_dayOfMonth"="Mostrar día del Mes";
+"_DD"="ej: 1,2,3,4...";
+"_month"="Mostrar el Mes";
+"_MM"="ej: Enero, Febrero, Marzo...";
+"_YEAR"="Mostrar el Año";
+"_YY"="ej: 2014";
+
+/*RelojViewController*/
+"_miReloj"="Mi Reloj";
+"_alarmas"="Alarmas";
+
+
+/*Alarmas*/
+"_listaAlarmas"="Lista de Alarmas";
+"_NombreAlarma"="Nombre de la Alarma...";
+"_ActivarVibracion"="Vibración";
+"_SeleccionaSonido"="Elija timbre...";

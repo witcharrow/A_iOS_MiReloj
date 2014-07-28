@@ -1,0 +1,183 @@
+//
+//  RelojViewController.m
+//  RelojDeOficina
+//
+//  Created by user11394 on 18/04/14.
+//  Copyright (c) 2014 Alejandro Marijuán. All rights reserved.
+//
+
+#import "RelojViewController.h"
+#import "CellDetailRelojOptionTVC.h"
+
+@interface RelojViewController ()
+
+@end
+
+
+@implementation RelojViewController
+
+enum{ALARMAS,RELOJ};
+@synthesize dateToShowEN;
+@synthesize dateToShowSP;
+@synthesize timerLabelDMA;
+
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+-(void)didReceiveMemoryWarning{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
+    return YES;
+}
+
+#pragma mark - View lifecycle
+-(void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = NSLocalizedString(@"_miReloj",@"miRELOJ EN/SP");
+    //Opciones para la hora
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.5
+                                             target:self
+                                           selector:@selector(updateTimer)
+                                           userInfo:nil 
+                                            repeats:YES];
+    //Opciones para la fecha
+    NSDateFormatter *dateDMA = [[NSDateFormatter alloc]init];
+    [dateDMA setDateFormat:@"EEEE,dd,MMMM,yyyy"];
+    NSString *fecha=[dateDMA stringFromDate:[NSDate date]];
+    NSLog(@"%@",fecha);
+    //Idioma Vista
+    (!self.idiomaActualIngles)?[self setDateToShowSP:fecha]:[self setDateToShowEN:fecha];
+    //Transicion entre pestanas
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc]
+                                           initWithTarget:self
+                                           action:@selector(swipeRecognized:)];
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.view addGestureRecognizer:swipeLeft];
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc]
+                                            initWithTarget:self
+                                            action:@selector(swipeRecognized:)];
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:swipeRight];
+}
+/*Muestra la fecha a partir de las preferencias guardadas del usuario*/
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSUserDefaults *userPreferences=[NSUserDefaults standardUserDefaults];
+    NSString *date=[userPreferences stringForKey:@"fechaModificada"];
+    NSLog(@"la fecha del usuario es: %@",date);
+    if ([date isEqualToString:@""]){
+        NSLog(@"la fecha del usuario no es nula");
+      (!self.idiomaActualIngles)?[self setDateToShowSP:date]:[self setDateToShowEN:date];
+    }
+}
+
+#pragma mark - Help Methods
+/*Establece los labels para el reloj*/
+-(void)updateTimer {
+    NSDateFormatter *formatterHM = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatterSS = [[NSDateFormatter alloc] init];
+    [formatterHM setDateFormat:@"HH:mm"];
+    timerLabelHM.text = [formatterHM stringFromDate:[NSDate date]];
+    [formatterSS setDateFormat:@"ss"];
+    timerLabelSS.text = [formatterSS stringFromDate:[NSDate date]];
+}
+/*Reconoce el gesto de deslizar para moverse entre pestañas*/
+-(void)swipeRecognized:(UISwipeGestureRecognizer *)swipe{
+    if(swipe.direction==UISwipeGestureRecognizerDirectionLeft){
+        [(UITabBarController *)self.tabBarController setSelectedIndex:ALARMAS];
+    }
+    if(swipe.direction==UISwipeGestureRecognizerDirectionRight){
+        [(UITabBarController *)self.tabBarController setSelectedIndex:ALARMAS];
+    }
+}
+/*Detecta el idioma actual*/
+-(BOOL) idiomaActualIngles{
+    //Obtener idioma actual
+    BOOL idiomaEN=NO;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *idiomas = [defaults objectForKey:@"AppleLanguages"];
+    NSString *idiomaActual = [idiomas objectAtIndex:0];
+    NSLog(@"lenguaje actual: %@",idiomaActual);
+    if([idiomaActual isEqualToString:@"en"]){
+        idiomaEN=YES;
+    }
+    return idiomaEN;
+}
+/*Hace un split de los datos de la fecha, y lo traduce de ingles a español*/
+-(void) setDateToShowSP:(NSString *)fecha{
+    NSArray *listFechaItems = [fecha componentsSeparatedByString:@","];
+    NSString *weekDay = [listFechaItems objectAtIndex:0];
+    NSString *day = [listFechaItems objectAtIndex:1];
+    NSString *month = [listFechaItems objectAtIndex:2];
+    NSString *year = [listFechaItems objectAtIndex:3];
+    
+    
+    NSArray *spWeekDay = [NSArray arrayWithObjects: @"Lunes",@"Martes",@"Miércoles",@"Jueves",@"Viernes",@"Sábado",@"Domingo",
+                          nil];
+    NSArray *enWeekDay = [NSArray arrayWithObjects: @"Monday",@"Tuesday",@"Wednesday",@"Thursday",@"Friday",@"Saturday",@"Sunday",
+                          nil];
+    for (int i=0; i<[spWeekDay count]; i++) {
+        weekDay=[weekDay stringByReplacingOccurrencesOfString:[enWeekDay objectAtIndex:i]
+                                                   withString:[spWeekDay objectAtIndex:i]];
+    }
+    
+    NSArray *spMonths = [NSArray arrayWithObjects: @"Enero",@"Febrero",@"Marzo",@"Abril",@"Mayo",@"Junio",@"Julio",@"Agosto",@"Septiembre",@"Octubre",@"Noviembre",@"Diciembre",
+                         nil];
+    NSArray *enMonths = [NSArray arrayWithObjects: @"January",@"February",@"March",@"April",@"May",@"June",@"July",@"August",@"September",@"October",@"November",@"December",
+                         nil];
+    for (int i=0; i<[spMonths count]; i++) {
+        month=[month stringByReplacingOccurrencesOfString:[enMonths objectAtIndex:i]
+                                               withString:[spMonths objectAtIndex:i]];
+    }
+    timerLabelDMA.text=[NSString stringWithFormat:@"%@, %@ de %@ de %@",weekDay,day,month,year];
+}
+/*Hace un split de la fecha y la muestra en ingles*/
+-(void) setDateToShowEN:(NSString *)fecha{
+    NSArray *listFechaItems = [fecha componentsSeparatedByString:@","];
+    NSString *weekDay = [listFechaItems objectAtIndex:0];
+    NSString *day = [listFechaItems objectAtIndex:1];
+    NSString *month = [listFechaItems objectAtIndex:2];
+    NSString *year = [listFechaItems objectAtIndex:3];
+    timerLabelDMA.text=[NSString stringWithFormat:@"%@, %@ %@ %@",weekDay,day,month,year];
+}
+
+
+#pragma mark - View delegate
+/*Enviamos a la pantalla de opciones la cadena de la fecha actual del reloj*/
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"editLabelDate"]) {
+        NSLog(@"editLabelDATE");
+        UINavigationController *navCon = segue.destinationViewController;
+        CellDetailRelojOptionTVC *labelDMA =[navCon.viewControllers objectAtIndex:0];
+        labelDMA.fechaResultadoString=self.timerLabelDMA.text;
+        NSLog(@"timerLabelDMA: %@:",self.timerLabelDMA.text);
+    }
+}
+
+#pragma mark - IBActions
+/*Modificadas las opciones de la fecha, recogemos la cadena editada por el usuario*/
+-(IBAction)unwindFromViewController:(UIStoryboardSegue *)sender {
+    NSLog(@"from segue CellDetailRelojOptionTVC");
+    if ([sender.sourceViewController isKindOfClass:[CellDetailRelojOptionTVC class]]) {
+        NSLog(@"from view controller OPTIONS-->OK");
+        CellDetailRelojOptionTVC *tvcOptions = sender.sourceViewController;
+        self.timerLabelDMA.text=tvcOptions.fechaResultado.text;
+        NSString *fechaModificada= self.timerLabelDMA.text;        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:fechaModificada
+                     forKey:@"fechaModificada"];
+        [defaults synchronize];
+    }
+}
+
+
+@end
