@@ -1,7 +1,29 @@
-/* 
-  Localizable.strings
-  MiReloj
+/*
+ Localizable.strings
+ MiReloj -- English Version
+ 
+ Created by user11394 on 11/05/14.
+ Copyright (c) 2014 Alejandro Marijuán. All rights reserved.
+ */
 
-  Created by user11394 on 11/05/14.
-  Copyright (c) 2014 Alejandro Marijuán. All rights reserved.
-*/
+/*CellDetailRelojOptionTVC*/
+"_opcionesReloj"="Date Options";
+"_dayOfWeek"="Show Day of week";
+"_monday"="i.e.: Monday, Tuesday, Wednesday...";
+"_dayOfMonth"="Show Day of month";
+"_DD"="i.e.: 1,2,3,4...";
+"_month"="Show Month";
+"_MM"="i.e.: January, February, March...";
+"_YEAR"="Show Year";
+"_YY"="i.e.: 2014";
+
+/*RelojViewController*/
+"_miReloj"="My Watch";
+"_alarmas"="Alarms";
+
+
+/*Alarmas*/
+"_listaAlarmas"="Alarm List";
+"_NombreAlarma"="Alarm Name...";
+"_ActivarVibracion"="Vibration";
+"_SeleccionaSonido"="Choose sound...";
