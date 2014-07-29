@@ -286,27 +286,15 @@
         formatoFecha = [formatoFecha stringByAppendingString:@"EEEE,"];
         [defaults setBool:YES forKey:@"userHasActivatedDOW"];
     }
-    else{
-        NSLog(@"activatedDOW OFF");
-        [defaults setBool:NO forKey:@"userHasActivatedDOW"];
-    }
     if (_activatedDOM.isOn) {
         NSLog(@"activatedDOM ON");
         formatoFecha = [formatoFecha stringByAppendingString:@"dd,"];
         [defaults setBool:YES forKey:@"userHasActivatedDOM"];
     }
-    else{
-        NSLog(@"activatedDOM OFF");
-        [defaults setBool:NO forKey:@"userHasActivatedDOM"];
-    }
     if (_activatedMM.isOn) {
         NSLog(@"activatedMM ON");
         formatoFecha = [formatoFecha stringByAppendingString:@"MMMM,"];
         [defaults setBool:YES forKey:@"userHasActivatedMM"];
-    }
-    else{
-        NSLog(@"activatedMM OFF");
-        [defaults setBool:NO forKey:@"userHasActivatedMM"];
     }
     if (_activatedYY.isOn) {
         NSLog(@"activatedYY ON");
@@ -316,6 +304,12 @@
     else{
         NSLog(@"activatedYY OFF");
         [defaults setBool:NO forKey:@"userHasActivatedYY"];
+        NSLog(@"activatedDOW OFF");
+        [defaults setBool:NO forKey:@"userHasActivatedDOW"];
+        NSLog(@"activatedDOM OFF");
+        [defaults setBool:NO forKey:@"userHasActivatedDOM"];
+        NSLog(@"activatedMM OFF");
+        [defaults setBool:NO forKey:@"userHasActivatedMM"];
     }
     //Borramos el ultimo caracater de la cadena de formato (la coma).
     formatoFecha = [formatoFecha substringToIndex:formatoFecha.length-(formatoFecha.length>0)];
