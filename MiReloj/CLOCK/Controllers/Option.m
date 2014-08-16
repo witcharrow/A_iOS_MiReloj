@@ -18,6 +18,8 @@
     optionExample:(NSString *)optionExample
           visible:(BOOL)visible{
     self = [super init];
+    NSLog(@"************************************************************** Option");
+
     if (self){
         self.optionName=optionName;
         self.optionExample=optionExample;

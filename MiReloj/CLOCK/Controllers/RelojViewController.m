@@ -23,6 +23,8 @@ enum{ALARMAS,RELOJ};
 
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    NSLog(@"************************************************************** RelojViewController");
+    NSLog(@"****************************** initWithNibName");
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -30,6 +32,8 @@ enum{ALARMAS,RELOJ};
     return self;
 }
 -(void)didReceiveMemoryWarning{
+    NSLog(@"************************************************************** RelojViewController");
+    NSLog(@"****************************** didReceiveMemoryWarning");
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -40,6 +44,9 @@ enum{ALARMAS,RELOJ};
 #pragma mark - View lifecycle
 -(void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"************************************************************** RelojViewController");
+    NSLog(@"****************************** viewDidLoad");
+
     self.title = NSLocalizedString(@"_miReloj",@"miRELOJ EN/SP");
     //Opciones para la hora
     timer = [NSTimer scheduledTimerWithTimeInterval:0.5
@@ -47,13 +54,27 @@ enum{ALARMAS,RELOJ};
                                            selector:@selector(updateTimer)
                                            userInfo:nil 
                                             repeats:YES];
+    
     //Opciones para la fecha
-    NSDateFormatter *dateDMA = [[NSDateFormatter alloc]init];
-    [dateDMA setDateFormat:@"EEEE,dd,MMMM,yyyy"];
-    NSString *fecha=[dateDMA stringFromDate:[NSDate date]];
-    NSLog(@"%@",fecha);
-    //Idioma Vista
-    (!self.idiomaActualIngles)?[self setDateToShowSP:fecha]:[self setDateToShowEN:fecha];
+    NSUserDefaults *userPreferences=[NSUserDefaults standardUserDefaults];
+    NSString *date=[userPreferences stringForKey:@"fechaModificada"];
+    if (![date isEqualToString:@""]){
+        NSLog(@"la fecha del usuario o es nula, o esta vacia");
+        if (date == NULL){
+            NSLog(@"la fecha del usuario es la fecha por defecto");
+            NSDateFormatter *dateDMA = [[NSDateFormatter alloc]init];
+            [dateDMA setDateFormat:@"EEEE,dd,MMMM,yyyy"];
+            NSString *fecha=[dateDMA stringFromDate:[NSDate date]];
+            NSLog(@"%@",fecha);
+            //Idioma Vista
+            (!self.idiomaActualIngles)?[self setDateToShowSP:fecha]:[self setDateToShowEN:fecha];
+        }
+        else{
+            NSLog(@"la fecha del usuario es: %@",date);
+            self.timerLabelDMA.text=date;
+        }
+    }
+    
     //Transicion entre pestanas
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc]
                                            initWithTarget:self
@@ -66,21 +87,12 @@ enum{ALARMAS,RELOJ};
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
 }
-/*Muestra la fecha a partir de las preferencias guardadas del usuario*/
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    NSUserDefaults *userPreferences=[NSUserDefaults standardUserDefaults];
-    NSString *date=[userPreferences stringForKey:@"fechaModificada"];
-    NSLog(@"la fecha del usuario es: %@",date);
-    if ([date isEqualToString:@""]){
-        NSLog(@"la fecha del usuario no es nula");
-      (!self.idiomaActualIngles)?[self setDateToShowSP:date]:[self setDateToShowEN:date];
-    }
-}
 
 #pragma mark - Help Methods
 /*Establece los labels para el reloj*/
 -(void)updateTimer {
+    //NSLog(@"************************************************************** RelojViewController");
+    //NSLog(@"****************************** updateTimer");
     NSDateFormatter *formatterHM = [[NSDateFormatter alloc] init];
     NSDateFormatter *formatterSS = [[NSDateFormatter alloc] init];
     [formatterHM setDateFormat:@"HH:mm"];
@@ -90,6 +102,8 @@ enum{ALARMAS,RELOJ};
 }
 /*Reconoce el gesto de deslizar para moverse entre pestañas*/
 -(void)swipeRecognized:(UISwipeGestureRecognizer *)swipe{
+    NSLog(@"************************************************************** RelojViewController");
+    NSLog(@"****************************** swipeRecognized");
     if(swipe.direction==UISwipeGestureRecognizerDirectionLeft){
         [(UITabBarController *)self.tabBarController setSelectedIndex:ALARMAS];
     }
@@ -99,6 +113,8 @@ enum{ALARMAS,RELOJ};
 }
 /*Detecta el idioma actual*/
 -(BOOL) idiomaActualIngles{
+    NSLog(@"************************************************************** RelojViewController");
+    NSLog(@"****************************** ¿idiomaActualIngles?");
     //Obtener idioma actual
     BOOL idiomaEN=NO;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -112,6 +128,8 @@ enum{ALARMAS,RELOJ};
 }
 /*Hace un split de los datos de la fecha, y lo traduce de ingles a español*/
 -(void) setDateToShowSP:(NSString *)fecha{
+    NSLog(@"************************************************************** RelojViewController");
+    NSLog(@"****************************** setDateToShowSP");
     NSArray *listFechaItems = [fecha componentsSeparatedByString:@","];
     NSString *weekDay = [listFechaItems objectAtIndex:0];
     NSString *day = [listFechaItems objectAtIndex:1];
@@ -140,6 +158,8 @@ enum{ALARMAS,RELOJ};
 }
 /*Hace un split de la fecha y la muestra en ingles*/
 -(void) setDateToShowEN:(NSString *)fecha{
+    NSLog(@"************************************************************** RelojViewController");
+    NSLog(@"****************************** setDateToShowEN");
     NSArray *listFechaItems = [fecha componentsSeparatedByString:@","];
     NSString *weekDay = [listFechaItems objectAtIndex:0];
     NSString *day = [listFechaItems objectAtIndex:1];
@@ -152,20 +172,24 @@ enum{ALARMAS,RELOJ};
 #pragma mark - View delegate
 /*Enviamos a la pantalla de opciones la cadena de la fecha actual del reloj*/
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"************************************************************** RelojViewController");
+    NSLog(@"****************************** prepareForSegue");
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"editLabelDate"]) {
-        NSLog(@"editLabelDATE");
+        NSLog(@"prepareForSegue-->editLabelDATE");
         UINavigationController *navCon = segue.destinationViewController;
         CellDetailRelojOptionTVC *labelDMA =[navCon.viewControllers objectAtIndex:0];
         labelDMA.fechaResultadoString=self.timerLabelDMA.text;
-        NSLog(@"timerLabelDMA: %@:",self.timerLabelDMA.text);
+        NSLog(@"prepareForSegue-->timerLabelDMA: %@",labelDMA.fechaResultadoString);
     }
 }
 
 #pragma mark - IBActions
 /*Modificadas las opciones de la fecha, recogemos la cadena editada por el usuario*/
 -(IBAction)unwindFromViewController:(UIStoryboardSegue *)sender {
+    NSLog(@"************************************************************** RelojViewController");
+    NSLog(@"****************************** unwindFromViewController");
     NSLog(@"from segue CellDetailRelojOptionTVC");
     if ([sender.sourceViewController isKindOfClass:[CellDetailRelojOptionTVC class]]) {
         NSLog(@"from view controller OPTIONS-->OK");

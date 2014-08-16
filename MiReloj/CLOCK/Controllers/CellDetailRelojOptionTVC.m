@@ -41,6 +41,8 @@
 @synthesize userHasActivatedYY=_userHasActivatedYY;
 
 - (id)initWithStyle:(UITableViewStyle)style{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** initWithStyle");
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -48,6 +50,8 @@
     return self;
 }
 - (void)didReceiveMemoryWarning{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** didReceiveMemoryWarning");
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
@@ -58,6 +62,9 @@
 /*Cargamos las etiquetas por idioma*/
 - (void)viewDidLoad{
     [super viewDidLoad];
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** viewDidLoad");
+
     self.title = NSLocalizedString(@"_opcionesReloj",@"OPCIONES EN/SP");
     self.titleLabelDOW.text = NSLocalizedString(@"_dayOfWeek",@"LUNES EN/SP");
     self.exampleLabelDOW.text = NSLocalizedString(@"_monday",@"LUNES EN/SP");
@@ -70,14 +77,17 @@
     _fechaResultado.text=_fechaResultadoString;
 }
 - (void)viewDidUnload{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** viewDidUnload");
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 /*Cargamos la cadena de texto de la fecha del reloj y si los switchs estan activos*/
 - (void)viewWillAppear:(BOOL)animated{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** viewWillAppear");
     [super viewWillAppear:animated];
-    self.fechaResultadoString=self.fechaResultado.text;
     
     NSUserDefaults *userPreferences=[NSUserDefaults standardUserDefaults];
     _userHasActivatedDOW=[userPreferences boolForKey:@"userHasActivatedDOW"];
@@ -92,17 +102,26 @@
 
     
 }
+/*TODO: Igualamos la etiqueta de la fecha con la de fecha resultado.  REVISAR!! en teoría no es necesario...
 - (void)viewDidAppear:(BOOL)animated{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** viewDidAppear");
     [super viewDidAppear:animated];
-    self.fechaResultadoString=self.fechaResultado.text;
-}
+    //self.fechaResultadoString=self.fechaResultado.text;
+}*/
 - (void)viewWillDisappear:(BOOL)animated{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** viewWillDisappear");
     [super viewWillDisappear:animated];
 }
 - (void)viewDidDisappear:(BOOL)animated{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** viewDidDisappear");
     [super viewDidDisappear:animated];
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** shouldAutorotateToInterfaceOrientation");
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -110,6 +129,8 @@
 #pragma mark - Help Methods
 /*Detecta el idioma actual*/
 -(BOOL) idiomaActualIngles{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** idiomaActualIngles");
     BOOL idiomaEN=NO;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSArray *idiomas = [defaults objectForKey:@"AppleLanguages"];
@@ -122,6 +143,8 @@
 }
 /*Hace un split de los datos de la fecha, y lo traduce de ingles a español*/
 -(void) setDateToShowSP:(NSString *)formatoFecha{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** setDateToShowSP");
     NSLog(@"formato fecha es %@",formatoFecha);
     NSDateFormatter *dateDMA = [[NSDateFormatter alloc]init];
     NSDateFormatter *currentDateDMA = [[NSDateFormatter alloc]init];
@@ -209,6 +232,8 @@
 }
 /*Hace un split de la fecha y la muestra en ingles*/
 -(void) setDateToShowEN:(NSString *)formatoFecha{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** setDateToShowEN");
     NSLog(@"setDateToShowEN");
     NSLog(@"formato fecha EN: %@",formatoFecha);
     NSDateFormatter *dateDMA = [[NSDateFormatter alloc]init];
@@ -266,6 +291,8 @@
 #pragma mark - IBActions
 /*Retorna a la vista del reloj sin modificar nada*/
 -(IBAction)cancelPressed:(UIBarButtonItem *)sender {
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** cancelPressed");
     NSLog(@"Button Cancel CLOCK pressed");
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     ([defaults boolForKey:@"userHasActivatedDOW"])?[defaults setBool:NO forKey:@"userHasActivatedDOW"]:[defaults setBool:NO forKey:@"userHasActivatedDOW"];
@@ -278,6 +305,8 @@
 }
 /*Detecta las opciones pulsadas para mostrar la fecha*/
 -(IBAction)switchPressed:(UIBarButtonItem *)sender{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** switchPressed");
     NSString *formatoFecha =@"";
     /*Guardamos el estado del switch*/
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -302,14 +331,15 @@
         [defaults setBool:YES forKey:@"userHasActivatedYY"];
     }
     else{
-        NSLog(@"activatedYY OFF");
-        [defaults setBool:NO forKey:@"userHasActivatedYY"];
         NSLog(@"activatedDOW OFF");
         [defaults setBool:NO forKey:@"userHasActivatedDOW"];
         NSLog(@"activatedDOM OFF");
         [defaults setBool:NO forKey:@"userHasActivatedDOM"];
         NSLog(@"activatedMM OFF");
         [defaults setBool:NO forKey:@"userHasActivatedMM"];
+        NSLog(@"activatedYY OFF");
+        [defaults setBool:NO forKey:@"userHasActivatedYY"];
+        
     }
     //Borramos el ultimo caracater de la cadena de formato (la coma).
     formatoFecha = [formatoFecha substringToIndex:formatoFecha.length-(formatoFecha.length>0)];
