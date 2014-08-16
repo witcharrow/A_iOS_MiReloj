@@ -39,6 +39,7 @@
 @synthesize userHasActivatedDOM=_userHasActivatedDOM;
 @synthesize userHasActivatedMM=_userHasActivatedMM;
 @synthesize userHasActivatedYY=_userHasActivatedYY;
+@synthesize cancelButtonPressed=_cancelButtonPressed;
 
 - (id)initWithStyle:(UITableViewStyle)style{
     NSLog(@"************************************************************** CellDetailRelojOption");
@@ -89,16 +90,25 @@
     NSLog(@"****************************** viewWillAppear");
     [super viewWillAppear:animated];
     
-    NSUserDefaults *userPreferences=[NSUserDefaults standardUserDefaults];
-    _userHasActivatedDOW=[userPreferences boolForKey:@"userHasActivatedDOW"];
-    _userHasActivatedDOM=[userPreferences boolForKey:@"userHasActivatedDOM"];
-    _userHasActivatedMM = [userPreferences boolForKey:@"userHasActivatedMM"];
-    _userHasActivatedYY = [userPreferences boolForKey:@"userHasActivatedYY"];
+    NSLog(_cancelButtonPressed ? @"_cancelButtonPressed=Yes" : @"_cancelButtonPressed=No");
     
-    [self.activatedDOW setOn:_userHasActivatedDOW];
-    [self.activatedDOM setOn:_userHasActivatedDOM];
-    [self.activatedMM setOn:_userHasActivatedMM];
-    [self.activatedYY setOn:_userHasActivatedYY];
+    if(!_cancelButtonPressed){
+        NSUserDefaults *userPreferences=[NSUserDefaults standardUserDefaults];
+        _userHasActivatedDOW=[userPreferences boolForKey:@"userHasActivatedDOW"];
+        _userHasActivatedDOM=[userPreferences boolForKey:@"userHasActivatedDOM"];
+        _userHasActivatedMM = [userPreferences boolForKey:@"userHasActivatedMM"];
+        _userHasActivatedYY = [userPreferences boolForKey:@"userHasActivatedYY"];
+    
+        NSLog(_userHasActivatedDOW ? @"_userHasActivatedDOW=Yes" : @"_userHasActivatedDOW=No");
+        NSLog(_userHasActivatedDOM ? @"_userHasActivatedDOM=Yes" : @"_userHasActivatedDOM=No");
+        NSLog(_userHasActivatedMM ? @"_userHasActivatedMM=Yes" : @"_userHasActivatedMM=No");
+        NSLog(_userHasActivatedYY ? @"_userHasActivatedYY=Yes" : @"_userHasActivatedYY=No");
+    
+        [self.activatedDOW setOn:_userHasActivatedDOW];
+        [self.activatedDOM setOn:_userHasActivatedDOM];
+        [self.activatedMM setOn:_userHasActivatedMM];
+        [self.activatedYY setOn:_userHasActivatedYY];
+    }
 
     
 }
@@ -113,12 +123,37 @@
     NSLog(@"************************************************************** CellDetailRelojOption");
     NSLog(@"****************************** viewWillDisappear");
     [super viewWillDisappear:animated];
+    
+    NSLog(_cancelButtonPressed ? @"_cancelButtonPressed=Yes" : @"_cancelButtonPressed=No");
+    
+    if(!_cancelButtonPressed){
+        NSUserDefaults *userPreferences=[NSUserDefaults standardUserDefaults];
+        _userHasActivatedDOW=[userPreferences boolForKey:@"userHasActivatedDOW"];
+        _userHasActivatedDOM=[userPreferences boolForKey:@"userHasActivatedDOM"];
+        _userHasActivatedMM = [userPreferences boolForKey:@"userHasActivatedMM"];
+        _userHasActivatedYY = [userPreferences boolForKey:@"userHasActivatedYY"];
+        
+        NSLog(_userHasActivatedDOW ? @"_userHasActivatedDOW=Yes" : @"_userHasActivatedDOW=No");
+        NSLog(_userHasActivatedDOM ? @"_userHasActivatedDOM=Yes" : @"_userHasActivatedDOM=No");
+        NSLog(_userHasActivatedMM ? @"_userHasActivatedMM=Yes" : @"_userHasActivatedMM=No");
+        NSLog(_userHasActivatedYY ? @"_userHasActivatedYY=Yes" : @"_userHasActivatedYY=No");
+        
+        [self.activatedDOW setOn:_userHasActivatedDOW];
+        [self.activatedDOM setOn:_userHasActivatedDOM];
+        [self.activatedMM setOn:_userHasActivatedMM];
+        [self.activatedYY setOn:_userHasActivatedYY];
+    
+    
+        //Guardamos el estado de los switch
+        [userPreferences synchronize];
+    }
 }
+/*
 - (void)viewDidDisappear:(BOOL)animated{
     NSLog(@"************************************************************** CellDetailRelojOption");
     NSLog(@"****************************** viewDidDisappear");
     [super viewDidDisappear:animated];
-}
+}*/
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     NSLog(@"************************************************************** CellDetailRelojOption");
     NSLog(@"****************************** shouldAutorotateToInterfaceOrientation");
@@ -294,20 +329,22 @@
     NSLog(@"************************************************************** CellDetailRelojOption");
     NSLog(@"****************************** cancelPressed");
     NSLog(@"Button Cancel CLOCK pressed");
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    ([defaults boolForKey:@"userHasActivatedDOW"])?[defaults setBool:NO forKey:@"userHasActivatedDOW"]:[defaults setBool:NO forKey:@"userHasActivatedDOW"];
-    ([defaults boolForKey:@"userHasActivatedDOM"])?[defaults setBool:NO forKey:@"userHasActivatedDOM"]:[defaults setBool:NO forKey:@"userHasActivatedDOM"];
-    ([defaults boolForKey:@"userHasActivatedMM"])?[defaults setBool:NO forKey:@"userHasActivatedMM"]:[defaults setBool:NO forKey:@"userHasActivatedMM"];
-    ([defaults boolForKey:@"userHasActivatedYY"])?[defaults setBool:NO forKey:@"userHasActivatedYY"]:[defaults setBool:NO forKey:@"userHasActivatedYY"];
-    //Guardamos el estado de los switch
-    [defaults synchronize];
+    _cancelButtonPressed=YES;
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 /*Detecta las opciones pulsadas para mostrar la fecha*/
 -(IBAction)switchPressed:(UIBarButtonItem *)sender{
     NSLog(@"************************************************************** CellDetailRelojOption");
     NSLog(@"****************************** switchPressed");
+    _cancelButtonPressed=NO;
     NSString *formatoFecha =@"";
+    [self saveSwitchState:formatoFecha];
+}
+
+-(void) saveSwitchState:(NSString *)formatoFecha{
+    NSLog(@"************************************************************** CellDetailRelojOption");
+    NSLog(@"****************************** saveSwitchState");
+
     /*Guardamos el estado del switch*/
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (_activatedDOW.isOn) {
@@ -315,15 +352,27 @@
         formatoFecha = [formatoFecha stringByAppendingString:@"EEEE,"];
         [defaults setBool:YES forKey:@"userHasActivatedDOW"];
     }
+    else{
+        NSLog(@"activatedDOW OFF");
+        [defaults setBool:NO forKey:@"userHasActivatedDOW"];
+    }
     if (_activatedDOM.isOn) {
         NSLog(@"activatedDOM ON");
         formatoFecha = [formatoFecha stringByAppendingString:@"dd,"];
         [defaults setBool:YES forKey:@"userHasActivatedDOM"];
     }
+    else{
+        NSLog(@"activatedDOM OFF");
+        [defaults setBool:NO forKey:@"userHasActivatedDOM"];
+    }
     if (_activatedMM.isOn) {
         NSLog(@"activatedMM ON");
         formatoFecha = [formatoFecha stringByAppendingString:@"MMMM,"];
         [defaults setBool:YES forKey:@"userHasActivatedMM"];
+    }
+    else{
+        NSLog(@"activatedMM OFF");
+        [defaults setBool:NO forKey:@"userHasActivatedMM"];
     }
     if (_activatedYY.isOn) {
         NSLog(@"activatedYY ON");
@@ -331,22 +380,17 @@
         [defaults setBool:YES forKey:@"userHasActivatedYY"];
     }
     else{
-        NSLog(@"activatedDOW OFF");
-        [defaults setBool:NO forKey:@"userHasActivatedDOW"];
-        NSLog(@"activatedDOM OFF");
-        [defaults setBool:NO forKey:@"userHasActivatedDOM"];
-        NSLog(@"activatedMM OFF");
-        [defaults setBool:NO forKey:@"userHasActivatedMM"];
         NSLog(@"activatedYY OFF");
         [defaults setBool:NO forKey:@"userHasActivatedYY"];
         
     }
+    
     //Borramos el ultimo caracater de la cadena de formato (la coma).
     formatoFecha = [formatoFecha substringToIndex:formatoFecha.length-(formatoFecha.length>0)];
     (!self.idiomaActualIngles)?[self setDateToShowSP:formatoFecha]:[self setDateToShowEN:formatoFecha];
     
     //Guardamos el estado de los switch
-    [defaults synchronize];
+    //[defaults synchronize];
     
     
 }

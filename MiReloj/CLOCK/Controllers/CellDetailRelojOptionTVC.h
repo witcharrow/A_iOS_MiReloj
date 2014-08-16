@@ -40,6 +40,8 @@
 @property (assign) BOOL userHasActivatedMM;
 @property (assign) BOOL userHasActivatedYY;
 
+@property (assign) BOOL cancelButtonPressed;
+
 -(IBAction)switchPressed:(UIBarButtonItem *)sender;
 -(IBAction)cancelPressed:(UIBarButtonItem *)sender;
 
