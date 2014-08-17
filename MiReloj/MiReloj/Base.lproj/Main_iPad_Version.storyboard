@@ -368,7 +368,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54O-fi-4Xy">
-                                <rect key="frame" x="10" y="139" width="748" height="451"/>
+                                <rect key="frame" x="10" y="0.0" width="391" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="200"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -383,7 +383,7 @@
                             <constraint firstAttribute="bottom" secondItem="Hkr-LH-fkA" secondAttribute="bottom" constant="5" id="CoO-ZK-Ehx"/>
                             <constraint firstAttribute="centerY" secondItem="pdB-Fh-ItJ" secondAttribute="centerY" id="F0e-FB-Zcd"/>
                             <constraint firstItem="RYg-vj-Yxx" firstAttribute="top" secondItem="pdB-Fh-ItJ" secondAttribute="bottom" constant="30" id="FHR-Mk-Cbz"/>
-                            <constraint firstAttribute="bottom" secondItem="Rkx-G9-nhP" secondAttribute="bottom" constant="20" id="SlD-Uc-tcc"/>
+                            <constraint firstAttribute="bottom" secondItem="Rkx-G9-nhP" secondAttribute="bottom" constant="40" id="SlD-Uc-tcc"/>
                             <constraint firstAttribute="centerX" secondItem="pdB-Fh-ItJ" secondAttribute="centerX" id="Zra-d3-F3J"/>
                             <constraint firstAttribute="trailing" secondItem="7Xb-zT-oXR" secondAttribute="trailing" constant="20" id="fBj-RQ-l5w"/>
                             <constraint firstAttribute="trailing" secondItem="Hkr-LH-fkA" secondAttribute="trailing" constant="20" id="l0h-kC-YaU"/>
