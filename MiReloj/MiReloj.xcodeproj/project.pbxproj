@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9E54E2C19A0B22900B86244 /* Main_iPad_Version.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E54E2A19A0B22900B86244 /* Main_iPad_Version.storyboard */; };
 		E019F8D91912D06F001D5C90 /* EditAlarmaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E019F8D81912D06F001D5C90 /* EditAlarmaTableViewController.m */; };
 		E0201E23190D0F2C00D00A69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0201E22190D0F2C00D00A69 /* Foundation.framework */; };
 		E0201E25190D0F2C00D00A69 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0201E24190D0F2C00D00A69 /* CoreGraphics.framework */; };
@@ -14,7 +15,6 @@
 		E0201E2D190D0F2C00D00A69 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E0201E2B190D0F2C00D00A69 /* InfoPlist.strings */; };
 		E0201E2F190D0F2C00D00A69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0201E2E190D0F2C00D00A69 /* main.m */; };
 		E0201E33190D0F2C00D00A69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0201E32190D0F2C00D00A69 /* AppDelegate.m */; };
-		E0201E39190D0F2D00D00A69 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0201E37190D0F2D00D00A69 /* Main_iPad.storyboard */; };
 		E0201E3F190D0F2D00D00A69 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0201E3E190D0F2D00D00A69 /* DetailViewController.m */; };
 		E0201E41190D0F2D00D00A69 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0201E40190D0F2D00D00A69 /* Images.xcassets */; };
 		E0201E48190D0F2D00D00A69 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0201E47190D0F2D00D00A69 /* XCTest.framework */; };
@@ -68,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A9E54E2B19A0B22900B86244 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MiReloj/Base.lproj/Main_iPad_Version.storyboard; sourceTree = "<group>"; };
 		E019F8D71912D06F001D5C90 /* EditAlarmaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAlarmaTableViewController.h; sourceTree = "<group>"; };
 		E019F8D81912D06F001D5C90 /* EditAlarmaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAlarmaTableViewController.m; sourceTree = "<group>"; };
 		E0201E1F190D0F2C00D00A69 /* MiReloj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiReloj.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,7 +116,6 @@
 		E07FB128191FAD7E00FFA667 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E07FB12A191FAD8300FFA667 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E07FB12C191FAFAD00FFA667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		E07FB12E191FAFB400FFA667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		E0813E4319104FA1004B126B /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alarm.h; path = ../ALARM/Controllers/Alarm.h; sourceTree = "<group>"; };
 		E0813E4419104FA1004B126B /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Alarm.m; path = ../ALARM/Controllers/Alarm.m; sourceTree = "<group>"; };
 		E0813E46191051FE004B126B /* ListaAlarmasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaAlarmasViewController.h; sourceTree = "<group>"; };
@@ -202,8 +202,8 @@
 				E0BCEAD11926682900630FD1 /* ALARM_LIST */,
 				E0201E31190D0F2C00D00A69 /* AppDelegate.h */,
 				E0201E32190D0F2C00D00A69 /* AppDelegate.m */,
-				E0201E37190D0F2D00D00A69 /* Main_iPad.storyboard */,
 				E07FB12B191FAFAD00FFA667 /* Main_iPhone.storyboard */,
+				A9E54E2A19A0B22900B86244 /* Main_iPad_Version.storyboard */,
 				E0201E3D190D0F2D00D00A69 /* DetailViewController.h */,
 				E0201E3E190D0F2D00D00A69 /* DetailViewController.m */,
 				E0201E40190D0F2D00D00A69 /* Images.xcassets */,
@@ -432,10 +432,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0BECF26191FFF8D001B47E7 /* police.wav in Resources */,
-				E0201E39190D0F2D00D00A69 /* Main_iPad.storyboard in Resources */,
 				E0BECF25191FFF8D001B47E7 /* church_bells.wav in Resources */,
 				E0BECF24191FFF8D001B47E7 /* card_reader_alarm.wav in Resources */,
 				E0BECF23191FFF8D001B47E7 /* baby_crying.wav in Resources */,
+				A9E54E2C19A0B22900B86244 /* Main_iPad_Version.storyboard in Resources */,
 				E0201E79190D10D900D00A69 /* Add.png in Resources */,
 				E0BECF22191FFF8D001B47E7 /* alarm_clock_ringing.wav in Resources */,
 				E0201E7A190D10D900D00A69 /* Add@2x.png in Resources */,
@@ -511,6 +511,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		A9E54E2A19A0B22900B86244 /* Main_iPad_Version.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A9E54E2B19A0B22900B86244 /* Base */,
+			);
+			name = Main_iPad_Version.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		E0201E2B190D0F2C00D00A69 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -518,14 +527,6 @@
 				E07FB114191FA4E300FFA667 /* es */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E0201E37190D0F2D00D00A69 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E07FB12E191FAFB400FFA667 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		E0201E50190D0F2D00D00A69 /* InfoPlist.strings */ = {
@@ -641,6 +642,7 @@
 				GCC_PREFIX_HEADER = "MiReloj/MiReloj-Prefix.pch";
 				INFOPLIST_FILE = "MiReloj/MiReloj-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -654,6 +656,7 @@
 				GCC_PREFIX_HEADER = "MiReloj/MiReloj-Prefix.pch";
 				INFOPLIST_FILE = "MiReloj/MiReloj-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

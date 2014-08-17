@@ -91,11 +91,14 @@ enum{ALARMAS,RELOJ};
 -(void)updateTimer {
     ////NSLog(@"************************************************************** RelojViewController");
     ////NSLog(@"****************************** updateTimer");
-    NSDateFormatter *formatterHM = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatterHH = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatterMM = [[NSDateFormatter alloc] init];
     NSDateFormatter *formatterSS = [[NSDateFormatter alloc] init];
-    [formatterHM setDateFormat:@"HH:mm"];
-    timerLabelHM.text = [formatterHM stringFromDate:[NSDate date]];
+    [formatterHH setDateFormat:@"HH"];
+    [formatterMM setDateFormat:@"MM"];
     [formatterSS setDateFormat:@"ss"];
+    timerLabelHH.text = [formatterHH stringFromDate:[NSDate date]];
+    timerLabelMM.text = [formatterMM stringFromDate:[NSDate date]];
     timerLabelSS.text = [formatterSS stringFromDate:[NSDate date]];
 }
 /*Reconoce el gesto de deslizar para moverse entre pestañas*/

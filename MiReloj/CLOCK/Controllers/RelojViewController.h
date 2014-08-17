@@ -10,7 +10,8 @@
 
 @interface RelojViewController : UIViewController{    
     //Horas, minutos y segundos
-    IBOutlet UILabel *timerLabelHM;
+    IBOutlet UILabel *timerLabelHH;
+    IBOutlet UILabel *timerLabelMM;
     IBOutlet UILabel *timerLabelSS;
     NSTimer *timer;
     
