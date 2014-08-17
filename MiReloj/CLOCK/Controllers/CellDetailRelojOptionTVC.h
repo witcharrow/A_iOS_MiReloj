@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @class RelojViewController;
-@class Option;
 
 @interface CellDetailRelojOptionTVC : UITableViewController
 
@@ -26,8 +25,7 @@
 @property (strong,nonatomic) IBOutlet UILabel *titleLabelYY;
 @property (strong,nonatomic) IBOutlet UILabel *exampleLabelYY;
 @property (strong,nonatomic) IBOutlet UISwitch *activatedYY;
-//Opcion
-@property (nonatomic, strong) Option *option;
+
 //Etiqueta para la fecha
 @property (nonatomic, strong) IBOutlet UILabel *fechaResultado;
 @property (nonatomic, strong) NSString *fechaResultadoString;

@@ -55,7 +55,6 @@
 		E0BECF24191FFF8D001B47E7 /* card_reader_alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0BECF1F191FFF8D001B47E7 /* card_reader_alarm.wav */; };
 		E0BECF25191FFF8D001B47E7 /* church_bells.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0BECF20191FFF8D001B47E7 /* church_bells.wav */; };
 		E0BECF26191FFF8D001B47E7 /* police.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0BECF21191FFF8D001B47E7 /* police.wav */; };
-		E0CEB302190D2AD70050CA12 /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CEB301190D2AD70050CA12 /* Option.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,8 +137,6 @@
 		E0BECF1F191FFF8D001B47E7 /* card_reader_alarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = card_reader_alarm.wav; sourceTree = "<group>"; };
 		E0BECF20191FFF8D001B47E7 /* church_bells.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = church_bells.wav; sourceTree = "<group>"; };
 		E0BECF21191FFF8D001B47E7 /* police.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = police.wav; sourceTree = "<group>"; };
-		E0CEB300190D2AD70050CA12 /* Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Option.h; sourceTree = "<group>"; };
-		E0CEB301190D2AD70050CA12 /* Option.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Option.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,8 +277,6 @@
 			children = (
 				E0201E63190D10D900D00A69 /* RelojViewController.h */,
 				E0201E64190D10D900D00A69 /* RelojViewController.m */,
-				E0CEB300190D2AD70050CA12 /* Option.h */,
-				E0CEB301190D2AD70050CA12 /* Option.m */,
 				E072F280190D863300FE1D24 /* CellDetailRelojOptionTVC.h */,
 				E072F281190D863300FE1D24 /* CellDetailRelojOptionTVC.m */,
 			);
@@ -489,7 +484,6 @@
 				E0813E4519104FA1004B126B /* Alarm.m in Sources */,
 				E0201E78190D10D900D00A69 /* RelojViewController.m in Sources */,
 				E0813E4E19105810004B126B /* AddAlarmaTableViewController.m in Sources */,
-				E0CEB302190D2AD70050CA12 /* Option.m in Sources */,
 				E0201E2F190D0F2C00D00A69 /* main.m in Sources */,
 				E0BCEADF192691CF00630FD1 /* AlarmNameTVC.m in Sources */,
 				E0BCEADC1926915600630FD1 /* SelectSoundTVC.m in Sources */,
