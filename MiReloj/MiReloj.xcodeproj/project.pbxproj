@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9AD80AA19A1299F00A059AB /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD809A19A1299F00A059AB /* AppIcon29x29.png */; };
+		A9AD80AB19A1299F00A059AB /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD809B19A1299F00A059AB /* AppIcon29x29@2x.png */; };
+		A9AD80AC19A1299F00A059AB /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD809C19A1299F00A059AB /* AppIcon40x40.png */; };
+		A9AD80AD19A1299F00A059AB /* AppIcon40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD809D19A1299F00A059AB /* AppIcon40x40@2x.png */; };
+		A9AD80AE19A1299F00A059AB /* AppIcon50x50.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD809E19A1299F00A059AB /* AppIcon50x50.png */; };
+		A9AD80AF19A1299F00A059AB /* AppIcon50x50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD809F19A1299F00A059AB /* AppIcon50x50@2x.png */; };
+		A9AD80B019A1299F00A059AB /* AppIcon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A019A1299F00A059AB /* AppIcon57x57.png */; };
+		A9AD80B119A1299F00A059AB /* AppIcon57x57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A119A1299F00A059AB /* AppIcon57x57@2x.png */; };
+		A9AD80B219A1299F00A059AB /* AppIcon60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A219A1299F00A059AB /* AppIcon60x60.png */; };
+		A9AD80B319A1299F00A059AB /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A319A1299F00A059AB /* AppIcon60x60@2x.png */; };
+		A9AD80B419A1299F00A059AB /* AppIcon72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A419A1299F00A059AB /* AppIcon72x72.png */; };
+		A9AD80B519A1299F00A059AB /* AppIcon72x72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A519A1299F00A059AB /* AppIcon72x72@2x.png */; };
+		A9AD80B619A1299F00A059AB /* AppIcon76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A619A1299F00A059AB /* AppIcon76x76.png */; };
+		A9AD80B719A1299F00A059AB /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A719A1299F00A059AB /* AppIcon76x76@2x.png */; };
+		A9AD80B819A1299F00A059AB /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A819A1299F00A059AB /* iTunesArtwork.png */; };
+		A9AD80B919A1299F00A059AB /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A919A1299F00A059AB /* iTunesArtwork@2x.png */; };
 		A9E54E2C19A0B22900B86244 /* Main_iPad_Version.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E54E2A19A0B22900B86244 /* Main_iPad_Version.storyboard */; };
 		E019F8D91912D06F001D5C90 /* EditAlarmaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E019F8D81912D06F001D5C90 /* EditAlarmaTableViewController.m */; };
 		E0201E23190D0F2C00D00A69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0201E22190D0F2C00D00A69 /* Foundation.framework */; };
@@ -68,6 +84,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A9AD809A19A1299F00A059AB /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
+		A9AD809B19A1299F00A059AB /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
+		A9AD809C19A1299F00A059AB /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
+		A9AD809D19A1299F00A059AB /* AppIcon40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon40x40@2x.png"; sourceTree = "<group>"; };
+		A9AD809E19A1299F00A059AB /* AppIcon50x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon50x50.png; sourceTree = "<group>"; };
+		A9AD809F19A1299F00A059AB /* AppIcon50x50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon50x50@2x.png"; sourceTree = "<group>"; };
+		A9AD80A019A1299F00A059AB /* AppIcon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon57x57.png; sourceTree = "<group>"; };
+		A9AD80A119A1299F00A059AB /* AppIcon57x57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon57x57@2x.png"; sourceTree = "<group>"; };
+		A9AD80A219A1299F00A059AB /* AppIcon60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon60x60.png; sourceTree = "<group>"; };
+		A9AD80A319A1299F00A059AB /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
+		A9AD80A419A1299F00A059AB /* AppIcon72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon72x72.png; sourceTree = "<group>"; };
+		A9AD80A519A1299F00A059AB /* AppIcon72x72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon72x72@2x.png"; sourceTree = "<group>"; };
+		A9AD80A619A1299F00A059AB /* AppIcon76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon76x76.png; sourceTree = "<group>"; };
+		A9AD80A719A1299F00A059AB /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon76x76@2x.png"; sourceTree = "<group>"; };
+		A9AD80A819A1299F00A059AB /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		A9AD80A919A1299F00A059AB /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		A9E54E2B19A0B22900B86244 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MiReloj/Base.lproj/Main_iPad_Version.storyboard; sourceTree = "<group>"; };
 		E019F8D71912D06F001D5C90 /* EditAlarmaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAlarmaTableViewController.h; sourceTree = "<group>"; };
 		E019F8D81912D06F001D5C90 /* EditAlarmaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAlarmaTableViewController.m; sourceTree = "<group>"; };
@@ -163,6 +195,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A9AD809919A1299F00A059AB /* App Icon [Rounded] */ = {
+			isa = PBXGroup;
+			children = (
+				A9AD809A19A1299F00A059AB /* AppIcon29x29.png */,
+				A9AD809B19A1299F00A059AB /* AppIcon29x29@2x.png */,
+				A9AD809C19A1299F00A059AB /* AppIcon40x40.png */,
+				A9AD809D19A1299F00A059AB /* AppIcon40x40@2x.png */,
+				A9AD809E19A1299F00A059AB /* AppIcon50x50.png */,
+				A9AD809F19A1299F00A059AB /* AppIcon50x50@2x.png */,
+				A9AD80A019A1299F00A059AB /* AppIcon57x57.png */,
+				A9AD80A119A1299F00A059AB /* AppIcon57x57@2x.png */,
+				A9AD80A219A1299F00A059AB /* AppIcon60x60.png */,
+				A9AD80A319A1299F00A059AB /* AppIcon60x60@2x.png */,
+				A9AD80A419A1299F00A059AB /* AppIcon72x72.png */,
+				A9AD80A519A1299F00A059AB /* AppIcon72x72@2x.png */,
+				A9AD80A619A1299F00A059AB /* AppIcon76x76.png */,
+				A9AD80A719A1299F00A059AB /* AppIcon76x76@2x.png */,
+				A9AD80A819A1299F00A059AB /* iTunesArtwork.png */,
+				A9AD80A919A1299F00A059AB /* iTunesArtwork@2x.png */,
+			);
+			name = "App Icon [Rounded]";
+			path = "RESOURCES/App Icon [Rounded]";
+			sourceTree = SOURCE_ROOT;
+		};
 		E0201E16190D0F2C00D00A69 = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +342,7 @@
 		E0201E65190D10D900D00A69 /* RESOURCES */ = {
 			isa = PBXGroup;
 			children = (
+				A9AD809919A1299F00A059AB /* App Icon [Rounded] */,
 				E0BECF1C191FFF8D001B47E7 /* Sounds */,
 				E07FB118191FA8C000FFA667 /* Languages */,
 				E0201E66190D10D900D00A69 /* Images */,
@@ -431,12 +488,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9AD80AE19A1299F00A059AB /* AppIcon50x50.png in Resources */,
 				E0BECF26191FFF8D001B47E7 /* police.wav in Resources */,
+				A9AD80B519A1299F00A059AB /* AppIcon72x72@2x.png in Resources */,
+				A9AD80B619A1299F00A059AB /* AppIcon76x76.png in Resources */,
 				E0BECF25191FFF8D001B47E7 /* church_bells.wav in Resources */,
 				E0BECF24191FFF8D001B47E7 /* card_reader_alarm.wav in Resources */,
 				E0BECF23191FFF8D001B47E7 /* baby_crying.wav in Resources */,
 				A9E54E2C19A0B22900B86244 /* Main_iPad_Version.storyboard in Resources */,
 				E0201E79190D10D900D00A69 /* Add.png in Resources */,
+				A9AD80AD19A1299F00A059AB /* AppIcon40x40@2x.png in Resources */,
+				A9AD80B119A1299F00A059AB /* AppIcon57x57@2x.png in Resources */,
+				A9AD80B419A1299F00A059AB /* AppIcon72x72.png in Resources */,
+				A9AD80B719A1299F00A059AB /* AppIcon76x76@2x.png in Resources */,
+				A9AD80B219A1299F00A059AB /* AppIcon60x60.png in Resources */,
+				A9AD80B319A1299F00A059AB /* AppIcon60x60@2x.png in Resources */,
+				A9AD80B819A1299F00A059AB /* iTunesArtwork.png in Resources */,
 				E0BECF22191FFF8D001B47E7 /* alarm_clock_ringing.wav in Resources */,
 				E0201E7A190D10D900D00A69 /* Add@2x.png in Resources */,
 				E0201E41190D0F2D00D00A69 /* Images.xcassets in Resources */,
@@ -451,9 +518,15 @@
 				E0201E87190D10D900D00A69 /* Timer.png in Resources */,
 				E0201E7C190D10D900D00A69 /* Alarm@2x.png in Resources */,
 				E0201E7D190D10D900D00A69 /* Clock.png in Resources */,
+				A9AD80AA19A1299F00A059AB /* AppIcon29x29.png in Resources */,
+				A9AD80AC19A1299F00A059AB /* AppIcon40x40.png in Resources */,
 				E0201E80190D10D900D00A69 /* New@2x.png in Resources */,
 				E0201E82190D10D900D00A69 /* Next@2x.png in Resources */,
 				E0201E2D190D0F2C00D00A69 /* InfoPlist.strings in Resources */,
+				A9AD80AB19A1299F00A059AB /* AppIcon29x29@2x.png in Resources */,
+				A9AD80B019A1299F00A059AB /* AppIcon57x57.png in Resources */,
+				A9AD80B919A1299F00A059AB /* iTunesArtwork@2x.png in Resources */,
+				A9AD80AF19A1299F00A059AB /* AppIcon50x50@2x.png in Resources */,
 				E0201E7E190D10D900D00A69 /* Clock@2x.png in Resources */,
 				E0201E88190D10D900D00A69 /* Timer@2x.png in Resources */,
 				E0201E85190D10D900D00A69 /* Previous.png in Resources */,

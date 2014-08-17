@@ -9,13 +9,13 @@
 /*CellDetailRelojOptionTVC*/
 "_opcionesReloj"="Date Options";
 "_dayOfWeek"="Show Day of week";
-"_monday"="i.e.: Monday, Tuesday, Wednesday...";
+"_monday"="Monday, Tuesday, Wednesday...";
 "_dayOfMonth"="Show Day of month";
-"_DD"="i.e.: 1,2,3,4...";
+"_DD"="1,2,3,4...";
 "_month"="Show Month";
-"_MM"="i.e.: January, February, March...";
+"_MM"="January, February, March...";
 "_YEAR"="Show Year";
-"_YY"="i.e.: 2014";
+"_YY"="2014";
 
 /*RelojViewController*/
 "_miReloj"="My Watch";
