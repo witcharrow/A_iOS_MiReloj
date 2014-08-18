@@ -20,6 +20,8 @@ enum{ALARMAS,RELOJ};
 @synthesize dateToShowEN;
 @synthesize dateToShowSP;
 @synthesize timerLabelDMA;
+@synthesize idiomaInicialApp=_idiomaInicialApp;
+@synthesize idiomaActualApp=_idiomaActualApp;
 
 #pragma mark - View lifecycle
 -(void)viewDidLoad {
@@ -47,11 +49,37 @@ enum{ALARMAS,RELOJ};
             NSString *fecha=[dateDMA stringFromDate:[NSDate date]];
             //NSLog(@"%@",fecha);
             //Idioma Vista
-            (!self.idiomaActualIngles)?[self setDateToShowSP:fecha]:[self setDateToShowEN:fecha];
+            if (!self.idiomaActualIngles){
+                [self setDateToShowSP:fecha];
+                _idiomaInicialApp=@"es";
+            }
+            else{
+                [self setDateToShowEN:fecha];
+                _idiomaInicialApp=@"en";
+            }
+            
         }
         else{
             //NSLog(@"la fecha del usuario es: %@",date);
-            self.timerLabelDMA.text=date;
+            if([_idiomaActualApp isEqualToString:_idiomaInicialApp]){
+                self.timerLabelDMA.text=date;
+            }
+            else{
+                //NSLog(@"El idioma ha cambiado, reiniciamos la fecha y los switch por defecto.");
+                NSDateFormatter *dateDMA = [[NSDateFormatter alloc]init];
+                [dateDMA setDateFormat:@"EEEE,dd,MMMM,yyyy"];
+                NSString *fecha=[dateDMA stringFromDate:[NSDate date]];
+                //NSLog(@"%@",fecha);
+                //Idioma Vista
+                if (!self.idiomaActualIngles){
+                    [self setDateToShowSP:fecha];
+                    _idiomaInicialApp=@"es";
+                }
+                else{
+                    [self setDateToShowEN:fecha];
+                    _idiomaInicialApp=@"en";
+                }
+            }
         }
     }
     
@@ -85,7 +113,17 @@ enum{ALARMAS,RELOJ};
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     return YES;
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    //NSLog(@"************************************************************** RelojViewController");
+    //NSLog(@"****************************** viewWillDisappear");
+    [super viewWillDisappear:animated];
+    if (!self.idiomaActualIngles){
+        _idiomaActualApp=@"es";
+    }
+    else{
+        _idiomaActualApp=@"en";
+    }
+}
 #pragma mark - Help Methods
 /*Establece los labels para el reloj*/
 -(void)updateTimer {

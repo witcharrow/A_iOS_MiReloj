@@ -170,7 +170,7 @@
     [dateDMA setDateFormat:formatoFecha];
     [currentDateDMA setDateFormat:@"EEEE,dd,MMMM,yyyy"];
     
-    NSString *fechaConFormato=[dateDMA stringFromDate:[NSDate date]];
+    //NSString *fechaConFormato=[dateDMA stringFromDate:[NSDate date]];
     NSString *fechaSinFormato=[currentDateDMA stringFromDate:[NSDate date]];
     //NSLog(@"%@",fechaConFormato);
     //NSLog(@"%@",fechaSinFormato);
@@ -260,7 +260,7 @@
     [dateDMA setDateFormat:formatoFecha];
     [currentDateDMA setDateFormat:@"EEEE,dd,MMMM,yyyy"];
     
-    NSString *fechaConFormato=[dateDMA stringFromDate:[NSDate date]];
+    //NSString *fechaConFormato=[dateDMA stringFromDate:[NSDate date]];
     NSString *fechaSinFormato=[currentDateDMA stringFromDate:[NSDate date]];
     //NSLog(@"%@",fechaConFormato);
     //NSLog(@"%@",fechaSinFormato);

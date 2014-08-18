@@ -40,6 +40,9 @@
 
 @property (assign) BOOL cancelButtonPressed;
 
+@property (strong,nonatomic) NSString *idiomaInicialApp;
+@property (strong,nonatomic) NSString *idiomaActualApp;
+
 -(IBAction)switchPressed:(UIBarButtonItem *)sender;
 -(IBAction)cancelPressed:(UIBarButtonItem *)sender;
 

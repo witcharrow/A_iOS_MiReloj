@@ -21,8 +21,9 @@
 @property (strong,nonatomic) NSString *dateToShowEN;
 @property (strong,nonatomic) NSString *dateToShowSP;
 @property (strong,nonatomic) IBOutlet UILabel *timerLabelDMA;
+@property (strong,nonatomic) NSString *idiomaInicialApp;
+@property (strong,nonatomic) NSString *idiomaActualApp;
 
 -(IBAction)unwindFromViewController:(UIStoryboardSegue *)sender;
-
 
 @end
