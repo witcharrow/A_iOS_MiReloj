@@ -124,6 +124,7 @@ enum{RELOJ,ALARMAS};
         _idiomaActualApp=@"en";
     }
 }
+
 #pragma mark - Help Methods
 /*Establece los labels para el reloj*/
 -(void)updateTimer {

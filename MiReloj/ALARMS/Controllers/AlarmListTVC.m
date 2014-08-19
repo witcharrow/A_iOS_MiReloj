@@ -7,6 +7,7 @@
 //
 
 #import "AlarmListTVC.h"
+#import "Alarm.h"
 
 @interface AlarmListTVC ()
 
@@ -14,26 +15,36 @@
 
 @implementation AlarmListTVC
 
+@synthesize alarms=_alarms;
+
 enum{RELOJ,ALARMAS};
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+#pragma mark - View lifecycle
+- (id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
     return self;
 }
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
+    //Creamos la lista de alarmas.
+    self.alarms = [[NSMutableArray alloc] init];
+    //Creamos una alarma para la lista.
+    Alarm *alarmActivated = [[Alarm alloc]initWithName:@"Alarma ACTIVADA" done:NO];
+    Alarm *alarmDeactivated = [[Alarm alloc]initWithName:@"Alarma DESACTIVADA" done:YES];
+
+    [self.alarms addObject:alarmActivated];
+    [self.alarms addObject:alarmDeactivated];
+    [self.tableView reloadData];
+    
     // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     self.title = NSLocalizedString(@"_alarmas",@"Alarmas EN/SP");
     
@@ -49,55 +60,38 @@ enum{RELOJ,ALARMAS};
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
 }
-/*Reconoce el gesto de deslizar para moverse entre pestañas*/
--(void)swipeRecognized:(UISwipeGestureRecognizer *)swipe{
-    
-    if(swipe.direction==UISwipeGestureRecognizerDirectionLeft){
-        [(UITabBarController *)self.tabBarController setSelectedIndex:RELOJ];
-        
-    }
-    if(swipe.direction==UISwipeGestureRecognizerDirectionRight){
-        [(UITabBarController *)self.tabBarController setSelectedIndex:RELOJ];
-    }
-}
-
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
+/*Devuelve el numero de secciones*/
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+/*Devuelve el número de filas por seccion*/
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.alarms.count;
 }
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+/*Establecemos los valores de las filas*/
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    // Configure the cell...
+    static NSString *activatedAlarmCell=@"activatedAlarmCell";
+    static NSString *deactivatedAlarmCell=@"deactivatedAlarmCell";
+    
+    Alarm *currentAlarm = [self.alarms objectAtIndex:indexPath.row];
+    NSString *cellIdentifier = currentAlarm.done? deactivatedAlarmCell : activatedAlarmCell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    cell.textLabel.text = currentAlarm.name;
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
@@ -105,8 +99,7 @@ enum{RELOJ,ALARMAS};
 
 /*
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -118,15 +111,13 @@ enum{RELOJ,ALARMAS};
 
 /*
 // Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
 }
 */
 
 /*
 // Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
@@ -136,11 +127,23 @@ enum{RELOJ,ALARMAS};
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - Help Methods
+/*Reconoce el gesto de deslizar para moverse entre pestañas*/
+-(void)swipeRecognized:(UISwipeGestureRecognizer *)swipe{
+    
+    if(swipe.direction==UISwipeGestureRecognizerDirectionLeft){
+        [(UITabBarController *)self.tabBarController setSelectedIndex:RELOJ];
+        
+    }
+    if(swipe.direction==UISwipeGestureRecognizerDirectionRight){
+        [(UITabBarController *)self.tabBarController setSelectedIndex:RELOJ];
+    }
+}
 
 @end
