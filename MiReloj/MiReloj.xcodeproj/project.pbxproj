@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9983F5119A29F0B00CF6BC0 /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = A9983F4E19A29F0B00CF6BC0 /* Alarm.m */; };
+		A9983F5219A29F0B00CF6BC0 /* AlarmListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A9983F5019A29F0B00CF6BC0 /* AlarmListTVC.m */; };
 		A9AD80AA19A1299F00A059AB /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD809A19A1299F00A059AB /* AppIcon29x29.png */; };
 		A9AD80AB19A1299F00A059AB /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD809B19A1299F00A059AB /* AppIcon29x29@2x.png */; };
 		A9AD80AC19A1299F00A059AB /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD809C19A1299F00A059AB /* AppIcon40x40.png */; };
@@ -24,7 +26,6 @@
 		A9AD80B819A1299F00A059AB /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A819A1299F00A059AB /* iTunesArtwork.png */; };
 		A9AD80B919A1299F00A059AB /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A919A1299F00A059AB /* iTunesArtwork@2x.png */; };
 		A9E54E2C19A0B22900B86244 /* Main_iPad_Version.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E54E2A19A0B22900B86244 /* Main_iPad_Version.storyboard */; };
-		E019F8D91912D06F001D5C90 /* EditAlarmaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E019F8D81912D06F001D5C90 /* EditAlarmaTableViewController.m */; };
 		E0201E23190D0F2C00D00A69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0201E22190D0F2C00D00A69 /* Foundation.framework */; };
 		E0201E25190D0F2C00D00A69 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0201E24190D0F2C00D00A69 /* CoreGraphics.framework */; };
 		E0201E27190D0F2C00D00A69 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0201E26190D0F2C00D00A69 /* UIKit.framework */; };
@@ -38,7 +39,6 @@
 		E0201E4A190D0F2D00D00A69 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0201E26190D0F2C00D00A69 /* UIKit.framework */; };
 		E0201E52190D0F2D00D00A69 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E0201E50190D0F2D00D00A69 /* InfoPlist.strings */; };
 		E0201E54190D0F2D00D00A69 /* MiRelojTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E0201E53190D0F2D00D00A69 /* MiRelojTests.m */; };
-		E0201E77190D10D900D00A69 /* AlarmaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0201E60190D10D900D00A69 /* AlarmaViewController.m */; };
 		E0201E78190D10D900D00A69 /* RelojViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0201E64190D10D900D00A69 /* RelojViewController.m */; };
 		E0201E79190D10D900D00A69 /* Add.png in Resources */ = {isa = PBXBuildFile; fileRef = E0201E67190D10D900D00A69 /* Add.png */; };
 		E0201E7A190D10D900D00A69 /* Add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E0201E68190D10D900D00A69 /* Add@2x.png */; };
@@ -59,13 +59,6 @@
 		E072F282190D863300FE1D24 /* CellDetailRelojOptionTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E072F281190D863300FE1D24 /* CellDetailRelojOptionTVC.m */; };
 		E07FB127191FAD7E00FFA667 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E07FB129191FAD7E00FFA667 /* Localizable.strings */; };
 		E07FB12D191FAFAD00FFA667 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E07FB12B191FAFAD00FFA667 /* Main_iPhone.storyboard */; };
-		E0813E4519104FA1004B126B /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = E0813E4419104FA1004B126B /* Alarm.m */; };
-		E0813E48191051FE004B126B /* ListaAlarmasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0813E47191051FE004B126B /* ListaAlarmasViewController.m */; };
-		E0813E4E19105810004B126B /* AddAlarmaTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0813E4D19105810004B126B /* AddAlarmaTableViewController.m */; };
-		E0BCEAD41926696C00630FD1 /* ListAlarmsMVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BCEAD31926696C00630FD1 /* ListAlarmsMVC.m */; };
-		E0BCEAD919268FDD00630FD1 /* AddAlarmDetailsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BCEAD819268FDD00630FD1 /* AddAlarmDetailsTVC.m */; };
-		E0BCEADC1926915600630FD1 /* SelectSoundTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BCEADB1926915600630FD1 /* SelectSoundTVC.m */; };
-		E0BCEADF192691CF00630FD1 /* AlarmNameTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E0BCEADE192691CF00630FD1 /* AlarmNameTVC.m */; };
 		E0BECF22191FFF8D001B47E7 /* alarm_clock_ringing.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0BECF1D191FFF8D001B47E7 /* alarm_clock_ringing.wav */; };
 		E0BECF23191FFF8D001B47E7 /* baby_crying.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0BECF1E191FFF8D001B47E7 /* baby_crying.wav */; };
 		E0BECF24191FFF8D001B47E7 /* card_reader_alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0BECF1F191FFF8D001B47E7 /* card_reader_alarm.wav */; };
@@ -84,6 +77,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A9983F4D19A29F0B00CF6BC0 /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alarm.h; path = ALARMS/Controllers/Alarm.h; sourceTree = SOURCE_ROOT; };
+		A9983F4E19A29F0B00CF6BC0 /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Alarm.m; path = ALARMS/Controllers/Alarm.m; sourceTree = SOURCE_ROOT; };
+		A9983F4F19A29F0B00CF6BC0 /* AlarmListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlarmListTVC.h; path = ALARMS/Controllers/AlarmListTVC.h; sourceTree = SOURCE_ROOT; };
+		A9983F5019A29F0B00CF6BC0 /* AlarmListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlarmListTVC.m; path = ALARMS/Controllers/AlarmListTVC.m; sourceTree = SOURCE_ROOT; };
 		A9AD809A19A1299F00A059AB /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
 		A9AD809B19A1299F00A059AB /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
 		A9AD809C19A1299F00A059AB /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
@@ -100,9 +97,9 @@
 		A9AD80A719A1299F00A059AB /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon76x76@2x.png"; sourceTree = "<group>"; };
 		A9AD80A819A1299F00A059AB /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		A9AD80A919A1299F00A059AB /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		A9E4343619A3BC4C0022C1FE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
+		A9E4343819A3BC4F0022C1FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		A9E54E2B19A0B22900B86244 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MiReloj/Base.lproj/Main_iPad_Version.storyboard; sourceTree = "<group>"; };
-		E019F8D71912D06F001D5C90 /* EditAlarmaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAlarmaTableViewController.h; sourceTree = "<group>"; };
-		E019F8D81912D06F001D5C90 /* EditAlarmaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAlarmaTableViewController.m; sourceTree = "<group>"; };
 		E0201E1F190D0F2C00D00A69 /* MiReloj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiReloj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0201E22190D0F2C00D00A69 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E0201E24190D0F2C00D00A69 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -121,8 +118,6 @@
 		E0201E4F190D0F2D00D00A69 /* MiRelojTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MiRelojTests-Info.plist"; sourceTree = "<group>"; };
 		E0201E51190D0F2D00D00A69 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E0201E53190D0F2D00D00A69 /* MiRelojTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiRelojTests.m; sourceTree = "<group>"; };
-		E0201E5F190D10D900D00A69 /* AlarmaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmaViewController.h; sourceTree = "<group>"; };
-		E0201E60190D10D900D00A69 /* AlarmaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmaViewController.m; sourceTree = "<group>"; };
 		E0201E63190D10D900D00A69 /* RelojViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelojViewController.h; sourceTree = "<group>"; };
 		E0201E64190D10D900D00A69 /* RelojViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelojViewController.m; sourceTree = "<group>"; };
 		E0201E67190D10D900D00A69 /* Add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Add.png; sourceTree = "<group>"; };
@@ -148,22 +143,6 @@
 		E07FB128191FAD7E00FFA667 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E07FB12A191FAD8300FFA667 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E07FB12C191FAFAD00FFA667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		E0813E4319104FA1004B126B /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alarm.h; path = ../ALARM/Controllers/Alarm.h; sourceTree = "<group>"; };
-		E0813E4419104FA1004B126B /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Alarm.m; path = ../ALARM/Controllers/Alarm.m; sourceTree = "<group>"; };
-		E0813E46191051FE004B126B /* ListaAlarmasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListaAlarmasViewController.h; sourceTree = "<group>"; };
-		E0813E47191051FE004B126B /* ListaAlarmasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListaAlarmasViewController.m; sourceTree = "<group>"; };
-		E0813E4C19105810004B126B /* AddAlarmaTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAlarmaTableViewController.h; sourceTree = "<group>"; };
-		E0813E4D19105810004B126B /* AddAlarmaTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAlarmaTableViewController.m; sourceTree = "<group>"; };
-		E0BCEAD21926696C00630FD1 /* ListAlarmsMVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListAlarmsMVC.h; path = ALARM_LIST/ListAlarmsMVC.h; sourceTree = SOURCE_ROOT; };
-		E0BCEAD31926696C00630FD1 /* ListAlarmsMVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListAlarmsMVC.m; path = ALARM_LIST/ListAlarmsMVC.m; sourceTree = SOURCE_ROOT; };
-		E0BCEAD519267C3500630FD1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
-		E0BCEAD619267C3A00630FD1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
-		E0BCEAD719268FDD00630FD1 /* AddAlarmDetailsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddAlarmDetailsTVC.h; path = ALARM_LIST/AddAlarmDetailsTVC.h; sourceTree = SOURCE_ROOT; };
-		E0BCEAD819268FDD00630FD1 /* AddAlarmDetailsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddAlarmDetailsTVC.m; path = ALARM_LIST/AddAlarmDetailsTVC.m; sourceTree = SOURCE_ROOT; };
-		E0BCEADA1926915600630FD1 /* SelectSoundTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectSoundTVC.h; path = ALARM_LIST/SelectSoundTVC.h; sourceTree = SOURCE_ROOT; };
-		E0BCEADB1926915600630FD1 /* SelectSoundTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectSoundTVC.m; path = ALARM_LIST/SelectSoundTVC.m; sourceTree = SOURCE_ROOT; };
-		E0BCEADD192691CF00630FD1 /* AlarmNameTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmNameTVC.h; sourceTree = "<group>"; };
-		E0BCEADE192691CF00630FD1 /* AlarmNameTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmNameTVC.m; sourceTree = "<group>"; };
 		E0BECF1D191FFF8D001B47E7 /* alarm_clock_ringing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alarm_clock_ringing.wav; sourceTree = "<group>"; };
 		E0BECF1E191FFF8D001B47E7 /* baby_crying.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = baby_crying.wav; sourceTree = "<group>"; };
 		E0BECF1F191FFF8D001B47E7 /* card_reader_alarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = card_reader_alarm.wav; sourceTree = "<group>"; };
@@ -195,6 +174,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A9983F3D19A28DCF00CF6BC0 /* ALARMS */ = {
+			isa = PBXGroup;
+			children = (
+				A9983F4119A2975300CF6BC0 /* Controllers */,
+			);
+			name = ALARMS;
+			sourceTree = "<group>";
+		};
+		A9983F4119A2975300CF6BC0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A9983F4D19A29F0B00CF6BC0 /* Alarm.h */,
+				A9983F4E19A29F0B00CF6BC0 /* Alarm.m */,
+				A9983F4F19A29F0B00CF6BC0 /* AlarmListTVC.h */,
+				A9983F5019A29F0B00CF6BC0 /* AlarmListTVC.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		A9AD809919A1299F00A059AB /* App Icon [Rounded] */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,10 +250,9 @@
 		E0201E28190D0F2C00D00A69 /* MiReloj */ = {
 			isa = PBXGroup;
 			children = (
-				E0201E5D190D10D800D00A69 /* ALARM */,
+				A9983F3D19A28DCF00CF6BC0 /* ALARMS */,
 				E0201E61190D10D900D00A69 /* CLOCK */,
 				E0201E65190D10D900D00A69 /* RESOURCES */,
-				E0BCEAD11926682900630FD1 /* ALARM_LIST */,
 				E0201E31190D0F2C00D00A69 /* AppDelegate.h */,
 				E0201E32190D0F2C00D00A69 /* AppDelegate.m */,
 				E07FB12B191FAFAD00FFA667 /* Main_iPhone.storyboard */,
@@ -295,29 +292,6 @@
 				E0201E50190D0F2D00D00A69 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E0201E5D190D10D800D00A69 /* ALARM */ = {
-			isa = PBXGroup;
-			children = (
-				E0201E5E190D10D800D00A69 /* Controllers */,
-			);
-			path = ALARM;
-			sourceTree = SOURCE_ROOT;
-		};
-		E0201E5E190D10D800D00A69 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				E0201E5F190D10D900D00A69 /* AlarmaViewController.h */,
-				E0201E60190D10D900D00A69 /* AlarmaViewController.m */,
-				E0813E46191051FE004B126B /* ListaAlarmasViewController.h */,
-				E0813E47191051FE004B126B /* ListaAlarmasViewController.m */,
-				E0813E4C19105810004B126B /* AddAlarmaTableViewController.h */,
-				E0813E4D19105810004B126B /* AddAlarmaTableViewController.m */,
-				E019F8D71912D06F001D5C90 /* EditAlarmaTableViewController.h */,
-				E019F8D81912D06F001D5C90 /* EditAlarmaTableViewController.m */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		E0201E61190D10D900D00A69 /* CLOCK */ = {
@@ -380,23 +354,6 @@
 			);
 			name = Languages;
 			path = Images;
-			sourceTree = "<group>";
-		};
-		E0BCEAD11926682900630FD1 /* ALARM_LIST */ = {
-			isa = PBXGroup;
-			children = (
-				E0813E4319104FA1004B126B /* Alarm.h */,
-				E0813E4419104FA1004B126B /* Alarm.m */,
-				E0BCEAD21926696C00630FD1 /* ListAlarmsMVC.h */,
-				E0BCEAD31926696C00630FD1 /* ListAlarmsMVC.m */,
-				E0BCEAD719268FDD00630FD1 /* AddAlarmDetailsTVC.h */,
-				E0BCEAD819268FDD00630FD1 /* AddAlarmDetailsTVC.m */,
-				E0BCEADD192691CF00630FD1 /* AlarmNameTVC.h */,
-				E0BCEADE192691CF00630FD1 /* AlarmNameTVC.m */,
-				E0BCEADA1926915600630FD1 /* SelectSoundTVC.h */,
-				E0BCEADB1926915600630FD1 /* SelectSoundTVC.m */,
-			);
-			name = ALARM_LIST;
 			sourceTree = "<group>";
 		};
 		E0BECF1C191FFF8D001B47E7 /* Sounds */ = {
@@ -548,20 +505,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0BCEAD41926696C00630FD1 /* ListAlarmsMVC.m in Sources */,
-				E0813E48191051FE004B126B /* ListaAlarmasViewController.m in Sources */,
 				E0201E33190D0F2C00D00A69 /* AppDelegate.m in Sources */,
-				E0201E77190D10D900D00A69 /* AlarmaViewController.m in Sources */,
-				E0BCEAD919268FDD00630FD1 /* AddAlarmDetailsTVC.m in Sources */,
+				A9983F5119A29F0B00CF6BC0 /* Alarm.m in Sources */,
 				E072F282190D863300FE1D24 /* CellDetailRelojOptionTVC.m in Sources */,
-				E0813E4519104FA1004B126B /* Alarm.m in Sources */,
 				E0201E78190D10D900D00A69 /* RelojViewController.m in Sources */,
-				E0813E4E19105810004B126B /* AddAlarmaTableViewController.m in Sources */,
 				E0201E2F190D0F2C00D00A69 /* main.m in Sources */,
-				E0BCEADF192691CF00630FD1 /* AlarmNameTVC.m in Sources */,
-				E0BCEADC1926915600630FD1 /* SelectSoundTVC.m in Sources */,
-				E019F8D91912D06F001D5C90 /* EditAlarmaTableViewController.m in Sources */,
 				E0201E3F190D0F2D00D00A69 /* DetailViewController.m in Sources */,
+				A9983F5219A29F0B00CF6BC0 /* AlarmListTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,8 +575,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E07FB12C191FAFAD00FFA667 /* Base */,
-				E0BCEAD519267C3500630FD1 /* es */,
-				E0BCEAD619267C3A00630FD1 /* en */,
+				A9E4343619A3BC4C0022C1FE /* es */,
+				A9E4343819A3BC4F0022C1FE /* en */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";

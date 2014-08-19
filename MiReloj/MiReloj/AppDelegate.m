@@ -11,7 +11,7 @@
 
 @implementation AppDelegate
 
-enum{ALARMAS,RELOJ};
+enum{RELOJ,ALARMAS};
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -28,19 +28,17 @@ enum{ALARMAS,RELOJ};
     //Queremos que sea el reloj la pestana por defecto, para ello hacemos lo siguiente:
     tabBarController.selectedIndex = RELOJ;
     UITabBar *tabBar = tabBarController.tabBar;
-    UITabBarItem *tabBarItem1 = [tabBar.items objectAtIndex:ALARMAS];
-    UITabBarItem *tabBarItem2 = [tabBar.items objectAtIndex:RELOJ];
-    tabBarItem1.title = NSLocalizedString(@"_alarmas",@"Alarmas EN/SP");
-    tabBarItem2.title = NSLocalizedString(@"_reloj",@"Reloj EN/SP");
-    
-    
+    UITabBarItem *tabBarItem1 = [tabBar.items objectAtIndex:RELOJ];
+    UITabBarItem *tabBarItem2 = [tabBar.items objectAtIndex:ALARMAS];
+    tabBarItem1.title = NSLocalizedString(@"_miReloj",@"miRELOJ EN/SP");
+    tabBarItem2.title = NSLocalizedString(@"_alarmas",@"Alarmas EN/SP");
     
     //NOTIFICACION
     //Handle launching from a notification
     UILocalNotification *locationNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
     if (locationNotification) {
         // Set icon badge number to zero
-        application.applicationIconBadgeNumber = 0;
+        application.applicationIconBadgeNumber = 1;
     }
     
     return YES;

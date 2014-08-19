@@ -16,7 +16,7 @@
 
 @implementation RelojViewController
 
-enum{ALARMAS,RELOJ};
+enum{RELOJ,ALARMAS};
 @synthesize dateToShowEN;
 @synthesize dateToShowSP;
 @synthesize timerLabelDMA;

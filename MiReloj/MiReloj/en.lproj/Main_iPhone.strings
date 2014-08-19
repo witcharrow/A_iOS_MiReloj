@@ -1,9 +1,21 @@
 
+/* Class = "IBUIBarButtonItem"; title = "OK"; ObjectID = "0Dl-DR-mWJ"; */
+"0Dl-DR-mWJ.title" = "OK";
+
 /* Class = "IBUILabel"; text = "Alarm off"; ObjectID = "0Do-vC-Q0s"; */
 "0Do-vC-Q0s.text" = "Alarm off";
 
 /* Class = "IBUILabel"; text = "Select Sound"; ObjectID = "0YL-I5-x5x"; */
 "0YL-I5-x5x.text" = "Select Sound";
+
+/* Class = "IBUIBarButtonItem"; title = "Done"; ObjectID = "0Yx-vD-NDR"; */
+"0Yx-vD-NDR.title" = "Done";
+
+/* Class = "IBUITableViewSection"; headerTitle = "Name/NOMBRE"; ObjectID = "0dU-L7-Xgg"; */
+"0dU-L7-Xgg.headerTitle" = "Name/NOMBRE";
+
+/* Class = "IBUITableViewSection"; headerTitle = "Section-1"; ObjectID = "1DO-jE-gYa"; */
+"1DO-jE-gYa.headerTitle" = "Section-1";
 
 /* Class = "IBUINavigationItem"; title = "Add Alarm"; ObjectID = "2Bg-fB-cNu"; */
 "2Bg-fB-cNu.title" = "Add Alarm";
@@ -11,11 +23,29 @@
 /* Class = "IBUILabel"; text = "Alarm On"; ObjectID = "2pz-XF-uhl"; */
 "2pz-XF-uhl.text" = "Alarm On";
 
+/* Class = "IBUINavigationItem"; title = "Alarms"; ObjectID = "5Lq-RB-OMC"; */
+"5Lq-RB-OMC.title" = "Alarms";
+
 /* Class = "IBUILabel"; text = "DOW"; ObjectID = "7QF-iD-Ar0"; */
 "7QF-iD-Ar0.text" = "DOW";
 
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "8Ev-Qe-j3U"; */
-"8Ev-Qe-j3U.text" = "Label";
+/* Class = "IBUILabel"; text = "_DetailSound"; ObjectID = "7k2-fc-9KR"; */
+"7k2-fc-9KR.text" = "_DetailSound";
+
+/* Class = "IBUILabel"; text = "Fecha Resultado"; ObjectID = "8Ev-Qe-j3U"; */
+"8Ev-Qe-j3U.text" = "Fecha Resultado";
+
+/* Class = "IBUINavigationItem"; title = "AddAlarms"; ObjectID = "9sO-Sv-wo8"; */
+"9sO-Sv-wo8.title" = "AddAlarms";
+
+/* Class = "IBUILabel"; text = "_DetailSound"; ObjectID = "9uO-8J-xV2"; */
+"9uO-8J-xV2.text" = "_DetailSound";
+
+/* Class = "IBUILabel"; text = "_SeleccionaSonido"; ObjectID = "AU7-ro-40L"; */
+"AU7-ro-40L.text" = "_SeleccionaSonido";
+
+/* Class = "IBUIBarButtonItem"; title = "OK"; ObjectID = "AmU-6R-Bd6"; */
+"AmU-6R-Bd6.title" = "OK";
 
 /* Class = "IBUILabel"; text = "2014"; ObjectID = "BWX-tm-9k5"; */
 "BWX-tm-9k5.text" = "2014";
@@ -26,14 +56,35 @@
 /* Class = "IBUILabel"; text = "Vibration"; ObjectID = "DLg-QP-pM3"; */
 "DLg-QP-pM3.text" = "Vibration";
 
-/* Class = "IBUILabel"; text = "FECHA RESULTADO"; ObjectID = "G4L-pT-jKx"; */
-"G4L-pT-jKx.text" = "FECHA RESULTADO";
+/* Class = "IBUIBarButtonItem"; title = "Cancel"; ObjectID = "Fd4-yz-6ah"; */
+"Fd4-yz-6ah.title" = "Cancel";
+
+/* Class = "IBUILabel"; text = "Fecha Resultado"; ObjectID = "G4L-pT-jKx"; */
+"G4L-pT-jKx.text" = "Fecha Resultado";
 
 /* Class = "IBUILabel"; text = "MONDAY"; ObjectID = "GKr-hi-VdJ"; */
 "GKr-hi-VdJ.text" = "MONDAY";
 
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "Hn1-v0-JNR"; */
+"Hn1-v0-JNR.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Activated/ACTIVADA"; ObjectID = "INT-up-cWv"; */
+"INT-up-cWv.text" = "Activated/ACTIVADA";
+
+/* Class = "IBUINavigationItem"; title = "_AlarmName"; ObjectID = "Ku8-HB-rud"; */
+"Ku8-HB-rud.title" = "_AlarmName";
+
+/* Class = "IBUITableViewSection"; headerTitle = "Name/NOMBRE"; ObjectID = "L3f-tx-1LI"; */
+"L3f-tx-1LI.headerTitle" = "Name/NOMBRE";
+
+/* Class = "IBUITableViewSection"; headerTitle = "_SeleccionarSonido"; ObjectID = "L4F-LR-4v0"; */
+"L4F-LR-4v0.headerTitle" = "_SeleccionarSonido";
+
 /* Class = "IBUILabel"; text = "24"; ObjectID = "L9N-By-Ebl"; */
 "L9N-By-Ebl.text" = "24";
+
+/* Class = "IBUINavigationItem"; title = "_Sonidos"; ObjectID = "LYm-ur-cWS"; */
+"LYm-ur-cWS.title" = "_Sonidos";
 
 /* Class = "IBUINavigationItem"; title = "opcionesRELOJ"; ObjectID = "Mdb-ou-t3D"; */
 "Mdb-ou-t3D.title" = "opcionesRELOJ";
@@ -41,11 +92,35 @@
 /* Class = "IBUIBarButtonItem"; title = "Done"; ObjectID = "NKx-Sy-Vqq"; */
 "NKx-Sy-Vqq.title" = "Done";
 
+/* Class = "IBUIBarButtonItem"; title = "OK"; ObjectID = "Nkp-lB-U9h"; */
+"Nkp-lB-U9h.title" = "OK";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "OfE-a5-uLp"; */
+"OfE-a5-uLp.text" = "Title";
+
+/* Class = "IBUINavigationItem"; title = "Edit Alarm"; ObjectID = "Q8c-hR-eeK"; */
+"Q8c-hR-eeK.title" = "Edit Alarm";
+
 /* Class = "IBUILabel"; text = "Select Sound"; ObjectID = "RIu-vL-2pa"; */
 "RIu-vL-2pa.text" = "Select Sound";
 
+/* Class = "IBUITableViewSection"; headerTitle = "Section-2"; ObjectID = "RaW-Oe-no8"; */
+"RaW-Oe-no8.headerTitle" = "Section-2";
+
+/* Class = "IBUILabel"; text = "_SeleccionaSonido"; ObjectID = "RlS-bH-xDL"; */
+"RlS-bH-xDL.text" = "_SeleccionaSonido";
+
+/* Class = "IBUINavigationItem"; title = "_listaAlarmas"; ObjectID = "T8O-Sw-HgE"; */
+"T8O-Sw-HgE.title" = "_listaAlarmas";
+
+/* Class = "IBUILabel"; text = "Alarm Clock Ringing"; ObjectID = "TKf-xo-ZcC"; */
+"TKf-xo-ZcC.text" = "Alarm Clock Ringing";
+
 /* Class = "IBUITabBarItem"; title = "Alarm/ALARMA"; ObjectID = "Tqb-oO-mSu"; */
 "Tqb-oO-mSu.title" = "Alarm/ALARMA";
+
+/* Class = "IBUILabel"; text = ":"; ObjectID = "UVu-9a-9fc"; */
+"UVu-9a-9fc.text" = ":";
 
 /* Class = "IBUILabel"; text = "Vibration"; ObjectID = "Ue0-Xq-2N4"; */
 "Ue0-Xq-2N4.text" = "Vibration";
@@ -53,26 +128,71 @@
 /* Class = "IBUIBarButtonItem"; title = "Cancel"; ObjectID = "VYY-v1-dOS"; */
 "VYY-v1-dOS.title" = "Cancel";
 
+/* Class = "IBUILabel"; text = "Police"; ObjectID = "aKu-uG-Rch"; */
+"aKu-uG-Rch.text" = "Police";
+
+/* Class = "IBUITabBarItem"; title = "Item"; ObjectID = "aUp-sx-r4y"; */
+"aUp-sx-r4y.title" = "Item";
+
+/* Class = "IBUINavigationItem"; title = "_editAlarm"; ObjectID = "aqg-Xq-Dsg"; */
+"aqg-Xq-Dsg.title" = "_editAlarm";
+
 /* Class = "IBUINavigationItem"; title = "Title"; ObjectID = "cbB-Af-pRd"; */
 "cbB-Af-pRd.title" = "Title";
 
 /* Class = "IBUILabel"; text = "SEPTEMBER"; ObjectID = "dSL-Ck-7F6"; */
 "dSL-Ck-7F6.text" = "SEPTEMBER";
 
+/* Class = "IBUILabel"; text = "Nombre de la Alarma"; ObjectID = "dkI-iG-IBW"; */
+"dkI-iG-IBW.text" = "Nombre de la Alarma";
+
+/* Class = "IBUITableViewSection"; headerTitle = "Section-2"; ObjectID = "eWF-mS-U8t"; */
+"eWF-mS-U8t.headerTitle" = "Section-2";
+
+/* Class = "IBUILabel"; text = "_NombreAlarma"; ObjectID = "ehc-em-KgX"; */
+"ehc-em-KgX.text" = "_NombreAlarma";
+
+/* Class = "IBUILabel"; text = "Curch Bells"; ObjectID = "fIt-ft-1rS"; */
+"fIt-ft-1rS.text" = "Curch Bells";
+
 /* Class = "IBUILabel"; text = "YEAR"; ObjectID = "gDc-FT-7PA"; */
 "gDc-FT-7PA.text" = "YEAR";
+
+/* Class = "IBUITableViewSection"; headerTitle = "_AlarmNameText"; ObjectID = "hxa-QJ-pGF"; */
+"hxa-QJ-pGF.headerTitle" = "_AlarmNameText";
+
+/* Class = "IBUITableViewSection"; headerTitle = "Section-1"; ObjectID = "ijf-gt-Kc9"; */
+"ijf-gt-Kc9.headerTitle" = "Section-1";
+
+/* Class = "IBUINavigationItem"; title = "_addAlarmDetails"; ObjectID = "irK-Ej-03e"; */
+"irK-Ej-03e.title" = "_addAlarmDetails";
 
 /* Class = "IBUILabel"; text = "DOM"; ObjectID = "lkg-P9-gXZ"; */
 "lkg-P9-gXZ.text" = "DOM";
 
+/* Class = "IBUITabBarItem"; title = "Alarms/ALARMAS"; ObjectID = "mhb-eP-eHI"; */
+"mhb-eP-eHI.title" = "Alarms/ALARMAS";
+
+/* Class = "IBUILabel"; text = "HH:MM DD/MM"; ObjectID = "mrX-La-5ye"; */
+"mrX-La-5ye.text" = "HH:MM DD/MM";
+
 /* Class = "IBUITabBarItem"; title = "Clock/RELOJ"; ObjectID = "nBE-GX-PN9"; */
 "nBE-GX-PN9.title" = "Clock/RELOJ";
+
+/* Class = "IBUILabel"; text = "Baby Crying"; ObjectID = "nH7-SD-eLa"; */
+"nH7-SD-eLa.text" = "Baby Crying";
+
+/* Class = "IBUILabel"; text = "_DetailAlarm"; ObjectID = "onv-bO-Vln"; */
+"onv-bO-Vln.text" = "_DetailAlarm";
 
 /* Class = "IBUITableViewController"; title = "Master"; ObjectID = "pGg-6v-bdr"; */
 "pGg-6v-bdr.title" = "Master";
 
 /* Class = "IBUITableViewSection"; headerTitle = "NameNOMBRE"; ObjectID = "pZb-bj-WXB"; */
 "pZb-bj-WXB.headerTitle" = "NameNOMBRE";
+
+/* Class = "IBUILabel"; text = "_ActivarVibracion"; ObjectID = "rcX-Jo-eeB"; */
+"rcX-Jo-eeB.text" = "_ActivarVibracion";
 
 /* Class = "IBUITableViewSection"; headerTitle = "NameNOMBRE"; ObjectID = "rh5-ii-T8k"; */
 "rh5-ii-T8k.headerTitle" = "NameNOMBRE";
@@ -82,3 +202,15 @@
 
 /* Class = "IBUINavigationItem"; title = "Alarm List"; ObjectID = "tQt-TN-PWz"; */
 "tQt-TN-PWz.title" = "Alarm List";
+
+/* Class = "IBUILabel"; text = "_ActivarVibracion"; ObjectID = "unI-B6-Uux"; */
+"unI-B6-Uux.text" = "_ActivarVibracion";
+
+/* Class = "IBUINavigationItem"; title = "EditAlarms"; ObjectID = "xcw-Dv-86c"; */
+"xcw-Dv-86c.title" = "EditAlarms";
+
+/* Class = "IBUITextField"; text = "_NombreAlarma"; ObjectID = "ygy-m9-kAh"; */
+"ygy-m9-kAh.text" = "_NombreAlarma";
+
+/* Class = "IBUILabel"; text = "Card Reader Alarm"; ObjectID = "zyf-Ug-8lv"; */
+"zyf-Ug-8lv.text" = "Card Reader Alarm";

@@ -17,13 +17,13 @@
 "_YEAR"="Mostrar el Año";
 "_YY"="2014";
 
-/*RelojViewController*/
+/*AppDelegate*/
 "_miReloj"="Mi Reloj";
 "_alarmas"="Alarmas";
 
 
 /*Alarmas*/
-"_listaAlarmas"="Lista de Alarmas";
-"_NombreAlarma"="Nombre de la Alarma...";
-"_ActivarVibracion"="Vibración";
-"_SeleccionaSonido"="Elija timbre...";
+//"_listaAlarmas"="Lista de Alarmas";
+//"_NombreAlarma"="Nombre de la Alarma...";
+//"_ActivarVibracion"="Vibración";
+//"_SeleccionaSonido"="Elija timbre...";
