@@ -7,6 +7,8 @@
 //
 
 #import "AddAlarmTVC.h"
+#import "AlarmListTVC.h"
+#import "Alarm.h"
 
 @interface AddAlarmTVC ()
 
@@ -14,6 +16,7 @@
 
 @implementation AddAlarmTVC
 @synthesize nameAlarm=_nameAlarm;
+@synthesize alarmListViewController=_alarmListViewController;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -120,10 +123,16 @@
 ************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****/
 #pragma mark - IBActions
 -(IBAction)cancelButtonPressed:(id)sender{
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 -(IBAction)doneButtonPressed:(id)sender{
-    [self dismissModalViewControllerAnimated:YES];
+    Alarm *newAlarm = [[Alarm alloc] initWithName:self.nameAlarm.text done:NO];
+    [self.alarmListViewController.alarms addObject:newAlarm];
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    /*ELIMINADO[self.alarmListViewController.tableView reloadData]; *Necesario al ppio. para que el prepareForSegue funcione y actualice la vista de la lista de alarmas*/
+    
 }
 
 @end

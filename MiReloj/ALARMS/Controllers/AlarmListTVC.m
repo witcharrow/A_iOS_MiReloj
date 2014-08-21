@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Alejandro Marijuán. All rights reserved.
 //
 
+#import "EditAlarmTVC.h"
+#import "AddAlarmTVC.h"
 #import "AlarmListTVC.h"
 #import "Alarm.h"
 
@@ -32,14 +34,15 @@ enum{RELOJ,ALARMAS};
     
     //Creamos la lista de alarmas.
     self.alarms = [[NSMutableArray alloc] init];
-    //Creamos una alarma para la lista.
-    Alarm *alarmActivated = [[Alarm alloc]initWithName:@"Alarma ACTIVADA" done:NO];
-    Alarm *alarmDeactivated = [[Alarm alloc]initWithName:@"Alarma DESACTIVADA" done:YES];
+                    /*************************************PRUEBAS__BORRAR********************************
+                    //Creamos una alarma para la lista.
+                    Alarm *alarmActivated = [[Alarm alloc]initWithName:@"Alarma ACTIVADA" done:NO];
+                    Alarm *alarmDeactivated = [[Alarm alloc]initWithName:@"Alarma DESACTIVADA" done:YES];
 
-    [self.alarms addObject:alarmActivated];
-    [self.alarms addObject:alarmDeactivated];
-    [self.tableView reloadData];
-    
+                    [self.alarms addObject:alarmActivated];
+                    [self.alarms addObject:alarmDeactivated];
+                    [self.tableView reloadData];
+                    **************************************+++++++++++++++********************************/
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     
@@ -60,6 +63,12 @@ enum{RELOJ,ALARMAS};
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
 }
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];/*Necesario para que el prepareForSegue funcione y actualice la vista de la lista de alarmas*/
+}
+
+
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -87,8 +96,6 @@ enum{RELOJ,ALARMAS};
     
     return cell;
 }
-
-
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -97,41 +104,45 @@ enum{RELOJ,ALARMAS};
 }
 */
 
-/*
-// Override to support editing the table view.
+/*Opciones para editar la lista de alarmas*/
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.alarms removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath]
+                         withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
-
-/*
-// Override to support rearranging the table view.
+/*Permite mover las filas de la lista de alarmas*/
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
+    Alarm *movedAlarm = [self.alarms objectAtIndex:fromIndexPath.row];
+    [self.alarms removeObjectAtIndex:fromIndexPath.row];
+    [self. alarms insertObject:movedAlarm atIndex:toIndexPath.row];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
+/*Metodo para reorganizar las alarmas*/
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
 
-/*
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+/*Pasa la información del textfield a la lista de alarmas*/
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    /*Parte para añadir una alarma*/
+    if ([segue.identifier isEqualToString:@"AddAlarmSegue"]){
+        UINavigationController *navCon = segue.destinationViewController;
+        AddAlarmTVC *addAlarmViewController =[navCon.viewControllers objectAtIndex:0];
+        addAlarmViewController.alarmListViewController = self;
+    }
+    /*Parte para editar una alarma*/
+    else if ([segue.identifier isEqualToString:@"EditActivatedAlarmSegue"] ||
+             [segue.identifier isEqualToString:@"EditDeactivatedAlarmSegue"]){
+        EditAlarmTVC *editAlarmTVC = segue.destinationViewController;
+        editAlarmTVC.alarm = [self.alarms objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    }
 }
-*/
 
 #pragma mark - Help Methods
 /*Reconoce el gesto de deslizar para moverse entre pestañas*/
@@ -144,6 +155,11 @@ enum{RELOJ,ALARMAS};
     if(swipe.direction==UISwipeGestureRecognizerDirectionRight){
         [(UITabBarController *)self.tabBarController setSelectedIndex:RELOJ];
     }
+}
+
+#pragma mark - IBAction Methods
+-(IBAction)editButtonPressed:(id)sender{
+    self.editing = !self.editing;
 }
 
 @end

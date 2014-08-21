@@ -12,4 +12,6 @@
 
 @property (nonatomic,strong) NSMutableArray *alarms;
 
+-(IBAction)editButtonPressed:(id)sender;
+
 @end

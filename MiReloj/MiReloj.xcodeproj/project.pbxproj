@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A921DB2F19A67CAB00D40908 /* EditAlarmTvC.m in Sources */ = {isa = PBXBuildFile; fileRef = A921DB2E19A67CAB00D40908 /* EditAlarmTvC.m */; };
 		A9983F5119A29F0B00CF6BC0 /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = A9983F4E19A29F0B00CF6BC0 /* Alarm.m */; };
 		A9983F5219A29F0B00CF6BC0 /* AlarmListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A9983F5019A29F0B00CF6BC0 /* AlarmListTVC.m */; };
 		A9AD80AA19A1299F00A059AB /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD809A19A1299F00A059AB /* AppIcon29x29.png */; };
@@ -78,6 +79,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A921DB2D19A67CAB00D40908 /* EditAlarmTvC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditAlarmTvC.h; path = ALARMS/Controllers/EditAlarmTvC.h; sourceTree = SOURCE_ROOT; };
+		A921DB2E19A67CAB00D40908 /* EditAlarmTvC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditAlarmTvC.m; path = ALARMS/Controllers/EditAlarmTvC.m; sourceTree = SOURCE_ROOT; };
 		A9983F4D19A29F0B00CF6BC0 /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alarm.h; path = ALARMS/Controllers/Alarm.h; sourceTree = SOURCE_ROOT; };
 		A9983F4E19A29F0B00CF6BC0 /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Alarm.m; path = ALARMS/Controllers/Alarm.m; sourceTree = SOURCE_ROOT; };
 		A9983F4F19A29F0B00CF6BC0 /* AlarmListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlarmListTVC.h; path = ALARMS/Controllers/AlarmListTVC.h; sourceTree = SOURCE_ROOT; };
@@ -194,6 +197,8 @@
 				A9983F5019A29F0B00CF6BC0 /* AlarmListTVC.m */,
 				A9E4343919A3D3CF0022C1FE /* AddAlarmTVC.h */,
 				A9E4343A19A3D3CF0022C1FE /* AddAlarmTVC.m */,
+				A921DB2D19A67CAB00D40908 /* EditAlarmTvC.h */,
+				A921DB2E19A67CAB00D40908 /* EditAlarmTvC.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -513,6 +518,7 @@
 				E0201E33190D0F2C00D00A69 /* AppDelegate.m in Sources */,
 				A9983F5119A29F0B00CF6BC0 /* Alarm.m in Sources */,
 				E072F282190D863300FE1D24 /* CellDetailRelojOptionTVC.m in Sources */,
+				A921DB2F19A67CAB00D40908 /* EditAlarmTvC.m in Sources */,
 				A9E4343B19A3D3CF0022C1FE /* AddAlarmTVC.m in Sources */,
 				E0201E78190D10D900D00A69 /* RelojViewController.m in Sources */,
 				E0201E2F190D0F2C00D00A69 /* main.m in Sources */,
