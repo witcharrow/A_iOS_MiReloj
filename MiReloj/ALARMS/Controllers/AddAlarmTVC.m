@@ -127,7 +127,7 @@
 -(IBAction)doneButtonPressed:(id)sender{
     
     _textNameAlarm = self.nameAlarm.text;
-    if ([_textNameAlarm isEqualToString:@""]){
+    if ([_textNameAlarm isEqualToString:@""] || [_textNameAlarm isEqualToString:@" "]){
         _textNameAlarm=NSLocalizedString(@"_nuevaAlarma",@"Nueva Alarma EN/SP");
     }
     Alarm *newAlarm = [[Alarm alloc] initWithName:_textNameAlarm activated:YES];

@@ -13,6 +13,7 @@
 @interface EditAlarmTVC : UITableViewController
 
 @property (nonatomic,strong) IBOutlet UITextField *nameAlarm;
+@property (nonatomic,strong) NSString *textNameAlarm;
 @property (nonatomic,strong) IBOutlet UISwitch *activatedSwitch;
 @property (nonatomic,strong) Alarm *alarm;
 

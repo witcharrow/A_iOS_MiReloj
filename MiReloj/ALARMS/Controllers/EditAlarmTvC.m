@@ -18,6 +18,7 @@
 @synthesize nameAlarm=_nameAlarm;
 @synthesize activatedSwitch=_activatedSwitch;
 @synthesize alarm=_alarm;
+@synthesize textNameAlarm=_textNameAlarm;
 
 - (id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
@@ -126,7 +127,11 @@
 
 #pragma mark - IBActions
 -(IBAction)alarmDataChanged:(id)sender{
-    self.alarm.name = self.nameAlarm.text;
+    _textNameAlarm = self.nameAlarm.text;
+    if ([_textNameAlarm isEqualToString:@""] || [_textNameAlarm isEqualToString:@" "]){
+        _textNameAlarm=NSLocalizedString(@"_nuevaAlarma",@"Nueva Alarma EN/SP");
+    }
+    self.alarm.name = _textNameAlarm;
     self.alarm.activated = self.activatedSwitch.isOn;
 }
 
