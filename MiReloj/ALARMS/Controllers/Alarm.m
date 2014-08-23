@@ -11,13 +11,23 @@
 @implementation Alarm
 
 @synthesize name=_name;
+@synthesize alarmTime=_alarmTime;
+@synthesize sound=_sound;
 @synthesize activated=_activated;
+@synthesize vibrationOn=_vibrationOn;
 
--(id) initWithName:(NSString *)name activated:(BOOL)activated{
+-(id) initWithName:(NSString *)name
+ initWithalarmTime:(NSString *)alarmTime
+     initWithSound:(NSString *)sound
+         activated:(BOOL)activated
+       vibrationOn:(BOOL)vibrationOn{
+    
     self = [super init];
     
     if (self){
         self.name=name;
+        self.alarmTime=alarmTime;
+        self.sound=sound;
         self.activated=activated;
     }
     

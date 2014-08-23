@@ -16,8 +16,20 @@
 
 @implementation AddAlarmTVC
 @synthesize nameAlarm=_nameAlarm;
-@synthesize alarmListViewController=_alarmListViewController;
 @synthesize textNameAlarm=_textNameAlarm;
+@synthesize hhAlarm=_hhAlarm;
+@synthesize mmAlarm=_mmAlarm;
+@synthesize textHHAlarm=_textHHAlarm;
+@synthesize textMMAlarm=_textMMAlarm;
+@synthesize hhmmAlarm=_hhmmAlarm;
+@synthesize amPM=_amPM;
+@synthesize vibrationSwitch=_vibrationSwitch;
+@synthesize vibrationStatus=_vibrationStatus;
+@synthesize soundName=_soundName;
+
+
+@synthesize alarmListViewController=_alarmListViewController;
+
 
 - (id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
@@ -26,8 +38,7 @@
     }
     return self;
 }
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -35,8 +46,17 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
 }
+/*Cargamos la vibración de inicio como apagada (ahorramos así batería)*/
+- (void)viewWillAppear:(BOOL)animated{
+    NSLog(@"************************************************************** AddAlarmTVC");
+    NSLog(@"****************************** viewWillAppear");
+    [super viewWillAppear:animated];
+    [self.vibrationSwitch setOn:NO];
+    NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=ACTIVADO" : @"self.vibrationSwitch=DESACTIVADO");
 
+}
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -127,10 +147,65 @@
 -(IBAction)doneButtonPressed:(id)sender{
     
     _textNameAlarm = self.nameAlarm.text;
+    _textHHAlarm = self.hhAlarm.text;
+    _textMMAlarm = self.mmAlarm.text;
+    
+    /*Opciones para el texto de la alarma*/
     if ([_textNameAlarm isEqualToString:@""] || [_textNameAlarm isEqualToString:@" "]){
         _textNameAlarm=NSLocalizedString(@"_nuevaAlarma",@"Nueva Alarma EN/SP");
     }
-    Alarm *newAlarm = [[Alarm alloc] initWithName:_textNameAlarm activated:YES];
+    
+    /*Opciones del control de la hora*/
+    if ([_textHHAlarm isEqualToString:@""] || [_textHHAlarm isEqualToString:@" "]){
+        _textHHAlarm= @"00";
+    }
+    if (_textHHAlarm.length<2) {
+        _textHHAlarm = [NSString stringWithFormat:@"0%@",_textHHAlarm];
+    }
+    if (_textHHAlarm.intValue>23){
+        _textHHAlarm = @"00";
+    }
+    
+    /*Opciones del control de los minutos*/
+    if ([_textMMAlarm isEqualToString:@""] || [_textMMAlarm isEqualToString:@" "]){
+        _textMMAlarm= @"00";
+    }
+    if (_textMMAlarm.length<2) {
+        _textMMAlarm = [NSString stringWithFormat:@"0%@",_textMMAlarm];
+    }
+    if (_textMMAlarm.intValue>59) {
+        _textMMAlarm = @"00";
+    }
+    
+    /*Opciones formato AM/PM*/
+    if((_textHHAlarm.intValue>11)&&(_textHHAlarm.intValue<24)){
+        self.amPM=@"#";
+    }
+    else{
+        self.amPM=@"AM";
+    }
+    
+    /*Opciones de control para la vibracion*/
+    if(self.vibrationSwitch.isOn){
+        _vibrationStatus=@"#ON";
+    }
+    else{
+        _vibrationStatus=@"#OFF";
+    }
+    
+    /*Opciones de control para el sonido*/
+    _soundName = @"- Por ahora ninguno jejeje";
+    
+    
+    _hhmmAlarm = [NSString stringWithFormat:@"%@|%@|%@|%@|%@",_textHHAlarm,_textMMAlarm,self.amPM,_vibrationStatus,_soundName];
+    NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=Yes" : @"self.vibrationSwitch=No");
+    
+    Alarm *newAlarm = [[Alarm alloc] initWithName:_textNameAlarm
+                                initWithalarmTime:_hhmmAlarm
+                                    initWithSound:_soundName
+                                        activated:YES
+                                      vibrationOn:self.vibrationSwitch.isOn];
+    
     [self.alarmListViewController.alarms addObject:newAlarm];
     [self dismissViewControllerAnimated:YES completion:NULL];
     

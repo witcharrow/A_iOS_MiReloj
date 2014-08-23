@@ -90,9 +90,10 @@ enum{RELOJ,ALARMAS};
     static NSString *deactivatedAlarmCell=@"deactivatedAlarmCell";
     
     Alarm *currentAlarm = [self.alarms objectAtIndex:indexPath.row];
-    NSString *cellIdentifier = currentAlarm.activated? deactivatedAlarmCell : activatedAlarmCell;
+    NSString *cellIdentifier = currentAlarm.activated? activatedAlarmCell : deactivatedAlarmCell;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.textLabel.text = currentAlarm.name;
+    cell.detailTextLabel.text = currentAlarm.alarmTime;
     
     return cell;
 }

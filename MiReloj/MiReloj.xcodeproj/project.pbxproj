@@ -81,6 +81,8 @@
 /* Begin PBXFileReference section */
 		A921DB2D19A67CAB00D40908 /* EditAlarmTvC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditAlarmTvC.h; path = ALARMS/Controllers/EditAlarmTvC.h; sourceTree = SOURCE_ROOT; };
 		A921DB2E19A67CAB00D40908 /* EditAlarmTvC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditAlarmTvC.m; path = ALARMS/Controllers/EditAlarmTvC.m; sourceTree = SOURCE_ROOT; };
+		A9392FF319A8A70900D3CCBE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
+		A9392FF519A8A70C00D3CCBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		A9983F4D19A29F0B00CF6BC0 /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alarm.h; path = ALARMS/Controllers/Alarm.h; sourceTree = SOURCE_ROOT; };
 		A9983F4E19A29F0B00CF6BC0 /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Alarm.m; path = ALARMS/Controllers/Alarm.m; sourceTree = SOURCE_ROOT; };
 		A9983F4F19A29F0B00CF6BC0 /* AlarmListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlarmListTVC.h; path = ALARMS/Controllers/AlarmListTVC.h; sourceTree = SOURCE_ROOT; };
@@ -101,8 +103,6 @@
 		A9AD80A719A1299F00A059AB /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon76x76@2x.png"; sourceTree = "<group>"; };
 		A9AD80A819A1299F00A059AB /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		A9AD80A919A1299F00A059AB /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
-		A9E4343619A3BC4C0022C1FE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
-		A9E4343819A3BC4F0022C1FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		A9E4343919A3D3CF0022C1FE /* AddAlarmTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddAlarmTVC.h; path = ALARMS/Controllers/AddAlarmTVC.h; sourceTree = SOURCE_ROOT; };
 		A9E4343A19A3D3CF0022C1FE /* AddAlarmTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddAlarmTVC.m; path = ALARMS/Controllers/AddAlarmTVC.m; sourceTree = SOURCE_ROOT; };
 		A9E54E2B19A0B22900B86244 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MiReloj/Base.lproj/Main_iPad_Version.storyboard; sourceTree = "<group>"; };
@@ -587,8 +587,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E07FB12C191FAFAD00FFA667 /* Base */,
-				A9E4343619A3BC4C0022C1FE /* es */,
-				A9E4343819A3BC4F0022C1FE /* en */,
+				A9392FF319A8A70900D3CCBE /* es */,
+				A9392FF519A8A70C00D3CCBE /* en */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
