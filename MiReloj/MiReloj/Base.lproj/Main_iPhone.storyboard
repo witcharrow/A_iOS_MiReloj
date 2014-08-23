@@ -27,7 +27,7 @@
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController id="rS3-R9-Ivy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alarm/ALARMA" image="79B7D205-35C1-443A-B7FF-1DC5BB821064" id="Tqb-oO-mSu"/>
+                    <tabBarItem key="tabBarItem" title="Alarm/ALARMA" image="2D006904-3713-4E88-9C37-E5E3478FA156" id="Tqb-oO-mSu"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yXu-0R-QUA">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -98,7 +98,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Alarm List" id="tQt-TN-PWz">
-                        <barButtonItem key="rightBarButtonItem" image="ECC5EBCB-42A5-43EA-A791-A6268DCEC962" id="w4v-SY-WBd">
+                        <barButtonItem key="rightBarButtonItem" image="6AF73768-B0B0-413F-B3C7-063B5647CCDA" id="w4v-SY-WBd">
                             <connections>
                                 <segue destination="yqx-VL-cgm" kind="modal" identifier="AddAlarmSegue" id="jf6-GM-tew"/>
                             </connections>
@@ -650,7 +650,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <action selector="cancelPressed:" destination="oJe-rI-mUH" id="BcG-J6-9Yt"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="ECC5EBCB-42A5-43EA-A791-A6268DCEC962" id="QCp-jd-dxJ">
+                        <barButtonItem key="rightBarButtonItem" image="6AF73768-B0B0-413F-B3C7-063B5647CCDA" id="QCp-jd-dxJ">
                             <connections>
                                 <segue destination="1Cy-pA-08s" kind="modal" id="gki-Rp-Vu1"/>
                             </connections>
@@ -1187,7 +1187,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dA7-LQ-OE7">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="INPUT_NAME_NEW_ALARM" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dA7-LQ-OE7">
                                                     <rect key="frame" x="20" y="7" width="280" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1578,7 +1578,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="79B7D205-35C1-443A-B7FF-1DC5BB821064" width="27" height="27">
+        <image name="2D006904-3713-4E88-9C37-E5E3478FA156" width="27" height="27">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1697,9 +1697,7 @@ Gb0ZxBnMGdkZ3hngGeIZ5xnvGfIZ9xn/GgIaFBoXGhwAAAAAAAACAQAAAAAAAAA/AAAAAAAAAAAAAAAA
 AAAaHg
 </mutableData>
         </image>
-        <image name="Alarm.png" width="26" height="25"/>
-        <image name="Clock.png" width="24" height="24"/>
-        <image name="ECC5EBCB-42A5-43EA-A791-A6268DCEC962" width="25" height="25">
+        <image name="6AF73768-B0B0-413F-B3C7-063B5647CCDA" width="25" height="25">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1811,6 +1809,8 @@ GAoYGRgdGCQYLBg5GD4YQBhCGEcYTxhSGFcYXxhiGHQYdxh8AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAA
 AAAAAAAAGH4
 </mutableData>
         </image>
+        <image name="Alarm.png" width="26" height="25"/>
+        <image name="Clock.png" width="24" height="24"/>
         <image name="Previous.png" width="11" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -37,7 +37,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.nameAlarm.text = self.alarm.name;
-    [self.activatedSwitch setOn:self.alarm.done];
+    [self.activatedSwitch setOn:self.alarm.activated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,7 +127,7 @@
 #pragma mark - IBActions
 -(IBAction)alarmDataChanged:(id)sender{
     self.alarm.name = self.nameAlarm.text;
-    self.alarm.done = self.activatedSwitch.isOn;
+    self.alarm.activated = self.activatedSwitch.isOn;
 }
 
 @end

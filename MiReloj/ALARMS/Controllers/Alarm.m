@@ -11,14 +11,14 @@
 @implementation Alarm
 
 @synthesize name=_name;
-@synthesize done=_done;
+@synthesize activated=_activated;
 
--(id) initWithName:(NSString *)name done:(BOOL)done{
+-(id) initWithName:(NSString *)name activated:(BOOL)activated{
     self = [super init];
     
     if (self){
         self.name=name;
-        self.done=done;
+        self.activated=activated;
     }
     
     return self;

@@ -11,8 +11,8 @@
 @interface Alarm : NSObject
 
 @property (nonatomic,strong) NSString *name;
-@property (nonatomic,assign) BOOL done;
+@property (nonatomic,assign) BOOL activated;
 
--(id) initWithName:(NSString *)name done:(BOOL)done;
+-(id) initWithName:(NSString *)name activated:(BOOL)activated;
 
 @end

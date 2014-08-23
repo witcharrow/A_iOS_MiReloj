@@ -14,7 +14,7 @@
 -(IBAction)doneButtonPressed:(id)sender;
 
 @property (nonatomic,strong) IBOutlet UITextField *nameAlarm;
-
+@property (nonatomic,strong) NSString *textNameAlarm;
 @property (nonatomic,strong) AlarmListTVC *alarmListViewController;
 
 @end

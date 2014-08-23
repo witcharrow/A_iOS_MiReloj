@@ -17,16 +17,15 @@
 @implementation AddAlarmTVC
 @synthesize nameAlarm=_nameAlarm;
 @synthesize alarmListViewController=_alarmListViewController;
+@synthesize textNameAlarm=_textNameAlarm;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -38,8 +37,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -121,14 +119,19 @@
 }
 
 ************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****/
+
 #pragma mark - IBActions
 -(IBAction)cancelButtonPressed:(id)sender{
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 -(IBAction)doneButtonPressed:(id)sender{
-    Alarm *newAlarm = [[Alarm alloc] initWithName:self.nameAlarm.text done:NO];
-    [self.alarmListViewController.alarms addObject:newAlarm];
     
+    _textNameAlarm = self.nameAlarm.text;
+    if ([_textNameAlarm isEqualToString:@""]){
+        _textNameAlarm=NSLocalizedString(@"_nuevaAlarma",@"Nueva Alarma EN/SP");
+    }
+    Alarm *newAlarm = [[Alarm alloc] initWithName:_textNameAlarm activated:YES];
+    [self.alarmListViewController.alarms addObject:newAlarm];
     [self dismissViewControllerAnimated:YES completion:NULL];
     
     /*ELIMINADO[self.alarmListViewController.tableView reloadData]; *Necesario al ppio. para que el prepareForSegue funcione y actualice la vista de la lista de alarmas*/
