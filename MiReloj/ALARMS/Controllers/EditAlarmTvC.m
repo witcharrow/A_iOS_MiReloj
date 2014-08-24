@@ -28,6 +28,7 @@
 @synthesize activatedSwitch=_activatedSwitch;
 @synthesize vibrationSwitch=_vibrationSwitch;
 @synthesize vibrationStatus=_vibrationStatus;
+@synthesize vibrationCellText=_vibrationCellText;
 @synthesize soundName=_soundName;
 @synthesize alarm=_alarm;
 
@@ -81,6 +82,8 @@
     NSLog(@"************************************************************** EditAlarmTvC");
     NSLog(@"****************************** viewWillAppear");
     [super viewWillAppear:animated];
+    self.vibrationCellText.text = [NSString stringWithFormat:@"%@/%@ %@", @"\U0001F507",@"\ue141" ,NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP")];
+    
     NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=Yes" : @"self.vibrationSwitch=No");
     NSLog(_vibrationStatus.boolValue ? @"_vibrationStatus.boolValue=Yes" : @"_vibrationStatus.boolValue=No");
     NSLog(@"self.nameAlarm.text: %@",self.nameAlarm.text);
@@ -223,19 +226,20 @@
     /*Opciones de control para el sonido*/
     _soundName = @"Ninguno";
     
+    
+    
+    NSString *sonidoTitleStatus=NSLocalizedString(@"_SONIDO",@"Titulo SONIDO EN/SP");
+    NSString *borrarESTO =_soundName;
+    sonidoTitleStatus = [_soundName isEqualToString:borrarESTO]?@"\uE325":@"\ue333";
+    
     NSLog(@"_textNameAlarm: %@",_textNameAlarm);
     NSLog(@"_textHHAlarm: %@",_textHHAlarm);
     NSLog(@"_textMMAlarm: %@",_textMMAlarm);
     NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
     NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
     
-    NSString *sonidoTitleStatus=NSLocalizedString(@"_SONIDO",@"Titulo SONIDO EN/SP");
-    NSString *borrarESTO =_soundName;
-    sonidoTitleStatus = [_soundName isEqualToString:borrarESTO]?@"\uE325":@"\ue333";
-    
-    
     _textNameAlarmToShow = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM.text,_textNameAlarm];
-    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@%@",_vibrationStatus.boolValue?@"\ue141":@"\ue333",sonidoTitleStatus,_soundName];
+    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@%@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",sonidoTitleStatus,_soundName];
     _hhmmAlarmToParse = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@",_textNameAlarm,_textHHAlarm,_textMMAlarm,self.amPM.text,_vibrationStatus,_soundName];
     NSLog(@"_hhmmAlarmToShow: %@",_hhmmAlarmToShow);
     NSLog(@"_hhmmAlarmToParse: %@",_hhmmAlarmToParse);
@@ -245,6 +249,10 @@
     self.alarm.alarmTimeToShow=_hhmmAlarmToShow;
     self.alarm.alarmTimeToParse=_hhmmAlarmToParse;
     
+}
+/*Hace desaparecer el teclado cuando pulsamos intro*/
+-(IBAction)ReturnKeyButton:(id)sender{
+    [sender resignFirstResponder];
 }
 
 @end

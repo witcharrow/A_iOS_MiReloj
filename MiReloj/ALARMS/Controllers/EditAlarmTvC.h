@@ -25,11 +25,14 @@
 @property (nonatomic,strong) IBOutlet UISwitch *activatedSwitch;
 @property (nonatomic,strong) IBOutlet UISwitch *vibrationSwitch;
 @property (nonatomic,strong) NSString *vibrationStatus;
+@property (nonatomic,strong) IBOutlet UILabel *vibrationCellText;
 @property (nonatomic,strong) NSString *soundName;
 
 
 @property (nonatomic,strong) Alarm *alarm;
 
 -(IBAction)alarmDataChanged:(id)sender;
+-(IBAction)ReturnKeyButton:(id)sender;
+
 
 @end

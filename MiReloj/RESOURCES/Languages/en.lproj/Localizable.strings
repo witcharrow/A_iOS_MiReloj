@@ -29,3 +29,12 @@
 /*Edit-Add Alarm*/
 "_SONIDO"="None";
 
+/*Select Sound*/
+"_NoneSound"="None";
+"Clock_Ringing"="Clock Ringing";
+"Baby_Crying"="Baby Crying";
+"Card_Reader"="Card Reader";
+"Curch_Bells"="Church Bells";
+"Police"="Police";
+
+

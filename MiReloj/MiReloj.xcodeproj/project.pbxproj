@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A91C7E0B19AA52AF002B34A1 /* SoundListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A91C7E0A19AA52AF002B34A1 /* SoundListTVC.m */; };
+		A91C7E1119AA545C002B34A1 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = A91C7E1019AA545C002B34A1 /* Sound.m */; };
 		A921DB2F19A67CAB00D40908 /* EditAlarmTvC.m in Sources */ = {isa = PBXBuildFile; fileRef = A921DB2E19A67CAB00D40908 /* EditAlarmTvC.m */; };
 		A9983F5119A29F0B00CF6BC0 /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = A9983F4E19A29F0B00CF6BC0 /* Alarm.m */; };
 		A9983F5219A29F0B00CF6BC0 /* AlarmListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A9983F5019A29F0B00CF6BC0 /* AlarmListTVC.m */; };
@@ -79,6 +81,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A91C7E0919AA52AF002B34A1 /* SoundListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundListTVC.h; path = ALARMS/Controllers/SoundListTVC.h; sourceTree = SOURCE_ROOT; };
+		A91C7E0A19AA52AF002B34A1 /* SoundListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SoundListTVC.m; path = ALARMS/Controllers/SoundListTVC.m; sourceTree = SOURCE_ROOT; };
+		A91C7E0F19AA545C002B34A1 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sound.h; path = ALARMS/Controllers/Sound.h; sourceTree = SOURCE_ROOT; };
+		A91C7E1019AA545C002B34A1 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sound.m; path = ALARMS/Controllers/Sound.m; sourceTree = SOURCE_ROOT; };
 		A921DB2D19A67CAB00D40908 /* EditAlarmTvC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditAlarmTvC.h; path = ALARMS/Controllers/EditAlarmTvC.h; sourceTree = SOURCE_ROOT; };
 		A921DB2E19A67CAB00D40908 /* EditAlarmTvC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditAlarmTvC.m; path = ALARMS/Controllers/EditAlarmTvC.m; sourceTree = SOURCE_ROOT; };
 		A9392FF319A8A70900D3CCBE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
@@ -199,6 +205,10 @@
 				A9E4343A19A3D3CF0022C1FE /* AddAlarmTVC.m */,
 				A921DB2D19A67CAB00D40908 /* EditAlarmTvC.h */,
 				A921DB2E19A67CAB00D40908 /* EditAlarmTvC.m */,
+				A91C7E0F19AA545C002B34A1 /* Sound.h */,
+				A91C7E1019AA545C002B34A1 /* Sound.m */,
+				A91C7E0919AA52AF002B34A1 /* SoundListTVC.h */,
+				A91C7E0A19AA52AF002B34A1 /* SoundListTVC.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -516,8 +526,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0201E33190D0F2C00D00A69 /* AppDelegate.m in Sources */,
+				A91C7E0B19AA52AF002B34A1 /* SoundListTVC.m in Sources */,
 				A9983F5119A29F0B00CF6BC0 /* Alarm.m in Sources */,
 				E072F282190D863300FE1D24 /* CellDetailRelojOptionTVC.m in Sources */,
+				A91C7E1119AA545C002B34A1 /* Sound.m in Sources */,
 				A921DB2F19A67CAB00D40908 /* EditAlarmTvC.m in Sources */,
 				A9E4343B19A3D3CF0022C1FE /* AddAlarmTVC.m in Sources */,
 				E0201E78190D10D900D00A69 /* RelojViewController.m in Sources */,

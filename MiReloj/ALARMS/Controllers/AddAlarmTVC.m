@@ -27,6 +27,7 @@
 @synthesize amPM=_amPM;
 @synthesize vibrationSwitch=_vibrationSwitch;
 @synthesize vibrationStatus=_vibrationStatus;
+@synthesize vibrationCellText=_vibrationCellText;
 @synthesize soundName=_soundName;
 
 
@@ -58,6 +59,9 @@
     [self.vibrationSwitch setOn:NO];
     NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=ACTIVADO" : @"self.vibrationSwitch=DESACTIVADO");
 
+    self.vibrationCellText.text = [NSString stringWithFormat:@"%@/%@ %@", @"\ue141",@"\U0001F507" ,NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP")];
+
+    
 }
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -142,6 +146,14 @@
 
 ************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****/
 
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"selectSoundFromList"]){
+        
+    }
+}
+
+
 #pragma mark - IBActions
 -(IBAction)cancelButtonPressed:(id)sender{
     [self dismissViewControllerAnimated:YES completion:NULL];
@@ -188,6 +200,7 @@
     else{
         _vibrationStatus=@"NO";
     }
+
     
     /*Opciones de control para el sonido*/
     _soundName = @"Ninguno";
@@ -197,7 +210,7 @@
     sonidoTitleStatus = [_soundName isEqualToString:borrarESTO]?@"\uE325":@"\ue333";
     
     _textNameAlarmToShow = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM,_textNameAlarm];
-    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@%@",_vibrationStatus.boolValue?@"\ue141":@"\ue333",sonidoTitleStatus,_soundName];
+    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@%@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",sonidoTitleStatus,_soundName];
     _hhmmAlarmToParse = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@",_textNameAlarm,_textHHAlarm,_textMMAlarm,self.amPM,_vibrationStatus,_soundName];
     
     NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=Yes" : @"self.vibrationSwitch=No");
@@ -221,7 +234,11 @@
     
     /*ELIMINADO[self.alarmListViewController.tableView reloadData]; *Necesario al ppio. para que el prepareForSegue funcione y actualice la vista de la lista de alarmas*/
     
-}
 
+}
+/*Hace desaparecer el teclado cuando pulsamos intro*/
+-(IBAction)ReturnKeyButton:(id)sender{
+    [sender resignFirstResponder];
+}
 
 @end

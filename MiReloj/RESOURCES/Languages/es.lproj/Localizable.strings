@@ -21,10 +21,18 @@
 "_miReloj"="Mi Reloj";
 "_alarmas"="Alarmas";
 
-/*Edit-Add Alarm*/
-"_SONIDO"="Ninguno";
-
 /*Alarmas*/
-//"_NombreAlarma"="Nombre de la Alarma...";
-//"_ActivarVibracion"="Vibración";
-//"_SeleccionaSonido"="Elija timbre...";
+"_NombreAlarma"="Nombre de la Alarma...";
+"_ActivarVibracion"="Vibracion";
+"_SeleccionaSonido"="Elija sonido...";
+
+/*Edit-Add Alarm*/
+"_SONIDO"="None";
+
+/*Select Sound*/
+"_NoneSound"="Ninguno";
+"Clock_Ringing"="Despertador";
+"Baby_Crying"="Bebé llorando";
+"Card_Reader"="Lector de tarjetas";
+"Curch_Bells"="Campanas de iglesia";
+"Police"="Policía";
