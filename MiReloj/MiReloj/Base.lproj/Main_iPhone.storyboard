@@ -27,7 +27,7 @@
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController id="rS3-R9-Ivy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alarm/ALARMA" image="A9034BF6-0587-4F07-9493-1699CB107D84" id="Tqb-oO-mSu"/>
+                    <tabBarItem key="tabBarItem" title="Alarm/ALARMA" image="E8E782EC-B784-4E52-ADCC-3FAF5FDF70FF" id="Tqb-oO-mSu"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yXu-0R-QUA">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -98,7 +98,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Alarm List" id="tQt-TN-PWz">
-                        <barButtonItem key="rightBarButtonItem" image="4BBFF02D-EBD6-4B25-B7FE-AB5D27082CCE" id="w4v-SY-WBd">
+                        <barButtonItem key="rightBarButtonItem" image="D4FF215C-C334-4234-9A16-58B1DA1BFA81" id="w4v-SY-WBd">
                             <connections>
                                 <segue destination="yqx-VL-cgm" kind="modal" identifier="AddAlarmSegue" id="jf6-GM-tew"/>
                             </connections>
@@ -650,7 +650,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <action selector="cancelPressed:" destination="oJe-rI-mUH" id="BcG-J6-9Yt"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="4BBFF02D-EBD6-4B25-B7FE-AB5D27082CCE" id="QCp-jd-dxJ">
+                        <barButtonItem key="rightBarButtonItem" image="D4FF215C-C334-4234-9A16-58B1DA1BFA81" id="QCp-jd-dxJ">
                             <connections>
                                 <segue destination="1Cy-pA-08s" kind="modal" id="gki-Rp-Vu1"/>
                             </connections>
@@ -1205,7 +1205,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                     <rect key="frame" x="20" y="7" width="280" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -1764,7 +1764,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="4BBFF02D-EBD6-4B25-B7FE-AB5D27082CCE" width="25" height="25">
+        <image name="Alarm.png" width="26" height="25"/>
+        <image name="Clock.png" width="24" height="24"/>
+        <image name="D4FF215C-C334-4234-9A16-58B1DA1BFA81" width="25" height="25">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1876,7 +1878,7 @@ GAoYGRgdGCQYLBg5GD4YQBhCGEcYTxhSGFcYXxhiGHQYdxh8AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAA
 AAAAAAAAGH4
 </mutableData>
         </image>
-        <image name="A9034BF6-0587-4F07-9493-1699CB107D84" width="27" height="27">
+        <image name="E8E782EC-B784-4E52-ADCC-3FAF5FDF70FF" width="27" height="27">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1995,8 +1997,6 @@ Gb0ZxBnMGdkZ3hngGeIZ5xnvGfIZ9xn/GgIaFBoXGhwAAAAAAAACAQAAAAAAAAA/AAAAAAAAAAAAAAAA
 AAAaHg
 </mutableData>
         </image>
-        <image name="Alarm.png" width="26" height="25"/>
-        <image name="Clock.png" width="24" height="24"/>
         <image name="Previous.png" width="11" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

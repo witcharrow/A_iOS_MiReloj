@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class AlarmListTVC;
-@interface AddAlarmTVC : UITableViewController
+@interface AddAlarmTVC : UITableViewController 
 
 -(IBAction)cancelButtonPressed:(id)sender;
 -(IBAction)doneButtonPressed:(id)sender;

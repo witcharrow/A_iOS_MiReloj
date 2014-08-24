@@ -158,25 +158,19 @@
     }
     
     /*Opciones del control de la hora*/
-    if ([_textHHAlarm isEqualToString:@""] || [_textHHAlarm isEqualToString:@" "] || _textHHAlarm.length>2){
+    if ([_textHHAlarm isEqualToString:@""] || [_textHHAlarm isEqualToString:@" "] || _textHHAlarm.length>2 || _textHHAlarm.intValue>23 || [_textHHAlarm isEqualToString:@"HH"]){
         _textHHAlarm= @"00";
     }
     if (_textHHAlarm.length<2) {
         _textHHAlarm = [NSString stringWithFormat:@"0%@",_textHHAlarm];
     }
-    if (_textHHAlarm.intValue>23){
-        _textHHAlarm = @"00";
-    }
     
     /*Opciones del control de los minutos*/
-    if ([_textMMAlarm isEqualToString:@""] || [_textMMAlarm isEqualToString:@" "] || _textMMAlarm.length>2){
+    if ([_textMMAlarm isEqualToString:@""] || [_textMMAlarm isEqualToString:@" "] || _textMMAlarm.length>2 || _textMMAlarm.intValue>59 || [_textMMAlarm isEqualToString:@"MM"]){
         _textMMAlarm= @"00";
     }
     if (_textMMAlarm.length<2) {
         _textMMAlarm = [NSString stringWithFormat:@"0%@",_textMMAlarm];
-    }
-    if (_textMMAlarm.intValue>59) {
-        _textMMAlarm = @"00";
     }
 
     /*Opciones formato AM/PM*/
