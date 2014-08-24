@@ -21,6 +21,8 @@
 "_miReloj"="Mi Reloj";
 "_alarmas"="Alarmas";
 
+/*Edit-Add Alarm*/
+"_SONIDO"="Ninguno";
 
 /*Alarmas*/
 //"_NombreAlarma"="Nombre de la Alarma...";

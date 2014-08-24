@@ -17,11 +17,13 @@
 @implementation AddAlarmTVC
 @synthesize nameAlarm=_nameAlarm;
 @synthesize textNameAlarm=_textNameAlarm;
+@synthesize textNameAlarmToShow=_textNameAlarmToShow;
 @synthesize hhAlarm=_hhAlarm;
 @synthesize mmAlarm=_mmAlarm;
 @synthesize textHHAlarm=_textHHAlarm;
 @synthesize textMMAlarm=_textMMAlarm;
-@synthesize hhmmAlarm=_hhmmAlarm;
+@synthesize hhmmAlarmToShow=_hhmmAlarmToShow;
+@synthesize hhmmAlarmToParse=_hhmmAlarmToParse;
 @synthesize amPM=_amPM;
 @synthesize vibrationSwitch=_vibrationSwitch;
 @synthesize vibrationStatus=_vibrationStatus;
@@ -156,7 +158,7 @@
     }
     
     /*Opciones del control de la hora*/
-    if ([_textHHAlarm isEqualToString:@""] || [_textHHAlarm isEqualToString:@" "]){
+    if ([_textHHAlarm isEqualToString:@""] || [_textHHAlarm isEqualToString:@" "] || _textHHAlarm.length>2){
         _textHHAlarm= @"00";
     }
     if (_textHHAlarm.length<2) {
@@ -167,7 +169,7 @@
     }
     
     /*Opciones del control de los minutos*/
-    if ([_textMMAlarm isEqualToString:@""] || [_textMMAlarm isEqualToString:@" "]){
+    if ([_textMMAlarm isEqualToString:@""] || [_textMMAlarm isEqualToString:@" "] || _textMMAlarm.length>2){
         _textMMAlarm= @"00";
     }
     if (_textMMAlarm.length<2) {
@@ -176,35 +178,49 @@
     if (_textMMAlarm.intValue>59) {
         _textMMAlarm = @"00";
     }
-    
+
     /*Opciones formato AM/PM*/
     if((_textHHAlarm.intValue>11)&&(_textHHAlarm.intValue<24)){
-        self.amPM=@"#";
+        self.amPM=@"";
     }
     else{
-        self.amPM=@"AM";
+        self.amPM=@" AM";
     }
     
     /*Opciones de control para la vibracion*/
     if(self.vibrationSwitch.isOn){
-        _vibrationStatus=@"#ON";
+        _vibrationStatus=@"YES";
     }
     else{
-        _vibrationStatus=@"#OFF";
+        _vibrationStatus=@"NO";
     }
     
     /*Opciones de control para el sonido*/
-    _soundName = @"- Por ahora ninguno jejeje";
+    _soundName = @"Ninguno";
     
+    NSString *sonidoTitleStatus=NSLocalizedString(@"_SONIDO",@"Titulo SONIDO EN/SP");
+    NSString *borrarESTO =_soundName;
+    sonidoTitleStatus = [_soundName isEqualToString:borrarESTO]?@"\uE325":@"\ue333";
     
-    _hhmmAlarm = [NSString stringWithFormat:@"%@|%@|%@|%@|%@",_textHHAlarm,_textMMAlarm,self.amPM,_vibrationStatus,_soundName];
+    _textNameAlarmToShow = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM,_textNameAlarm];
+    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@%@",_vibrationStatus.boolValue?@"\ue141":@"\ue333",sonidoTitleStatus,_soundName];
+    _hhmmAlarmToParse = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@",_textNameAlarm,_textHHAlarm,_textMMAlarm,self.amPM,_vibrationStatus,_soundName];
+    
     NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=Yes" : @"self.vibrationSwitch=No");
+    NSLog(_vibrationStatus.boolValue ? @"_vibrationStatus.boolValue=Yes" : @"_vibrationStatus.boolValue=No");
+    NSLog(@"_textNameAlarmToShow: %@",_textNameAlarmToShow);
+    NSLog(@"_hhmmAlarmToShow: %@",_hhmmAlarmToShow);
+    NSLog(@"_hhmmAlarmToParse: %@",_hhmmAlarmToParse);
+    NSLog(@"_textNameAlarm: %@",_textNameAlarm);
+    NSLog(@"_soundName: %@",_soundName);
     
     Alarm *newAlarm = [[Alarm alloc] initWithName:_textNameAlarm
-                                initWithalarmTime:_hhmmAlarm
+                               initWithNameToShow:_textNameAlarmToShow
+                                initWithalarmTime:_hhmmAlarmToShow
+                                   initWithString:_hhmmAlarmToParse
                                     initWithSound:_soundName
                                         activated:YES
-                                      vibrationOn:self.vibrationSwitch.isOn];
+                                      vibrationOn:_vibrationStatus.boolValue];
     
     [self.alarmListViewController.alarms addObject:newAlarm];
     [self dismissViewControllerAnimated:YES completion:NULL];
@@ -212,5 +228,6 @@
     /*ELIMINADO[self.alarmListViewController.tableView reloadData]; *Necesario al ppio. para que el prepareForSegue funcione y actualice la vista de la lista de alarmas*/
     
 }
+
 
 @end

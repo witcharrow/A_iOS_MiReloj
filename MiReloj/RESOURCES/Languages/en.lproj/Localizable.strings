@@ -26,3 +26,6 @@
 "_ActivarVibracion"="Vibration";
 "_SeleccionaSonido"="Choose sound...";
 
+/*Edit-Add Alarm*/
+"_SONIDO"="None";
+

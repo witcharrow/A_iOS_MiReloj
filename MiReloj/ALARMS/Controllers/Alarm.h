@@ -11,13 +11,17 @@
 @interface Alarm : NSObject
 
 @property (nonatomic,strong) NSString *name;
-@property (nonatomic,strong) NSString *alarmTime;
+@property (nonatomic,strong) NSString *nameToShow;
+@property (nonatomic,strong) NSString *alarmTimeToShow;
+@property (nonatomic,strong) NSString *alarmTimeToParse;
 @property (nonatomic,strong) NSString *sound;
 @property (nonatomic,assign) BOOL activated;
 @property (nonatomic,assign) BOOL vibrationOn;
 
 -(id) initWithName:(NSString *)name
- initWithalarmTime:(NSString *)alarmTime
+initWithNameToShow:(NSString *)nameToShow
+ initWithalarmTime:(NSString *)alarmTimeToShow
+    initWithString:(NSString *)alarmTimeToParse
      initWithSound:(NSString *)sound
          activated:(BOOL)activated
        vibrationOn:(BOOL)vibrationOn;

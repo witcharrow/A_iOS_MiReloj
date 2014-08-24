@@ -17,11 +17,13 @@
 
 @synthesize nameAlarm=_nameAlarm;
 @synthesize textNameAlarm=_textNameAlarm;
+@synthesize textNameAlarmToShow=_textNameAlarmToShow;
 @synthesize hhAlarm=_hhAlarm;
 @synthesize mmAlarm=_mmAlarm;
 @synthesize textHHAlarm=_textHHAlarm;
 @synthesize textMMAlarm=_textMMAlarm;
-@synthesize hhmmAlarm=_hhmmAlarm;
+@synthesize hhmmAlarmToShow=_hhmmAlarmToShow;
+@synthesize hhmmAlarmToParse=_hhmmAlarmToParse;
 @synthesize amPM=_amPM;
 @synthesize activatedSwitch=_activatedSwitch;
 @synthesize vibrationSwitch=_vibrationSwitch;
@@ -50,9 +52,10 @@
     
     self.nameAlarm.text = self.alarm.name;
     
-    NSArray *alarmaItems = [self.alarm.alarmTime componentsSeparatedByString:@"|"];
-    _textHHAlarm = [alarmaItems objectAtIndex:0];
-    _textMMAlarm = [alarmaItems objectAtIndex:1];
+    NSArray *alarmaItems = [self.alarm.alarmTimeToParse componentsSeparatedByString:@"|"];
+    _textHHAlarm = [alarmaItems objectAtIndex:1];
+    _textMMAlarm = [alarmaItems objectAtIndex:2];
+    _vibrationStatus = [alarmaItems objectAtIndex:4];
 
     self.hhAlarm.text = _textHHAlarm;
     self.mmAlarm.text = _textMMAlarm;
@@ -62,15 +65,15 @@
         self.amPM.text=@"";
     }
     else{
-        self.amPM.text=@"AM";
+        self.amPM.text=@" AM";
     }
-    
-    NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
-    NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
+
     [self.activatedSwitch setOn:self.alarm.activated];
-    [self.vibrationSwitch setOn:self.alarm.vibrationOn];
+    [self.vibrationSwitch setOn:_vibrationStatus.boolValue];
     NSLog(self.activatedSwitch  ? @"self.activatedSwitch =Yes" : @"self.activatedSwitch =No");
     NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
+    NSLog(_vibrationStatus.boolValue ? @"_vibrationStatus=Yes" : @"_vibrationStatus=No");
+
     
 }
 /*Cargamos la vibración de inicio como apagada (ahorramos así batería)*/
@@ -78,7 +81,11 @@
     NSLog(@"************************************************************** EditAlarmTvC");
     NSLog(@"****************************** viewWillAppear");
     [super viewWillAppear:animated];
-
+    NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=Yes" : @"self.vibrationSwitch=No");
+    NSLog(_vibrationStatus.boolValue ? @"_vibrationStatus.boolValue=Yes" : @"_vibrationStatus.boolValue=No");
+    NSLog(@"self.nameAlarm.text: %@",self.nameAlarm.text);
+    NSLog(@"_textHHAlarm: %@",_textHHAlarm);
+    NSLog(@"_textMMAlarm: %@",_textMMAlarm);
 }
 
 - (void)didReceiveMemoryWarning{
@@ -175,16 +182,13 @@
     self.alarm.activated = self.activatedSwitch.isOn;
     self.alarm.vibrationOn=self.vibrationSwitch.isOn;
     
-    NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
-    NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
-    
     /*Opciones para el nombre de la alarma*/
     if ([_textNameAlarm isEqualToString:@""] || [_textNameAlarm isEqualToString:@" "]){
         _textNameAlarm=NSLocalizedString(@"_nuevaAlarma",@"Nueva Alarma EN/SP");
     }
     
     /*Opciones del control de la hora*/
-    if ([_textHHAlarm isEqualToString:@""] || [_textHHAlarm isEqualToString:@" "]){
+    if ([_textHHAlarm isEqualToString:@""] || [_textHHAlarm isEqualToString:@" "] || _textHHAlarm.length>2){
         _textHHAlarm= @"00";
     }
     if (_textHHAlarm.length<2) {
@@ -195,7 +199,7 @@
     }
     
     /*Opciones del control de los minutos*/
-    if ([_textMMAlarm isEqualToString:@""] || [_textMMAlarm isEqualToString:@" "]){
+    if ([_textMMAlarm isEqualToString:@""] || [_textMMAlarm isEqualToString:@" "] || _textMMAlarm.length>2){
         _textMMAlarm= @"00";
     }
     if (_textMMAlarm.length<2) {
@@ -207,33 +211,46 @@
     
     /*Opciones formato AM/PM*/
     if((_textHHAlarm.intValue>11)&&(_textHHAlarm.intValue<24)){
-        self.amPM.text=@" ";
+        self.amPM.text=@"";
     }
     else{
-        self.amPM.text=@"AM";
+        self.amPM.text=@" AM";
     }
-    
-    NSLog(@"_textHHAlarm: %@",_textHHAlarm);
-    NSLog(@"_textMMAlarm: %@",_textMMAlarm);
     
     
     /*Opciones de control para la vibracion*/
     if(self.alarm.vibrationOn){
-        _vibrationStatus=@"#ON";
+        _vibrationStatus=@"YES";
     }
     else{
-        _vibrationStatus=@"#OFF";
+        _vibrationStatus=@"NO";
     }
     
     /*Opciones de control para el sonido*/
-    _soundName = @"- Por ahora ninguno jejeje";
+    _soundName = @"Ninguno";
+    
+    NSLog(@"_textNameAlarm: %@",_textNameAlarm);
+    NSLog(@"_textHHAlarm: %@",_textHHAlarm);
+    NSLog(@"_textMMAlarm: %@",_textMMAlarm);
+    NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
+    NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
+    
+    NSString *sonidoTitleStatus=NSLocalizedString(@"_SONIDO",@"Titulo SONIDO EN/SP");
+    NSString *borrarESTO =_soundName;
+    sonidoTitleStatus = [_soundName isEqualToString:borrarESTO]?@"\uE325":@"\ue333";
     
     
+    _textNameAlarmToShow = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM.text,_textNameAlarm];
+    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@%@",_vibrationStatus.boolValue?@"\ue141":@"\ue333",sonidoTitleStatus,_soundName];
+    _hhmmAlarmToParse = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@",_textNameAlarm,_textHHAlarm,_textMMAlarm,self.amPM.text,_vibrationStatus,_soundName];
+    NSLog(@"_hhmmAlarmToShow: %@",_hhmmAlarmToShow);
+    NSLog(@"_hhmmAlarmToParse: %@",_hhmmAlarmToParse);
     
-    _hhmmAlarm = [NSString stringWithFormat:@"%@|%@|%@|%@|%@",_textHHAlarm,_textMMAlarm,self.amPM.text,_vibrationStatus,_soundName];
+    self.alarm.name=_textNameAlarm;
+    self.alarm.nameToShow=_textNameAlarmToShow;
+    self.alarm.alarmTimeToShow=_hhmmAlarmToShow;
+    self.alarm.alarmTimeToParse=_hhmmAlarmToParse;
     
-    self.alarm.alarmTime=_hhmmAlarm;
-    NSLog(@"_hhmmAlarm: %@",_hhmmAlarm);
 }
 
 @end
