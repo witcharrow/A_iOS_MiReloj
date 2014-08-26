@@ -67,8 +67,6 @@ enum{RELOJ,ALARMAS};
     [super viewWillAppear:animated];
     [self.tableView reloadData];/*Necesario para que el prepareForSegue funcione y actualice la vista de la lista de alarmas*/
 }
-
-
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

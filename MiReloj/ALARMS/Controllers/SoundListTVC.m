@@ -8,6 +8,11 @@
 
 #import "SoundListTVC.h"
 #import "Sound.h"
+/*Para la seleccion de sonidos*/
+#import "AddAlarmTVC.h"
+#import "EditAlarmTvC.h"
+
+
 @interface SoundListTVC ()
 
 @end
@@ -16,6 +21,14 @@
 
 @synthesize sounds=_sounds;
 @synthesize sound=_sound;
+/*Para la seleccion de sonidos*/
+//MAL @synthesize descripcionSonido=_descripcionSonido;
+@synthesize addAlarmTVC=_addAlarmTVC;
+@synthesize editAlarmTVC=_editAlarmTVC;
+
+@synthesize sonidoSeleccionado=_sonidoSeleccionado;
+@synthesize sonidoSeleccionadoString=_sonidoSeleccionadoString;
+@synthesize rutaSonidoSeleccionadoString=_rutaSonidoSeleccionadoString;
 
 
 - (id)initWithStyle:(UITableViewStyle)style{
@@ -37,15 +50,15 @@
     Sound *noSound = [[Sound alloc]initWithName: [NSString stringWithFormat:@"%@ %@", @"\ue333", NSLocalizedString(@"_NoneSound",@"Titulo SONIDO EN/SP")]
                                    initWithPath:@"."];
     Sound *sound1 = [[Sound alloc]initWithName:  [NSString stringWithFormat:@"%@ %@", @"\u23F0", NSLocalizedString(@"Clock_Ringing",@"Clock_Ringing SONIDO EN/SP")]
-                                  initWithPath:@"."];
+                                  initWithPath:@"alarm_clock_ringing"];
     Sound *sound2 = [[Sound alloc]initWithName:  [NSString stringWithFormat:@"%@ %@", @"\ue411",NSLocalizedString(@"Baby_Crying",@"Baby_Crying SONIDO EN/SP")]
-                                  initWithPath:@"."];
+                                  initWithPath:@"baby_crying"];
     Sound *sound3 = [[Sound alloc]initWithName:  [NSString stringWithFormat:@"%@ %@", @"\ue154", NSLocalizedString(@"Card_Reader",@"Card_Reader SONIDO EN/SP")]
-                                  initWithPath:@"."];
+                                  initWithPath:@"card_reader_alarm"];
     Sound *sound4 = [[Sound alloc]initWithName:  [NSString stringWithFormat:@"%@ %@", @"\ue037", NSLocalizedString(@"Curch_Bells",@"Curch_Bells SONIDO EN/SP")]
-                                  initWithPath:@"."];
+                                  initWithPath:@"church_bells"];
     Sound *sound5 = [[Sound alloc]initWithName:  [NSString stringWithFormat:@"%@ %@", @"\ue432", NSLocalizedString(@"Police" ,@"Police SONIDO EN/SP")]
-                                  initWithPath:@"."];
+                                  initWithPath:@"police"];
     
     [self.sounds addObject:noSound];
     [self.sounds addObject:sound1];
@@ -78,7 +91,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     static NSString *soundCell=@"soundCell";
     Sound *currentSound = [self.sounds objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:soundCell];
@@ -87,6 +99,25 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"************************************************************** SoundListTVC");
+    NSLog(@"****************************** didSelectRowAtIndexPath");
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+    static NSString *soundCell=@"soundCell";
+    Sound *currentSound = [self.sounds objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:soundCell];
+    cell.textLabel.text = currentSound.nameSound;
+    _sonidoSeleccionadoString=cell.textLabel.text;
+    _rutaSonidoSeleccionadoString= currentSound.pathSound;
+    
+    NSLog(@"Nombre de sonido: %@",_sonidoSeleccionadoString);
+    NSLog(@"Ruta de sonido: %@",_rutaSonidoSeleccionadoString);
+    
+}
+
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -136,5 +167,28 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(IBAction)playAudio:(id)sender{
+    NSLog(@"************************************************************** SoundListTVC");
+    NSLog(@"****************************** playAudio");
+    NSLog(@"Nombre de sonido: %@",_sonidoSeleccionadoString);
+    NSLog(@"Ruta de sonido: %@",_rutaSonidoSeleccionadoString);
+    if (![_rutaSonidoSeleccionadoString isEqualToString:@"."]){
+        NSString *path = [[NSBundle mainBundle]
+                          pathForResource:_rutaSonidoSeleccionadoString ofType:@"wav"];
+        audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:
+                       [NSURL fileURLWithPath:path] error:NULL];
+        [audioPlayer play];
+    }
+}
+
+- (IBAction)stopTapped:(id)sender {
+    if ([_rutaSonidoSeleccionadoString isEqualToString:@"."]){
+        [audioPlayer stop];
+    
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        [audioSession setActive:NO error:nil];
+    }
+}
 
 @end

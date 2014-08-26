@@ -9,6 +9,7 @@
 #import "AddAlarmTVC.h"
 #import "AlarmListTVC.h"
 #import "Alarm.h"
+#import "SoundListTVC.h"
 
 @interface AddAlarmTVC ()
 
@@ -28,11 +29,12 @@
 @synthesize vibrationSwitch=_vibrationSwitch;
 @synthesize vibrationStatus=_vibrationStatus;
 @synthesize vibrationCellText=_vibrationCellText;
+@synthesize soundCellText=_soundCellText;
 @synthesize soundName=_soundName;
-
 
 @synthesize alarmListViewController=_alarmListViewController;
 
+@synthesize sounds = _sounds;
 
 - (id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
@@ -49,7 +51,10 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+    self.soundCellText.text = _soundName;
+    if (_soundName.length<1){
+        self.soundCellText.text = NSLocalizedString(@"_elijaSonido",@"_elijaSonido EN/SP");
+    }
 }
 /*Cargamos la vibración de inicio como apagada (ahorramos así batería)*/
 - (void)viewWillAppear:(BOOL)animated{
@@ -59,8 +64,7 @@
     [self.vibrationSwitch setOn:NO];
     NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=ACTIVADO" : @"self.vibrationSwitch=DESACTIVADO");
 
-    self.vibrationCellText.text = [NSString stringWithFormat:@"%@/%@ %@", @"\ue141",@"\U0001F507" ,NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP")];
-
+    self.vibrationCellText.text = NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP");
     
 }
 - (void)didReceiveMemoryWarning{
@@ -146,10 +150,31 @@
 
 ************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****/
 
-
+/*Para la seleccion de sonidos*/
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"selectSoundFromList"]){
+    NSLog(@"************************************************************** AddAlarmTVC");
+    NSLog(@"****************************** prepareForSegue");
+    if([segue.identifier isEqualToString:@"selectSoundFromListToAdd"]){
+        SoundListTVC *soundListTVC = segue.destinationViewController;
+        soundListTVC = [self.sounds objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        self.soundCellText.text=soundListTVC.sonidoSeleccionado.text;
+        _soundName = self.soundCellText.text;
         
+        NSLog(@"_soundName: %@", _soundName);
+        
+    }
+}
+
+
+-(IBAction)unwindFromViewController:(UIStoryboardSegue *)sender{
+    NSLog(@"************************************************************** AddAlarmTVC");
+    NSLog(@"****************************** unwindFromViewController");
+    NSLog(@"from segue SoundListTVC");
+    if ([sender.sourceViewController isKindOfClass:[SoundListTVC class]]) {
+        NSLog(@"from view controller SOUNDS-->OK");
+        SoundListTVC *sonindoElegido = sender.sourceViewController;
+        NSLog(@"sonindoElegido.sonidoSeleccionado.text: %@", sonindoElegido.sonidoSeleccionado.text);
+        self.soundCellText.text=sonindoElegido.sonidoSeleccionado.text;
     }
 }
 
@@ -239,6 +264,29 @@
 /*Hace desaparecer el teclado cuando pulsamos intro*/
 -(IBAction)ReturnKeyButton:(id)sender{
     [sender resignFirstResponder];
+}
+/*Si activamos la vibración, hace que el teléfono vibre mostrando una alerta*/
+-(IBAction)Vibrate{
+    if(self.vibrationSwitch.isOn){
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"\ue141 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")]
+                                                        message:@"\ue141"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        self.vibrationCellText.text = [NSString stringWithFormat:@"\ue141 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")];
+
+    }
+    else{
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"\U0001F507 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Desactivada",@"_DESACTIVADA EN/SP")]
+                                                        message:@"\U0001F507"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        self.vibrationCellText.text = [NSString stringWithFormat:@"\U0001F507 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Desactivada",@"_DESACTIVADA EN/SP")];
+
+    }
 }
 
 @end

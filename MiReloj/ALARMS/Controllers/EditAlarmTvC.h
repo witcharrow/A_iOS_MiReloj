@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AudioToolbox/AudioToolbox.h"
 
 @class Alarm;
 
@@ -33,6 +34,10 @@
 
 -(IBAction)alarmDataChanged:(id)sender;
 -(IBAction)ReturnKeyButton:(id)sender;
+
+
+/*Para la vibracion*/
+-(IBAction)Vibrate;
 
 
 @end

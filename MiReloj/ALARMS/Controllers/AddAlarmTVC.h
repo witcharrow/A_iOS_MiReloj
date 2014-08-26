@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AudioToolbox/AudioToolbox.h"
+
 @class AlarmListTVC;
-@interface AddAlarmTVC : UITableViewController 
+@interface AddAlarmTVC : UITableViewController
 
 -(IBAction)cancelButtonPressed:(id)sender;
 -(IBAction)doneButtonPressed:(id)sender;
@@ -26,11 +28,20 @@
 @property (nonatomic,strong) IBOutlet UISwitch *vibrationSwitch;
 @property (nonatomic,strong) NSString *vibrationStatus;
 @property (nonatomic,strong) IBOutlet UILabel *vibrationCellText;
+@property (nonatomic,strong) IBOutlet UILabel *soundCellText;
 @property (nonatomic,strong) NSString *soundName;
 
 @property (nonatomic,strong) AlarmListTVC *alarmListViewController;
 
+/*Para la seleccion de sonidos*/
+@property (nonatomic,strong) NSMutableArray *sounds;
+-(IBAction)unwindFromViewController:(UIStoryboardSegue *)sender;
 
+/*Hace desaparecer el teclado cuando pulsamos intro*/
 -(IBAction)ReturnKeyButton:(id)sender;
+
+
+/*Para la vibracion*/
+-(IBAction)Vibrate;
 
 @end

@@ -82,13 +82,19 @@
     NSLog(@"************************************************************** EditAlarmTvC");
     NSLog(@"****************************** viewWillAppear");
     [super viewWillAppear:animated];
-    self.vibrationCellText.text = [NSString stringWithFormat:@"%@/%@ %@", @"\U0001F507",@"\ue141" ,NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP")];
     
     NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=Yes" : @"self.vibrationSwitch=No");
     NSLog(_vibrationStatus.boolValue ? @"_vibrationStatus.boolValue=Yes" : @"_vibrationStatus.boolValue=No");
     NSLog(@"self.nameAlarm.text: %@",self.nameAlarm.text);
     NSLog(@"_textHHAlarm: %@",_textHHAlarm);
     NSLog(@"_textMMAlarm: %@",_textMMAlarm);
+    
+    if (self.vibrationSwitch.isOn){
+        self.vibrationCellText.text = [NSString stringWithFormat:@"\ue141 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")];
+    }
+    else{
+        self.vibrationCellText.text = [NSString stringWithFormat:@"\U0001F507 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Desactivada",@"_DESACTIVADA EN/SP")];
+    }
 }
 
 - (void)didReceiveMemoryWarning{
@@ -238,6 +244,14 @@
     NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
     NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
     
+    if (self.vibrationSwitch.isOn){
+        self.vibrationCellText.text = [NSString stringWithFormat:@"\ue141 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")];
+    }
+    else{
+        self.vibrationCellText.text = [NSString stringWithFormat:@"\U0001F507 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Desactivada",@"_DESACTIVADA EN/SP")];
+    }
+    
+    
     _textNameAlarmToShow = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM.text,_textNameAlarm];
     _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@%@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",sonidoTitleStatus,_soundName];
     _hhmmAlarmToParse = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@",_textNameAlarm,_textHHAlarm,_textMMAlarm,self.amPM.text,_vibrationStatus,_soundName];
@@ -253,6 +267,25 @@
 /*Hace desaparecer el teclado cuando pulsamos intro*/
 -(IBAction)ReturnKeyButton:(id)sender{
     [sender resignFirstResponder];
+}
+
+-(IBAction)Vibrate{
+    if(self.vibrationSwitch.isOn){
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"\ue141 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")]
+                                                        message:@"\ue141"
+                                                        delegate:nil
+                                                        cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    else{
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"\U0001F507 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Desactivada",@"_DESACTIVADA EN/SP")]
+                                                        message:@"\U0001F507"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 @end
