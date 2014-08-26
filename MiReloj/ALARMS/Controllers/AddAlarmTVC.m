@@ -269,7 +269,7 @@
 -(IBAction)Vibrate{
     if(self.vibrationSwitch.isOn){
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"\ue141 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")]
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")]
                                                         message:@"\ue141"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -279,7 +279,7 @@
     }
     else{
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"\U0001F507 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Desactivada",@"_DESACTIVADA EN/SP")]
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Desactivada",@"_DESACTIVADA EN/SP")]
                                                         message:@"\U0001F507"
                                                        delegate:nil
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
