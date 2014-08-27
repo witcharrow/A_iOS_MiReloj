@@ -8,6 +8,7 @@
 
 #import "EditAlarmTVC.h"
 #import "Alarm.h"
+#import "SoundListTVC.h"
 
 @interface EditAlarmTVC ()
 
@@ -31,7 +32,6 @@
 @synthesize vibrationCellText=_vibrationCellText;
 @synthesize soundName=_soundName;
 @synthesize alarm=_alarm;
-
 
 - (id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
@@ -74,6 +74,11 @@
     NSLog(self.activatedSwitch  ? @"self.activatedSwitch =Yes" : @"self.activatedSwitch =No");
     NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
     NSLog(_vibrationStatus.boolValue ? @"_vibrationStatus=Yes" : @"_vibrationStatus=No");
+    
+    self.soundCellText.text = _soundName;
+    if (_soundName.length<1){
+        self.soundCellText.text = [NSString stringWithFormat:@"\uE325 %@",NSLocalizedString(@"_elijaSonido",@"_elijaSonido EN/SP")];
+    }
 
     
 }
@@ -105,32 +110,31 @@
 /************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****
  
  #pragma mark - Table view data source
- 
- - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
- {
- #warning Potentially incomplete method implementation.
+
+ - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
  // Return the number of sections.
- return 0;
+     return 1;
  }
  
- - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
- {
- #warning Incomplete method implementation.
+ - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
  // Return the number of rows in the section.
- return 0;
+     return self.sounds.count;
  }
  
  //COMENTADO POR DEFECTO
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
- {
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
- 
- // Configure the cell...
- 
- return cell;
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *selectSoundCell=@"selectSoundCell";
+    Sound *currentSound = [self.sounds objectAtIndex:indexPath.row];
+    NSString *cellIdentifier = selectSoundCell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    cell.textLabel.text =
+    cell.detailTextLabel.text = currentAlarm.alarmTimeToShow;
+    
+    return cell;
  }
- 
- 
+ */
+ /*
  //COMENTADO POR DEFECTO
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -228,19 +232,6 @@
     else{
         _vibrationStatus=@"NO";
     }
-    
-    /*Opciones de control para el sonido*/
-    _soundName = @"Ninguno";
-    
-    
-    
-    NSString *sonidoTitleStatus=NSLocalizedString(@"_SONIDO",@"Titulo SONIDO EN/SP");
-    NSString *borrarESTO =_soundName;
-    sonidoTitleStatus = [_soundName isEqualToString:borrarESTO]?@"\uE325":@"\ue333";
-    
-    NSLog(@"_textNameAlarm: %@",_textNameAlarm);
-    NSLog(@"_textHHAlarm: %@",_textHHAlarm);
-    NSLog(@"_textMMAlarm: %@",_textMMAlarm);
     NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
     NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
     
@@ -252,8 +243,20 @@
     }
     
     
+    /*Opciones de control para el sonido*/
+    if([_soundName isEqualToString:[NSString stringWithFormat:@"\uE325 %@",NSLocalizedString(@"_elijaSonido",[@"_elijaSonido EN/SP"])]]){
+        _soundName=[NSString stringWithFormat:@"%@ %@", @"\ue333", NSLocalizedString(@"_NoneSound",@"Titulo SONIDO EN/SP")];
+        
+    }
+    
+    NSLog(@"_textNameAlarm: %@",_textNameAlarm);
+    NSLog(@"_textHHAlarm: %@",_textHHAlarm);
+    NSLog(@"_textMMAlarm: %@",_textMMAlarm);
+    
+    
+    
     _textNameAlarmToShow = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM.text,_textNameAlarm];
-    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@%@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",sonidoTitleStatus,_soundName];
+    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",_soundName];
     _hhmmAlarmToParse = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@",_textNameAlarm,_textHHAlarm,_textMMAlarm,self.amPM.text,_vibrationStatus,_soundName];
     NSLog(@"_hhmmAlarmToShow: %@",_hhmmAlarmToShow);
     NSLog(@"_hhmmAlarmToParse: %@",_hhmmAlarmToParse);
@@ -287,5 +290,22 @@
         [alert show];
     }
 }
+
+/**NO CHUSCA
+- (IBAction)unwindSoundForEdition:(UIStoryboardSegue*)sender{
+    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"****************************** unwindSoundForEdition");
+    NSLog(@"from segue SoundListTVC");
+    if ([sender.sourceViewController isKindOfClass:[SoundListTVC class]]) {
+        NSLog(@"from view controller SOUNDS-->OK");
+        SoundListTVC *tvcSounds = sender.sourceViewController;
+        self.soundCellText.text=tvcSounds.sonidoSeleccionadoString;
+        //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        //[defaults setObject:fechaModificada
+        //             forKey:@"fechaModificada"];
+        //[defaults synchronize];
+    }
+}
+*/
 
 @end

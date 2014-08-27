@@ -16,9 +16,11 @@
 @end
 
 @implementation AddAlarmTVC
+/*Nombre de la alarma*/
 @synthesize nameAlarm=_nameAlarm;
 @synthesize textNameAlarm=_textNameAlarm;
 @synthesize textNameAlarmToShow=_textNameAlarmToShow;
+/*Horas y minutos de la alarma*/
 @synthesize hhAlarm=_hhAlarm;
 @synthesize mmAlarm=_mmAlarm;
 @synthesize textHHAlarm=_textHHAlarm;
@@ -26,9 +28,11 @@
 @synthesize hhmmAlarmToShow=_hhmmAlarmToShow;
 @synthesize hhmmAlarmToParse=_hhmmAlarmToParse;
 @synthesize amPM=_amPM;
+/*Vibracion*/
 @synthesize vibrationSwitch=_vibrationSwitch;
 @synthesize vibrationStatus=_vibrationStatus;
 @synthesize vibrationCellText=_vibrationCellText;
+/*Sonido*/
 @synthesize soundCellText=_soundCellText;
 @synthesize soundName=_soundName;
 
@@ -53,8 +57,9 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.soundCellText.text = _soundName;
     if (_soundName.length<1){
-        self.soundCellText.text = NSLocalizedString(@"_elijaSonido",@"_elijaSonido EN/SP");
+        self.soundCellText.text = [NSString stringWithFormat:@"\uE325 %@",NSLocalizedString(@"_elijaSonido",@"_elijaSonido EN/SP")];
     }
+    
 }
 /*Cargamos la vibración de inicio como apagada (ahorramos así batería)*/
 - (void)viewWillAppear:(BOOL)animated{
@@ -65,7 +70,7 @@
     NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=ACTIVADO" : @"self.vibrationSwitch=DESACTIVADO");
 
     self.vibrationCellText.text = NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP");
-    
+    [self.tableView reloadData];
 }
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
@@ -155,9 +160,11 @@
     NSLog(@"************************************************************** AddAlarmTVC");
     NSLog(@"****************************** prepareForSegue");
     if([segue.identifier isEqualToString:@"selectSoundFromListToAdd"]){
+        NSLog(@"-->selectSoundFromListToAdd");
         SoundListTVC *soundListTVC = segue.destinationViewController;
-        soundListTVC = [self.sounds objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-        self.soundCellText.text=soundListTVC.sonidoSeleccionado.text;
+        soundListTVC.addAlarmTVC=self;
+        //soundListTVC = [self.sounds objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        self.soundCellText.text=soundListTVC.sonidoSeleccionadoString;
         _soundName = self.soundCellText.text;
         
         NSLog(@"_soundName: %@", _soundName);
@@ -165,19 +172,22 @@
     }
 }
 
-
--(IBAction)unwindFromViewController:(UIStoryboardSegue *)sender{
-    NSLog(@"************************************************************** AddAlarmTVC");
-    NSLog(@"****************************** unwindFromViewController");
+/**NO CHUSCA
+- (IBAction)unwindSoundForAddition:(UIStoryboardSegue*)sender{
+    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"****************************** unwindSoundForEdition");
     NSLog(@"from segue SoundListTVC");
     if ([sender.sourceViewController isKindOfClass:[SoundListTVC class]]) {
         NSLog(@"from view controller SOUNDS-->OK");
-        SoundListTVC *sonindoElegido = sender.sourceViewController;
-        NSLog(@"sonindoElegido.sonidoSeleccionado.text: %@", sonindoElegido.sonidoSeleccionado.text);
-        self.soundCellText.text=sonindoElegido.sonidoSeleccionado.text;
+        SoundListTVC *tvcSounds = sender.sourceViewController;
+        self.soundCellText.text=tvcSounds.sonidoSeleccionadoString;
+        //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        //[defaults setObject:fechaModificada
+        //             forKey:@"fechaModificada"];
+        //[defaults synchronize];
     }
 }
-
+*/
 
 #pragma mark - IBActions
 -(IBAction)cancelButtonPressed:(id)sender{
@@ -228,14 +238,18 @@
 
     
     /*Opciones de control para el sonido*/
-    _soundName = @"Ninguno";
-    
-    NSString *sonidoTitleStatus=NSLocalizedString(@"_SONIDO",@"Titulo SONIDO EN/SP");
-    NSString *borrarESTO =_soundName;
-    sonidoTitleStatus = [_soundName isEqualToString:borrarESTO]?@"\uE325":@"\ue333";
+    if([_soundCellText.text isEqualToString:[NSString stringWithFormat:@"\uE325 %@",NSLocalizedString(@"_elijaSonido",[@"_elijaSonido EN/SP"])]]){
+        _soundCellText.text=[NSString stringWithFormat:@"%@ %@", @"\ue333", NSLocalizedString(@"_NoneSound",@"Titulo SONIDO EN/SP")];
+        
+    }
+    //_soundName = @"Ninguno";
+    //NSString *sonidoTitleStatus=NSLocalizedString(@"_SONIDO",@"Titulo SONIDO EN/SP");
+    //NSString *borrarESTO =_soundName;
+    //sonidoTitleStatus = [_soundName isEqualToString:borrarESTO]?@"\uE325":@"\ue333";
     
     _textNameAlarmToShow = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM,_textNameAlarm];
-    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@%@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",sonidoTitleStatus,_soundName];
+    //_hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@%@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",sonidoTitleStatus,_soundCellText.text];
+    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",_soundCellText.text];
     _hhmmAlarmToParse = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@",_textNameAlarm,_textHHAlarm,_textMMAlarm,self.amPM,_vibrationStatus,_soundName];
     
     NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=Yes" : @"self.vibrationSwitch=No");
@@ -288,5 +302,11 @@
 
     }
 }
+
+
+/********PRUEBAS***********/
+
+
+
 
 @end

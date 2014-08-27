@@ -29,7 +29,7 @@
 @synthesize sonidoSeleccionado=_sonidoSeleccionado;
 @synthesize sonidoSeleccionadoString=_sonidoSeleccionadoString;
 @synthesize rutaSonidoSeleccionadoString=_rutaSonidoSeleccionadoString;
-
+@synthesize celdaActual=_celdaActual;
 
 - (id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
@@ -40,6 +40,8 @@
 }
 
 - (void)viewDidLoad{
+    NSLog(@"************************************************************** SoundListTVC");
+    NSLog(@"****************************** viewDidLoad");
     [super viewDidLoad];
     
     self.title = NSLocalizedString(@"_SelectSound",@"Select Sound EN/SP");
@@ -67,9 +69,16 @@
     [self.sounds addObject:sound4];
     [self.sounds addObject:sound5];
     
+    
+   _celdaActual.textLabel.text=self.sonidoSeleccionadoString;
+    
     [self.tableView reloadData];
     
     
+}
+
+- (void) viewWillDisappear:(BOOL)animated{
+    [self.addAlarmTVC.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -91,6 +100,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"************************************************************** SoundListTVC");
+    NSLog(@"****************************** cellForRowAtIndexPath");
     static NSString *soundCell=@"soundCell";
     Sound *currentSound = [self.sounds objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:soundCell];
@@ -105,17 +116,23 @@
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     static NSString *soundCell=@"soundCell";
     Sound *currentSound = [self.sounds objectAtIndex:indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:soundCell];
-    cell.textLabel.text = currentSound.nameSound;
-    _sonidoSeleccionadoString=cell.textLabel.text;
+    _celdaActual = [tableView dequeueReusableCellWithIdentifier:soundCell];
+    _celdaActual.textLabel.text = currentSound.nameSound;
+    _sonidoSeleccionado = _celdaActual.textLabel;
+    _sonidoSeleccionadoString=_celdaActual.textLabel.text;
     _rutaSonidoSeleccionadoString= currentSound.pathSound;
     
     NSLog(@"Nombre de sonido: %@",_sonidoSeleccionadoString);
     NSLog(@"Ruta de sonido: %@",_rutaSonidoSeleccionadoString);
+    NSLog(@"Label sonido: %@",_sonidoSeleccionado.text);
+    
     
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"************************************************************** SoundListTVC");
+    NSLog(@"****************************** didDeselectRowAtIndexPath");
+    
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
 }
 
@@ -173,22 +190,53 @@
     NSLog(@"****************************** playAudio");
     NSLog(@"Nombre de sonido: %@",_sonidoSeleccionadoString);
     NSLog(@"Ruta de sonido: %@",_rutaSonidoSeleccionadoString);
+    NSLog(@"_celdaActual.textLabel.text: %@",_celdaActual.textLabel.text);
     if (![_rutaSonidoSeleccionadoString isEqualToString:@"."]){
         NSString *path = [[NSBundle mainBundle]
                           pathForResource:_rutaSonidoSeleccionadoString ofType:@"wav"];
         audioPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:
                        [NSURL fileURLWithPath:path] error:NULL];
+        
         [audioPlayer play];
     }
+    self.sound = [self.sounds objectAtIndex: _celdaActual.indentationLevel];
+    self.sound.nameSound= _celdaActual.textLabel.text;
+    
+    NSLog(@"_celdaActual.textLabel.text: %@",_celdaActual.textLabel.text);
+    NSLog(@"self.sound.nameSound: %@",self.sound.nameSound);
+    
+    _sonidoSeleccionadoString=_celdaActual.textLabel.text;
+    
+    
 }
 
 - (IBAction)stopTapped:(id)sender {
+    NSLog(@"************************************************************** SoundListTVC");
+    NSLog(@"****************************** stopTapped");
     if ([_rutaSonidoSeleccionadoString isEqualToString:@"."]){
         [audioPlayer stop];
     
         AVAudioSession *audioSession = [AVAudioSession sharedInstance];
         [audioSession setActive:NO error:nil];
+        
+        self.sound.nameSound = _sonidoSeleccionadoString;
+        
+        NSLog(@"self.sound.nameSound: %@",self.sound.nameSound);
     }
 }
+
+#pragma mark - IBActions
+-(IBAction)soundSelected:(id)sender{
+    NSLog(@"************************************************************** SoundListTVC");
+    NSLog(@"****************************** soundSelected");
+    self.sound = [self.sounds objectAtIndex: _celdaActual.indentationLevel];
+    self.sound.nameSound= _celdaActual.textLabel.text;
+    
+    NSLog(@"_celdaActual.textLabel.text: %@",_celdaActual.textLabel.text);
+    NSLog(@"self.sound.nameSound: %@",self.sound.nameSound);
+    
+    self.sonidoSeleccionadoString=_celdaActual.textLabel.text;
+}
+
 
 @end

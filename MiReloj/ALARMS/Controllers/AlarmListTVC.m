@@ -63,7 +63,7 @@ enum{RELOJ,ALARMAS};
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
 }
--(void) viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.tableView reloadData];/*Necesario para que el prepareForSegue funcione y actualice la vista de la lista de alarmas*/
 }

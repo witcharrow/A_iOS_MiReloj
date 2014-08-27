@@ -32,8 +32,14 @@
 @property (nonatomic,strong) AddAlarmTVC *addAlarmTVC;
 @property (nonatomic,strong) EditAlarmTVC *editAlarmTVC;
 
-@property (nonatomic, strong) IBOutlet UILabel *sonidoSeleccionado;
+@property (nonatomic, strong) UILabel *sonidoSeleccionado;
 @property (nonatomic, strong) NSString *sonidoSeleccionadoString;
 @property (nonatomic, strong) NSString *rutaSonidoSeleccionadoString;
+
+/*****PRUEBAS*****/
+/*Para el paso de información a la lista de alarmas*/
+//@property (nonatomic,strong) Sound *sound;
+@property (nonatomic,strong) UITableViewCell *celdaActual;
+-(IBAction)soundSelected:(id)sender;
 
 @end
