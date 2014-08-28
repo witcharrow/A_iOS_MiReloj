@@ -70,8 +70,9 @@
     [self.sounds addObject:sound5];
     
     
-   _celdaActual.textLabel.text=self.sonidoSeleccionadoString;
-    
+    NSLog(@"self.sonidoSeleccionadoString: %@",self.sonidoSeleccionadoString);
+    //_celdaActual.textLabel.text=self.sonidoSeleccionadoString;
+    NSLog(@"_celdaActual.textLabel.text: %@",_celdaActual.textLabel.text);
     [self.tableView reloadData];
     
     

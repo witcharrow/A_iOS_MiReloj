@@ -48,6 +48,9 @@
     return self;
 }
 - (void)viewDidLoad{
+    NSLog(@"************************************************************** AddAlarmTVC");
+    NSLog(@"****************************** viewDidLoad");
+
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -55,11 +58,13 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSLog(@"_soundName: %@",_soundName);
+    
     self.soundCellText.text = _soundName;
     if (_soundName.length<1){
         self.soundCellText.text = [NSString stringWithFormat:@"\uE325 %@",NSLocalizedString(@"_elijaSonido",@"_elijaSonido EN/SP")];
     }
-    
+    NSLog(@"self.soundCellText.text: %@",self.soundCellText.text);
 }
 /*Cargamos la vibración de inicio como apagada (ahorramos así batería)*/
 - (void)viewWillAppear:(BOOL)animated{
@@ -70,6 +75,9 @@
     NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=ACTIVADO" : @"self.vibrationSwitch=DESACTIVADO");
 
     self.vibrationCellText.text = NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP");
+    
+    NSLog(@"_soundName: %@",_soundName);
+    NSLog(@"self.soundCellText.text: %@",self.soundCellText.text);
     [self.tableView reloadData];
 }
 - (void)didReceiveMemoryWarning{
@@ -162,12 +170,12 @@
     if([segue.identifier isEqualToString:@"selectSoundFromListToAdd"]){
         NSLog(@"-->selectSoundFromListToAdd");
         SoundListTVC *soundListTVC = segue.destinationViewController;
-        soundListTVC.addAlarmTVC=self;
+        soundListTVC.addAlarmTVC=[self.sounds objectAtIndex:self.tableView.indexPathForSelectedRow.row];
         //soundListTVC = [self.sounds objectAtIndex:self.tableView.indexPathForSelectedRow.row];
-        self.soundCellText.text=soundListTVC.sonidoSeleccionadoString;
-        _soundName = self.soundCellText.text;
+        //self.soundCellText.text=soundListTVC.sonidoSeleccionadoString;
+        //_soundName = self.soundCellText.text;
         
-        NSLog(@"_soundName: %@", _soundName);
+        //NSLog(@"_soundName: %@", _soundName);
         
     }
 }
@@ -179,15 +187,17 @@
     NSLog(@"from segue SoundListTVC");
     if ([sender.sourceViewController isKindOfClass:[SoundListTVC class]]) {
         NSLog(@"from view controller SOUNDS-->OK");
-        SoundListTVC *tvcSounds = sender.sourceViewController;
-        self.soundCellText.text=tvcSounds.sonidoSeleccionadoString;
+        SoundListTVC *soundListTVC = sender.sourceViewController;
+        soundListTVC.addAlarmTVC=self;
+        //soundListTVC = [self.sounds objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+        self.soundCellText.text=soundListTVC.sonidoSeleccionadoString;
+        _soundName = self.soundCellText.text;
         //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         //[defaults setObject:fechaModificada
         //             forKey:@"fechaModificada"];
         //[defaults synchronize];
     }
-}
-*/
+}*/
 
 #pragma mark - IBActions
 -(IBAction)cancelButtonPressed:(id)sender{

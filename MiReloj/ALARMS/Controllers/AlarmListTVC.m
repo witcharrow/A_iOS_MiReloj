@@ -129,6 +129,8 @@ enum{RELOJ,ALARMAS};
 #pragma mark - Navigation
 /*Pasa la información del textfield a la lista de alarmas*/
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** prepareForSegue");
     /*Parte para añadir una alarma*/
     if ([segue.identifier isEqualToString:@"AddAlarmSegue"]){
         UINavigationController *navCon = segue.destinationViewController;
