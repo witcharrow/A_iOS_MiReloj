@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="xZ8-LR-E09">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="xZ8-LR-E09">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -27,7 +27,7 @@
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController id="rS3-R9-Ivy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alarm/ALARMA" image="1703A3EC-5C80-4F2E-853C-87AC848CAE86" id="Tqb-oO-mSu"/>
+                    <tabBarItem key="tabBarItem" title="Alarm/ALARMA" image="33314886-CA84-4F6A-9845-22261C3F3B28" id="Tqb-oO-mSu"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yXu-0R-QUA">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -98,7 +98,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Alarm List" id="tQt-TN-PWz">
-                        <barButtonItem key="rightBarButtonItem" image="C57ADC92-BA95-4122-8B1F-C8C04EA902F4" id="w4v-SY-WBd">
+                        <barButtonItem key="rightBarButtonItem" image="F5A634F1-DE61-4E9E-8AC6-5A6988570738" id="w4v-SY-WBd">
                             <connections>
                                 <segue destination="yqx-VL-cgm" kind="modal" identifier="AddAlarmSegue" id="jf6-GM-tew"/>
                             </connections>
@@ -650,7 +650,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <action selector="cancelPressed:" destination="oJe-rI-mUH" id="BcG-J6-9Yt"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="C57ADC92-BA95-4122-8B1F-C8C04EA902F4" id="QCp-jd-dxJ">
+                        <barButtonItem key="rightBarButtonItem" image="F5A634F1-DE61-4E9E-8AC6-5A6988570738" id="QCp-jd-dxJ">
                             <connections>
                                 <segue destination="1Cy-pA-08s" kind="modal" id="gki-Rp-Vu1"/>
                             </connections>
@@ -1831,7 +1831,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="1703A3EC-5C80-4F2E-853C-87AC848CAE86" width="27" height="27">
+        <image name="33314886-CA84-4F6A-9845-22261C3F3B28" width="27" height="27">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1951,7 +1951,8 @@ AAAaHg
 </mutableData>
         </image>
         <image name="Alarm.png" width="26" height="25"/>
-        <image name="C57ADC92-BA95-4122-8B1F-C8C04EA902F4" width="25" height="25">
+        <image name="Clock.png" width="24" height="24"/>
+        <image name="F5A634F1-DE61-4E9E-8AC6-5A6988570738" width="25" height="25">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -2063,7 +2064,6 @@ GAoYGRgdGCQYLBg5GD4YQBhCGEcYTxhSGFcYXxhiGHQYdxh8AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAA
 AAAAAAAAGH4
 </mutableData>
         </image>
-        <image name="Clock.png" width="24" height="24"/>
         <image name="Previous.png" width="11" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -2073,7 +2073,7 @@ AAAAAAAAGH4
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="4mx-zV-FLd"/>
-        <segue reference="sKq-qX-eey"/>
+        <segue reference="sIZ-Ql-03N"/>
         <segue reference="802-oG-CIN"/>
     </inferredMetricsTieBreakers>
 </document>

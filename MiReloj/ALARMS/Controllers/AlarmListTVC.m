@@ -30,6 +30,8 @@ enum{RELOJ,ALARMAS};
     return self;
 }
 - (void)viewDidLoad{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** viewDidLoad");
     [super viewDidLoad];
     
     //Creamos la lista de alarmas.
@@ -64,10 +66,14 @@ enum{RELOJ,ALARMAS};
     [self.view addGestureRecognizer:swipeRight];
 }
 - (void) viewWillAppear:(BOOL)animated{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** viewWillAppear");
     [super viewWillAppear:animated];
     [self.tableView reloadData];/*Necesario para que el prepareForSegue funcione y actualice la vista de la lista de alarmas*/
 }
 - (void)didReceiveMemoryWarning{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** didReceiveMemoryWarning");
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -75,14 +81,20 @@ enum{RELOJ,ALARMAS};
 #pragma mark - Table view data source
 /*Devuelve el numero de secciones*/
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** numberOfSectionsInTableView");
     return 1;
 }
 /*Devuelve el número de filas por seccion*/
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** numberOfRowsInSection");
     return self.alarms.count;
 }
 /*Establecemos los valores de las filas*/
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** cellForRowAtIndexPath");
     
     static NSString *activatedAlarmCell=@"activatedAlarmCell";
     static NSString *deactivatedAlarmCell=@"deactivatedAlarmCell";
@@ -105,6 +117,8 @@ enum{RELOJ,ALARMAS};
 
 /*Opciones para editar la lista de alarmas*/
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** commitEditingStyle");
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         [self.alarms removeObjectAtIndex:indexPath.row];
@@ -116,12 +130,16 @@ enum{RELOJ,ALARMAS};
 }
 /*Permite mover las filas de la lista de alarmas*/
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** moveRowAtIndexPath");
     Alarm *movedAlarm = [self.alarms objectAtIndex:fromIndexPath.row];
     [self.alarms removeObjectAtIndex:fromIndexPath.row];
     [self. alarms insertObject:movedAlarm atIndex:toIndexPath.row];
 }
 /*Metodo para reorganizar las alarmas*/
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** canMoveRowAtIndexPath");
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
@@ -148,6 +166,8 @@ enum{RELOJ,ALARMAS};
 #pragma mark - Help Methods
 /*Reconoce el gesto de deslizar para moverse entre pestañas*/
 -(void)swipeRecognized:(UISwipeGestureRecognizer *)swipe{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** swipeRecognized");
     
     if(swipe.direction==UISwipeGestureRecognizerDirectionLeft){
         [(UITabBarController *)self.tabBarController setSelectedIndex:RELOJ];
@@ -160,6 +180,8 @@ enum{RELOJ,ALARMAS};
 
 #pragma mark - IBAction Methods
 -(IBAction)editButtonPressed:(id)sender{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** editButtonPressed");
     self.editing = !self.editing;
 }
 

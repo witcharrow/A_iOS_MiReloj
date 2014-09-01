@@ -103,6 +103,8 @@
 }
 
 - (void)didReceiveMemoryWarning{
+    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"****************************** didReceiveMemoryWarning");
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -269,10 +271,14 @@
 }
 /*Hace desaparecer el teclado cuando pulsamos intro*/
 -(IBAction)ReturnKeyButton:(id)sender{
+        NSLog(@"************************************************************** EditAlarmTvC");
+        NSLog(@"****************************** ReturnKeyButton");
     [sender resignFirstResponder];
 }
 
 -(IBAction)Vibrate{
+    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"****************************** Vibrate");
     if(self.vibrationSwitch.isOn){
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")]

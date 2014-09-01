@@ -164,9 +164,9 @@
 ************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****/
 
 /*Para la seleccion de sonidos*/
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+-(void) prepareForSegueAddAlarm:(UIStoryboardSegue *)segue sender:(id)sender{
     NSLog(@"************************************************************** AddAlarmTVC");
-    NSLog(@"****************************** prepareForSegue");
+    NSLog(@"****************************** prepareForSegueAddAlarm");
     if([segue.identifier isEqualToString:@"selectSoundFromListToAdd"]){
         NSLog(@"-->selectSoundFromListToAdd");
         SoundListTVC *soundListTVC = segue.destinationViewController;
