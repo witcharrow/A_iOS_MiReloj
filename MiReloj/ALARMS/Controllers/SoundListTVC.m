@@ -38,7 +38,6 @@
     }
     return self;
 }
-
 - (void)viewDidLoad{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** viewDidLoad");
@@ -77,13 +76,11 @@
     
     
 }
-
 - (void) viewWillDisappear:(BOOL)animated{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** viewWillDisappear");
     [self.addAlarmTVC.tableView reloadData];
 }
-
 - (void)didReceiveMemoryWarning{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** didReceiveMemoryWarning");
@@ -92,22 +89,19 @@
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** numberOfSectionsInTableView");
     // Return the number of sections.
     return 1;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** numberOfRowsInSection");
     // Return the number of rows in the section.
     return self.sounds.count;
 }
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** cellForRowAtIndexPath");
     static NSString *soundCell=@"soundCell";
@@ -117,8 +111,7 @@
     
     return cell;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** didSelectRowAtIndexPath");
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
@@ -136,7 +129,6 @@
     
     
 }
-
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** didDeselectRowAtIndexPath");
@@ -152,7 +144,6 @@
     return YES;
 }
 */
-
 /*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -165,14 +156,12 @@
     }   
 }
 */
-
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
 }
 */
-
 /*
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -181,7 +170,6 @@
     return YES;
 }
 */
-
 /*
 #pragma mark - Navigation
 
@@ -193,6 +181,8 @@
 }
 */
 
+
+#pragma mark - IBActions
 -(IBAction)playAudio:(id)sender{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** playAudio");
@@ -217,13 +207,12 @@
     
     
 }
-
-- (IBAction)stopTapped:(id)sender {
+-(IBAction)stopTapped:(id)sender {
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** stopTapped");
     if ([_rutaSonidoSeleccionadoString isEqualToString:@"."]){
         [audioPlayer stop];
-    
+        
         AVAudioSession *audioSession = [AVAudioSession sharedInstance];
         [audioSession setActive:NO error:nil];
         
@@ -232,8 +221,6 @@
         NSLog(@"self.sound.nameSound: %@",self.sound.nameSound);
     }
 }
-
-#pragma mark - IBActions
 -(IBAction)soundSelected:(id)sender{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** soundSelected");
@@ -245,6 +232,8 @@
     
     self.sonidoSeleccionadoString=_celdaActual.textLabel.text;
 }
-
+-(IBAction)saveButtonPressed:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

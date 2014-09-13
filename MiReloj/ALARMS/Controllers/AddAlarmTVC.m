@@ -163,7 +163,7 @@
 
 ************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****/
 
-/*Para la seleccion de sonidos*/
+/*Para la seleccion de sonidos
 -(void) prepareForSegueAddAlarm:(UIStoryboardSegue *)segue sender:(id)sender{
     NSLog(@"************************************************************** AddAlarmTVC");
     NSLog(@"****************************** prepareForSegueAddAlarm");
@@ -178,26 +178,24 @@
         //NSLog(@"_soundName: %@", _soundName);
         
     }
-}
+}*/
 
-/**NO CHUSCA
+/**NO CHUSCA*/
 - (IBAction)unwindSoundForAddition:(UIStoryboardSegue*)sender{
-    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"************************************************************** AddAlarmTvC");
     NSLog(@"****************************** unwindSoundForEdition");
     NSLog(@"from segue SoundListTVC");
     if ([sender.sourceViewController isKindOfClass:[SoundListTVC class]]) {
         NSLog(@"from view controller SOUNDS-->OK");
         SoundListTVC *soundListTVC = sender.sourceViewController;
-        soundListTVC.addAlarmTVC=self;
-        //soundListTVC = [self.sounds objectAtIndex:self.tableView.indexPathForSelectedRow.row];
         self.soundCellText.text=soundListTVC.sonidoSeleccionadoString;
         _soundName = self.soundCellText.text;
-        //NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        //[defaults setObject:fechaModificada
-        //             forKey:@"fechaModificada"];
-        //[defaults synchronize];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:_soundName
+                     forKey:@"sonidoSeleccionado"];
+        [defaults synchronize];
     }
-}*/
+}
 
 #pragma mark - IBActions
 -(IBAction)cancelButtonPressed:(id)sender{

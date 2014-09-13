@@ -42,4 +42,8 @@
 @property (nonatomic,strong) UITableViewCell *celdaActual;
 -(IBAction)soundSelected:(id)sender;
 
+
+/*Guarda las opciones pulsadas*/
+-(IBAction)saveButtonPressed:(id)sender;
+
 @end
