@@ -5,7 +5,7 @@
 //  Created by Alejandro on 19/08/14.
 //  Copyright (c) 2014 Alejandro Marijuán. All rights reserved.
 //
-
+	
 #import "AddAlarmTVC.h"
 #import "AlarmListTVC.h"
 #import "Alarm.h"
@@ -180,22 +180,6 @@
     }
 }*/
 
-/**NO CHUSCA*/
-- (IBAction)unwindSoundForAddition:(UIStoryboardSegue*)sender{
-    NSLog(@"************************************************************** AddAlarmTvC");
-    NSLog(@"****************************** unwindSoundForEdition");
-    NSLog(@"from segue SoundListTVC");
-    if ([sender.sourceViewController isKindOfClass:[SoundListTVC class]]) {
-        NSLog(@"from view controller SOUNDS-->OK");
-        SoundListTVC *soundListTVC = sender.sourceViewController;
-        self.soundCellText.text=soundListTVC.sonidoSeleccionadoString;
-        _soundName = self.soundCellText.text;
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:_soundName
-                     forKey:@"sonidoSeleccionado"];
-        [defaults synchronize];
-    }
-}
 
 #pragma mark - IBActions
 -(IBAction)cancelButtonPressed:(id)sender{
@@ -310,7 +294,25 @@
 
     }
 }
-
+/*Recoge el sonido seleccionado*/
+- (IBAction)unwindSound:(UIStoryboardSegue*)sender{
+    NSLog(@"************************************************************** AddAlarmTvC");
+    NSLog(@"****************************** unwindSound");
+    NSLog(@"from segue SoundListTVC");
+    if ([sender.sourceViewController isKindOfClass:[SoundListTVC class]]) {
+        NSLog(@"from view controller SOUNDS-->OK");
+        SoundListTVC *soundListTVC = sender.sourceViewController;
+        self.soundCellText.text=soundListTVC.sonidoSeleccionadoString;
+        _soundName = self.soundCellText.text;
+        if (_soundName.length<1){
+            self.soundCellText.text = [NSString stringWithFormat:@"\uE325 %@",NSLocalizedString(@"_elijaSonido",@"_elijaSonido EN/SP")];
+        }
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:_soundName
+                     forKey:@"sonidoSeleccionado"];
+        [defaults synchronize];
+    }
+}
 
 /********PRUEBAS***********/
 

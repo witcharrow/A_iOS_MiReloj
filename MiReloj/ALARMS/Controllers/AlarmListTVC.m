@@ -114,7 +114,6 @@ enum{RELOJ,ALARMAS};
     return YES;
 }
 */
-
 /*Opciones para editar la lista de alarmas*/
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"************************************************************** AlarmListTVC");
