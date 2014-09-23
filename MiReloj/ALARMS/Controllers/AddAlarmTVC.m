@@ -80,11 +80,52 @@
     NSLog(@"self.soundCellText.text: %@",self.soundCellText.text);
     [self.tableView reloadData];
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"****************************** viewWillDisappear");
+    [super viewWillDisappear:animated];
+    [self.parentViewController reloadInputViews];
+    
+    
+    NSUserDefaults *userPreferences=[NSUserDefaults standardUserDefaults];
+    /*
+     _activatedDOW.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedDOW"]):([userPreferences setBool:NO forKey:@"userHasActivatedDOW"]);
+     _activatedDOM.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedDOM"]):([userPreferences setBool:NO forKey:@"userHasActivatedDOM"]);
+     _activatedMM.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedMM"]):([userPreferences setBool:NO forKey:@"userHasActivatedMM"]);
+     _activatedYY.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedYY"]):([userPreferences setBool:NO forKey:@"userHasActivatedYY"]);
+     
+     _userHasActivatedDOW=[userPreferences boolForKey:@"userHasActivatedDOW"];
+     _userHasActivatedDOM=[userPreferences boolForKey:@"userHasActivatedDOM"];
+     _userHasActivatedMM = [userPreferences boolForKey:@"userHasActivatedMM"];
+     _userHasActivatedYY = [userPreferences boolForKey:@"userHasActivatedYY"];
+     
+     //NSLog(_userHasActivatedDOW ? @"_userHasActivatedDOW=Yes" : @"_userHasActivatedDOW=No");
+     //NSLog(_userHasActivatedDOM ? @"_userHasActivatedDOM=Yes" : @"_userHasActivatedDOM=No");
+     //NSLog(_userHasActivatedMM ? @"_userHasActivatedMM=Yes" : @"_userHasActivatedMM=No");
+     //NSLog(_userHasActivatedYY ? @"_userHasActivatedYY=Yes" : @"_userHasActivatedYY=No");
+     
+     [self.activatedDOW setOn:_userHasActivatedDOW];
+     [self.activatedDOM setOn:_userHasActivatedDOM];
+     [self.activatedMM setOn:_userHasActivatedMM];
+     [self.activatedYY setOn:_userHasActivatedYY];
+     */
+    
+    //Guardamos la información de la alarma.
+    
+    NSLog(@"_textNameAlarmToShow: %@",_textNameAlarmToShow);
+    NSLog(@"_hhmmAlarmToShow: %@",_hhmmAlarmToShow);
+    
+    NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch.isOn=Yes" : @"self.vibrationSwitch.isOn=No");
+    NSLog(@"_soundName: %@",_soundName);
+    
+    [userPreferences synchronize];
+    
+}
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****
 
 #pragma mark - Table view data source
@@ -162,7 +203,6 @@
 }
 
 ************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****/
-
 /*Para la seleccion de sonidos
 -(void) prepareForSegueAddAlarm:(UIStoryboardSegue *)segue sender:(id)sender{
     NSLog(@"************************************************************** AddAlarmTVC");
@@ -179,8 +219,6 @@
         
     }
 }*/
-
-
 #pragma mark - IBActions
 -(IBAction)cancelButtonPressed:(id)sender{
     [self dismissViewControllerAnimated:YES completion:NULL];
@@ -313,10 +351,4 @@
         [defaults synchronize];
     }
 }
-
-/********PRUEBAS***********/
-
-
-
-
 @end

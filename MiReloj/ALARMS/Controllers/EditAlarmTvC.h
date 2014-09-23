@@ -39,7 +39,7 @@
 
 -(IBAction)alarmDataChanged:(id)sender;
 -(IBAction)ReturnKeyButton:(id)sender;
-
+-(IBAction)saveAndCloseButton:(id)sender;
 
 /*Para la vibracion*/
 -(IBAction)Vibrate;

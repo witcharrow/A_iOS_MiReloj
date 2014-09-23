@@ -110,10 +110,54 @@
     [self.tableView reloadData];
 }
 - (void)viewWillDisappear:(BOOL)animated{
+    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"****************************** viewWillDisappear");
     [super viewWillDisappear:animated];
     [self.parentViewController reloadInputViews];
-}
+    
+    
+    NSUserDefaults *userPreferences=[NSUserDefaults standardUserDefaults];
+/*
+        _activatedDOW.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedDOW"]):([userPreferences setBool:NO forKey:@"userHasActivatedDOW"]);
+        _activatedDOM.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedDOM"]):([userPreferences setBool:NO forKey:@"userHasActivatedDOM"]);
+        _activatedMM.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedMM"]):([userPreferences setBool:NO forKey:@"userHasActivatedMM"]);
+        _activatedYY.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedYY"]):([userPreferences setBool:NO forKey:@"userHasActivatedYY"]);
+        
+        _userHasActivatedDOW=[userPreferences boolForKey:@"userHasActivatedDOW"];
+        _userHasActivatedDOM=[userPreferences boolForKey:@"userHasActivatedDOM"];
+        _userHasActivatedMM = [userPreferences boolForKey:@"userHasActivatedMM"];
+        _userHasActivatedYY = [userPreferences boolForKey:@"userHasActivatedYY"];
+        
+        //NSLog(_userHasActivatedDOW ? @"_userHasActivatedDOW=Yes" : @"_userHasActivatedDOW=No");
+        //NSLog(_userHasActivatedDOM ? @"_userHasActivatedDOM=Yes" : @"_userHasActivatedDOM=No");
+        //NSLog(_userHasActivatedMM ? @"_userHasActivatedMM=Yes" : @"_userHasActivatedMM=No");
+        //NSLog(_userHasActivatedYY ? @"_userHasActivatedYY=Yes" : @"_userHasActivatedYY=No");
+        
+        [self.activatedDOW setOn:_userHasActivatedDOW];
+        [self.activatedDOM setOn:_userHasActivatedDOM];
+        [self.activatedMM setOn:_userHasActivatedMM];
+        [self.activatedYY setOn:_userHasActivatedYY];
+*/
+        
+        //Guardamos la información de la alarma.
+    _textNameAlarmToShow=self.alarm.nameToShow;
+    _hhmmAlarmToShow=self.alarm.alarmTimeToShow;
+    
+    self.alarm.nameToShow=_textNameAlarmToShow;
+    self.alarm.alarmTimeToShow=_hhmmAlarmToShow;
+    self.soundCellText.text=_soundName;
+    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@",self.alarm.vibrationOn?@"\ue141":@"\U0001F507",_soundName];
+    
+    NSLog(@"_textNameAlarmToShow: %@",_textNameAlarmToShow);
+    NSLog(@"_hhmmAlarmToShow: %@",_hhmmAlarmToShow);
+    
+    NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
+    NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
+    NSLog(@"_soundName: %@",_soundName);
+    
+    [userPreferences synchronize];
 
+}
 - (void)didReceiveMemoryWarning{
     NSLog(@"************************************************************** EditAlarmTvC");
     NSLog(@"****************************** didReceiveMemoryWarning");
@@ -148,7 +192,7 @@
     return cell;
  }
  */
- /*
+/*
  //COMENTADO POR DEFECTO
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -310,7 +354,7 @@
     }
 }
 /*Recoge el sonido seleccionado*/
-- (IBAction)unwindSound:(UIStoryboardSegue*)sender{
+-(IBAction)unwindSound:(UIStoryboardSegue*)sender{
     NSLog(@"************************************************************** EditAlarmTvC");
     NSLog(@"****************************** unwindSound");
     NSLog(@"from segue SoundListTVC");
@@ -329,6 +373,106 @@
         NSLog(@"_soundName=%@",_soundName);
     }
 }
-
+-(IBAction)saveAndCloseButton:(id)sender{
+    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"****************************** saveAndCloseButton");
+    /**Guardamos la información de la alarma.
+    _textNameAlarmToShow=self.alarm.nameToShow;
+    _hhmmAlarmToShow=self.alarm.alarmTimeToShow;
+    
+    self.alarm.nameToShow=_textNameAlarmToShow;
+    self.alarm.alarmTimeToShow=_hhmmAlarmToShow;
+    self.soundCellText.text=_soundName;
+    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@",self.alarm.vibrationOn?@"\ue141":@"\U0001F507",_soundName];
+    
+    NSLog(@"_textNameAlarmToShow: %@",_textNameAlarmToShow);
+    NSLog(@"_hhmmAlarmToShow: %@",_hhmmAlarmToShow);
+    
+    NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
+    NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
+    NSLog(@"_soundName: %@",_soundName);
+     **/
+    _textNameAlarm = self.nameAlarm.text;
+    _textHHAlarm = self.hhAlarm.text;
+    _textMMAlarm = self.mmAlarm.text;
+    /*GUARDAMOS VALORES*/
+    self.alarm.activated = self.activatedSwitch.isOn;
+    self.alarm.vibrationOn=self.vibrationSwitch.isOn;
+    
+    /*Opciones para el nombre de la alarma*/
+    if ([_textNameAlarm isEqualToString:@""] || [_textNameAlarm isEqualToString:@" "]){
+        _textNameAlarm=NSLocalizedString(@"_nuevaAlarma",@"Nueva Alarma EN/SP");
+    }
+    
+    /*Opciones del control de la hora*/
+    if ([_textHHAlarm isEqualToString:@""] || [_textHHAlarm isEqualToString:@" "] || _textHHAlarm.length>2 || _textHHAlarm.intValue>23){
+        _textHHAlarm= @"00";
+    }
+    if (_textHHAlarm.length<2) {
+        _textHHAlarm = [NSString stringWithFormat:@"0%@",_textHHAlarm];
+    }
+    
+    /*Opciones del control de los minutos*/
+    if ([_textMMAlarm isEqualToString:@""] || [_textMMAlarm isEqualToString:@" "] || _textMMAlarm.length>2 || _textMMAlarm.intValue>59){
+        _textMMAlarm= @"00";
+    }
+    if (_textMMAlarm.length<2) {
+        _textMMAlarm = [NSString stringWithFormat:@"0%@",_textMMAlarm];
+    }
+    
+    /*Opciones formato AM/PM*/
+    if((_textHHAlarm.intValue>11)&&(_textHHAlarm.intValue<24)){
+        self.amPM.text=@"";
+    }
+    else{
+        self.amPM.text=@" AM";
+    }
+    
+    
+    /*Opciones de control para la vibracion*/
+    if(self.alarm.vibrationOn){
+        _vibrationStatus=@"YES";
+    }
+    else{
+        _vibrationStatus=@"NO";
+    }
+    NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
+    NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
+    
+    if (self.vibrationSwitch.isOn){
+        self.vibrationCellText.text = [NSString stringWithFormat:@"\ue141 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")];
+    }
+    else{
+        self.vibrationCellText.text = [NSString stringWithFormat:@"\U0001F507 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Desactivada",@"_DESACTIVADA EN/SP")];
+    }
+    
+    
+    /*Opciones de control para el sonido*/
+    if([_soundName isEqualToString:[NSString stringWithFormat:@"\uE325 %@",NSLocalizedString(@"_elijaSonido",[@"_elijaSonido EN/SP"])]]){
+        _soundName=[NSString stringWithFormat:@"%@ %@", @"\ue333", NSLocalizedString(@"_NoneSound",@"Titulo SONIDO EN/SP")];
+        
+    }
+    
+    NSLog(@"_textNameAlarm: %@",_textNameAlarm);
+    NSLog(@"_textHHAlarm: %@",_textHHAlarm);
+    NSLog(@"_textMMAlarm: %@",_textMMAlarm);
+    NSLog(@"_soundName: %@",_soundName);
+    
+    
+    
+    _textNameAlarmToShow = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM.text,_textNameAlarm];
+    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",_soundName];
+    _hhmmAlarmToParse = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@",_textNameAlarm,_textHHAlarm,_textMMAlarm,self.amPM.text,_vibrationStatus,_soundName];
+    NSLog(@"_hhmmAlarmToShow: %@",_hhmmAlarmToShow);
+    NSLog(@"_hhmmAlarmToParse: %@",_hhmmAlarmToParse);
+    
+    self.alarm.name=_textNameAlarm;
+    self.alarm.nameToShow=_textNameAlarmToShow;
+    self.alarm.alarmTimeToShow=_hhmmAlarmToShow;
+    self.alarm.alarmTimeToParse=_hhmmAlarmToParse;
+    
+    
+    [self.navigationController popViewControllerAnimated:YES ];
+}
 
 @end
