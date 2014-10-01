@@ -39,6 +39,7 @@ enum{RELOJ,ALARMAS};
     if (locationNotification) {
         // Set icon badge number to zero
         application.applicationIconBadgeNumber = 1;
+        [application cancelAllLocalNotifications];
     }
     
     return YES;
@@ -54,6 +55,30 @@ enum{RELOJ,ALARMAS};
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+   NSCalendar *gregCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *dateComponent = [gregCalendar components:NSYearCalendarUnit |
+                                       NSMonthCalendarUnit |                                               NSDayCalendarUnit |
+                                       NSHourCalendarUnit | NSMinuteCalendarUnit
+                                                      fromDate:[NSDate date]];
+    [dateComponent setYear:2014];
+    [dateComponent setMonth:10];
+    [dateComponent setDay:01];
+    [dateComponent setHour:22];
+    [dateComponent setMinute:00];
+    UIDatePicker *HHMM = [[UIDatePicker alloc]init];
+    [HHMM setDate:[gregCalendar dateFromComponents:dateComponent]];
+    
+    //enum{NSMinuteCalendarUnit=1};
+    
+    UILocalNotification *notification = [[UILocalNotification alloc]init];
+    [notification setAlertBody:@"ALARMA TO MOLONA DE PRUEBA"];
+    [notification setFireDate:HHMM.date];
+    [notification setTimeZone:[NSTimeZone defaultTimeZone]];
+    //[notification setRepeatInterval:NSMinuteCalendarUnit];
+    //[notification setSoundName:@"baby_crying"];
+    //[notification setAlertLaunchImage:@"AppIcon29x29.png"];
+    [application setScheduledLocalNotifications:[NSArray arrayWithObject:notification]];
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

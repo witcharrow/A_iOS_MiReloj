@@ -27,7 +27,7 @@
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController id="rS3-R9-Ivy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alarm/ALARMA" image="6AA4D233-E007-49E5-9091-FBDB1186DDAB" id="Tqb-oO-mSu"/>
+                    <tabBarItem key="tabBarItem" title="Alarm/ALARMA" image="71C0E47F-96A1-42A7-B36C-3037743B04C5" id="Tqb-oO-mSu"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yXu-0R-QUA">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -98,7 +98,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Alarm List" id="tQt-TN-PWz">
-                        <barButtonItem key="rightBarButtonItem" image="02B172C5-B2BA-4C29-AF6B-44D29BB871E3" id="w4v-SY-WBd">
+                        <barButtonItem key="rightBarButtonItem" image="09F872AA-8AD6-4ED0-A86E-16437E8CBE22" id="w4v-SY-WBd">
                             <connections>
                                 <segue destination="yqx-VL-cgm" kind="modal" identifier="AddAlarmSegue" id="jf6-GM-tew"/>
                             </connections>
@@ -650,7 +650,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <action selector="cancelPressed:" destination="oJe-rI-mUH" id="BcG-J6-9Yt"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="02B172C5-B2BA-4C29-AF6B-44D29BB871E3" id="QCp-jd-dxJ">
+                        <barButtonItem key="rightBarButtonItem" image="09F872AA-8AD6-4ED0-A86E-16437E8CBE22" id="QCp-jd-dxJ">
                             <connections>
                                 <segue destination="1Cy-pA-08s" kind="modal" id="gki-Rp-Vu1"/>
                             </connections>
@@ -1663,9 +1663,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </navigationItem>
                     <connections>
                         <outlet property="timerLabelDMA" destination="8Ev-Qe-j3U" id="T8r-Wb-rns"/>
-                        <outlet property="timerLabelHH" destination="3sQ-aF-kqr" id="1ZX-Nc-OhY"/>
-                        <outlet property="timerLabelMM" destination="v4X-8B-u1q" id="Tc1-se-ABr"/>
-                        <outlet property="timerLabelSS" destination="cpG-U6-lgS" id="XDz-54-f7Y"/>
+                        <outlet property="timerLabelHH" destination="3sQ-aF-kqr" id="kFi-Hg-CKD"/>
+                        <outlet property="timerLabelMM" destination="v4X-8B-u1q" id="4Lm-UT-dOC"/>
+                        <outlet property="timerLabelSS" destination="cpG-U6-lgS" id="LlJ-R3-gcZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zp9-yn-wwm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1845,7 +1845,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="02B172C5-B2BA-4C29-AF6B-44D29BB871E3" width="25" height="25">
+        <image name="09F872AA-8AD6-4ED0-A86E-16437E8CBE22" width="25" height="25">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -1957,7 +1957,7 @@ GAoYGRgdGCQYLBg5GD4YQBhCGEcYTxhSGFcYXxhiGHQYdxh8AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAA
 AAAAAAAAGH4
 </mutableData>
         </image>
-        <image name="6AA4D233-E007-49E5-9091-FBDB1186DDAB" width="27" height="27">
+        <image name="71C0E47F-96A1-42A7-B36C-3037743B04C5" width="27" height="27">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

@@ -128,17 +128,19 @@ enum{RELOJ,ALARMAS};
 #pragma mark - Help Methods
 /*Establece los labels para el reloj*/
 -(void)updateTimer {
-    ////NSLog(@"************************************************************** RelojViewController");
-    ////NSLog(@"****************************** updateTimer");
+    //NSLog(@"************************************************************** RelojViewController");
+    //NSLog(@"****************************** updateTimer");
     NSDateFormatter *formatterHH = [[NSDateFormatter alloc] init];
     NSDateFormatter *formatterMM = [[NSDateFormatter alloc] init];
     NSDateFormatter *formatterSS = [[NSDateFormatter alloc] init];
     [formatterHH setDateFormat:@"HH"];
-    [formatterMM setDateFormat:@"MM"];
+    [formatterMM setDateFormat:@"mm"];
     [formatterSS setDateFormat:@"ss"];
     timerLabelHH.text = [formatterHH stringFromDate:[NSDate date]];
     timerLabelMM.text = [formatterMM stringFromDate:[NSDate date]];
     timerLabelSS.text = [formatterSS stringFromDate:[NSDate date]];
+    
+    //NSLog(@"**HORA ACTUAL-->%@:%@:%@",timerLabelHH.text,timerLabelMM.text,timerLabelSS.text);
 }
 /*Reconoce el gesto de deslizar para moverse entre pestañas*/
 -(void)swipeRecognized:(UISwipeGestureRecognizer *)swipe{

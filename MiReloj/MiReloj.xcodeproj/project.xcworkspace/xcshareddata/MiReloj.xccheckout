@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>339FE35C-1E95-4D5D-B850-5F89977B7FB7</string>
+	<string>56421825-530B-493E-8A3A-505665F2D985</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MiReloj</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>FD9F3029-2070-463A-BE35-A4BE8219434F</key>
-		<string>https://github.com/witcharrow/A_iOS_MiReloj</string>
+		<key>3F175DD8-3766-4648-8361-519E81EB6CDF</key>
+		<string>https://github.com/witcharrow/A_iOS_MiReloj.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MiReloj/MiReloj.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>FD9F3029-2070-463A-BE35-A4BE8219434F</key>
+		<key>3F175DD8-3766-4648-8361-519E81EB6CDF</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/witcharrow/A_iOS_MiReloj</string>
+	<string>https://github.com/witcharrow/A_iOS_MiReloj.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>FD9F3029-2070-463A-BE35-A4BE8219434F</string>
+	<string>3F175DD8-3766-4648-8361-519E81EB6CDF</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>FD9F3029-2070-463A-BE35-A4BE8219434F</string>
+			<string>3F175DD8-3766-4648-8361-519E81EB6CDF</string>
 			<key>IDESourceControlWCCName</key>
 			<string>A_iOS_MiReloj</string>
 		</dict>
