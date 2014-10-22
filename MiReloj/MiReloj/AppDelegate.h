@@ -1,4 +1,4 @@
-//
+	//
 //  AppDelegate.h
 //  MiReloj
 //
@@ -7,8 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "sqlite3.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate>{
+    sqlite3 *alarmsDB;
+    NSString *alarmsDatabasePath;
+    SystemSoundID _notificationSound; //para las notificaciones locales
+}
+
+@property (strong, nonatomic) UIAlertView *notificationAlert; // para las notificaciones locales
+
+@property (strong, nonatomic) NSString *statusDB;
+@property (strong, nonatomic) NSString *nameAlarmField;
+@property (strong, nonatomic) NSString *hour;
+@property (strong, nonatomic) NSString *minute;
+@property (strong, nonatomic) NSString *soundAlarmField;
+
 
 @property (strong, nonatomic) UIWindow *window;
 

@@ -1,4 +1,4 @@
-	//
+//
 //  SoundListTVC.m
 //  MiReloj
 //
@@ -8,37 +8,35 @@
 
 #import "SoundListTVC.h"
 #import "Sound.h"
-/*Para la seleccion de sonidos*/
 #import "AddAlarmTVC.h"
 #import "EditAlarmTvC.h"
 
 
 @interface SoundListTVC ()
-
 @end
 
 @implementation SoundListTVC
 
 @synthesize sounds=_sounds;
 @synthesize sound=_sound;
-/*Para la seleccion de sonidos*/
-//MAL @synthesize descripcionSonido=_descripcionSonido;
-@synthesize addAlarmTVC=_addAlarmTVC;
-@synthesize editAlarmTVC=_editAlarmTVC;
-
 @synthesize sonidoSeleccionado=_sonidoSeleccionado;
 @synthesize sonidoSeleccionadoString=_sonidoSeleccionadoString;
 @synthesize rutaSonidoSeleccionadoString=_rutaSonidoSeleccionadoString;
 @synthesize celdaActual=_celdaActual;
+/*Para la seleccion de sonidos*/
+@synthesize addAlarmTVC=_addAlarmTVC;
+@synthesize editAlarmTVC=_editAlarmTVC;
 
-- (id)initWithStyle:(UITableViewStyle)style{
+
+-(id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
     return self;
 }
-- (void)viewDidLoad{
+/*Cargamos los datos en el array de sonidos posibles. El path del sonido sin melodia asociada es "."*/
+-(void)viewDidLoad{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** viewDidLoad");
     [super viewDidLoad];
@@ -76,12 +74,12 @@
     
     
 }
-- (void) viewWillDisappear:(BOOL)animated{
+-(void)viewWillDisappear:(BOOL)animated{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** viewWillDisappear");
     [self.addAlarmTVC.tableView reloadData];
 }
-- (void)didReceiveMemoryWarning{
+-(void)didReceiveMemoryWarning{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** didReceiveMemoryWarning");
     [super didReceiveMemoryWarning];
@@ -89,18 +87,21 @@
 }
 
 #pragma mark - Table view data source
+/*Dejamos configurada una sección para esta TVC*/
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** numberOfSectionsInTableView");
     // Return the number of sections.
     return 1;
 }
+/*Numero de filas en esta sección, equivalente al número de sonidos disponible*/
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** numberOfRowsInSection");
     // Return the number of rows in the section.
     return self.sounds.count;
 }
+/*Configuramos la celda con un nombre de sonido*/
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** cellForRowAtIndexPath");
@@ -108,9 +109,9 @@
     Sound *currentSound = [self.sounds objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:soundCell];
     cell.textLabel.text = currentSound.nameSound;
-    
     return cell;
 }
+/*Recogemos información al seleccionar una celda: Label, Nombre Sonido y Ruta de Sonido*/
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** didSelectRowAtIndexPath");
@@ -123,17 +124,25 @@
     _sonidoSeleccionadoString=_celdaActual.textLabel.text;
     _rutaSonidoSeleccionadoString= currentSound.pathSound;
     
+    NSLog(@"Label sonido: %@",_sonidoSeleccionado.text);
     NSLog(@"Nombre de sonido: %@",_sonidoSeleccionadoString);
     NSLog(@"Ruta de sonido: %@",_rutaSonidoSeleccionadoString);
-    NSLog(@"Label sonido: %@",_sonidoSeleccionado.text);
-    
-    
 }
+/*Quitamos el tick al deseleccionar la celda de sonido*/
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** didDeselectRowAtIndexPath");
-    
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+    static NSString *soundCell=@"soundCell";
+    _celdaActual = [tableView dequeueReusableCellWithIdentifier:soundCell];
+    _celdaActual.textLabel.text = @"";
+    _sonidoSeleccionado = nil;
+    _sonidoSeleccionadoString=@"";
+    _rutaSonidoSeleccionadoString=@"";
+    
+    NSLog(@"Label sonido: EMPTY");
+    NSLog(@"Nombre de sonido: %@",_sonidoSeleccionadoString);
+    NSLog(@"Ruta de sonido: %@",_rutaSonidoSeleccionadoString);
 }
 
 /*
@@ -181,14 +190,16 @@
 }
 */
 
-
 #pragma mark - IBActions
+/*Reproduce el sonido de la ultima celda seleccionada al hacer click sobre el botón "i"*/
 -(IBAction)playAudio:(id)sender{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** playAudio");
+    
     NSLog(@"Nombre de sonido: %@",_sonidoSeleccionadoString);
     NSLog(@"Ruta de sonido: %@",_rutaSonidoSeleccionadoString);
     NSLog(@"_celdaActual.textLabel.text: %@",_celdaActual.textLabel.text);
+    
     if (![_rutaSonidoSeleccionadoString isEqualToString:@"."]){
         NSString *path = [[NSBundle mainBundle]
                           pathForResource:_rutaSonidoSeleccionadoString ofType:@"wav"];
@@ -199,39 +210,34 @@
     }
     self.sound = [self.sounds objectAtIndex: _celdaActual.indentationLevel];
     self.sound.nameSound= _celdaActual.textLabel.text;
-    
-    NSLog(@"_celdaActual.textLabel.text: %@",_celdaActual.textLabel.text);
-    NSLog(@"self.sound.nameSound: %@",self.sound.nameSound);
-    
     _sonidoSeleccionadoString=_celdaActual.textLabel.text;
     
-    
+    NSLog(@"self.sound.nameSound: %@",self.sound.nameSound);
+    NSLog(@"_sonidoSeleccionadoString: %@",_celdaActual.textLabel.text);
 }
--(IBAction)stopTapped:(id)sender {
+/*Si la ruta del sonido es "." para la reproducción del sonido*/
+-(IBAction)stopTapped:(id)sender{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** stopTapped");
     if ([_rutaSonidoSeleccionadoString isEqualToString:@"."]){
         [audioPlayer stop];
-        
         AVAudioSession *audioSession = [AVAudioSession sharedInstance];
         [audioSession setActive:NO error:nil];
-        
         self.sound.nameSound = _sonidoSeleccionadoString;
-        
         NSLog(@"self.sound.nameSound: %@",self.sound.nameSound);
     }
 }
+/*Al seleccionar un sonido guarda el nombre del sonido de la celda pulsada*/
 -(IBAction)soundSelected:(id)sender{
     NSLog(@"************************************************************** SoundListTVC");
     NSLog(@"****************************** soundSelected");
     self.sound = [self.sounds objectAtIndex: _celdaActual.indentationLevel];
     self.sound.nameSound= _celdaActual.textLabel.text;
-    
-    NSLog(@"_celdaActual.textLabel.text: %@",_celdaActual.textLabel.text);
-    NSLog(@"self.sound.nameSound: %@",self.sound.nameSound);
-    
     self.sonidoSeleccionadoString=_celdaActual.textLabel.text;
+    NSLog(@"self.sound.nameSound: %@",self.sound.nameSound);
+    NSLog(@"self.sonidoSeleccionadoString: %@",_celdaActual.textLabel.text);
 }
+/*Oculta la pantalla al hacer click en el botón guardar, nada más*/
 -(IBAction)saveButtonPressed:(id)sender{
     [self.navigationController popViewControllerAnimated:YES ];
 }

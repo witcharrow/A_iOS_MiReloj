@@ -29,7 +29,8 @@
 /*Edit-Add Alarm*/
 "_SONIDO"="None";
 
-/*Select Sound*/
+/*SoundListTVC*/
+"_SelectSound"="Select sound";
 "_NoneSound"="None";
 "Clock_Ringing"="Clock Ringing";
 "Baby_Crying"="Baby Crying";
@@ -37,4 +38,9 @@
 "Curch_Bells"="Church Bells";
 "Police"="Police";
 
-
+/*AddAlarmTVC*/
+"_elijaSonido"="Choose sound";
+"_Activada"="activated";
+"_Desactivada"="deactivated";
+"_AlarmaCreada"="Alarm Created";
+"_Vibracion"="Vibration";

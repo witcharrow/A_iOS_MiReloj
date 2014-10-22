@@ -15,6 +15,7 @@
 @property (nonatomic,strong) NSString *alarmTimeToShow;
 @property (nonatomic,strong) NSString *alarmTimeToParse;
 @property (nonatomic,strong) NSString *sound;
+@property (nonatomic,strong) NSString *soundPath;
 @property (nonatomic,assign) BOOL activated;
 @property (nonatomic,assign) BOOL vibrationOn;
 
@@ -23,6 +24,7 @@ initWithNameToShow:(NSString *)nameToShow
  initWithalarmTime:(NSString *)alarmTimeToShow
     initWithString:(NSString *)alarmTimeToParse
      initWithSound:(NSString *)sound
+ initWithSoundPath:(NSString *)soundPath
          activated:(BOOL)activated
        vibrationOn:(BOOL)vibrationOn;
 

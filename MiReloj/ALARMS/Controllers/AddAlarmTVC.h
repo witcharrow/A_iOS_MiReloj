@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "AudioToolbox/AudioToolbox.h"
+#import "sqlite3.h"
 
 @class AlarmListTVC;
-@interface AddAlarmTVC : UITableViewController
+@interface AddAlarmTVC : UITableViewController{
+    sqlite3 *alarmsDB;
+    NSString *alarmsDatabasePath;
+}
+
 
 /*Nombre de la alarma*/
 @property (nonatomic,strong) IBOutlet UITextField *nameAlarm;
@@ -31,6 +36,11 @@
 /*Sonido*/
 @property (nonatomic,strong) IBOutlet UILabel *soundCellText;
 @property (nonatomic,strong) NSString *soundName;
+@property (nonatomic,strong) NSString *soundPath;
+/*Para la seleccion de sonidos*/
+@property (nonatomic,strong) NSMutableArray *sounds;
+/*Para acceder a la BD de alarmas*/
+@property (strong, nonatomic) NSString *statusDB;
 
 @property (nonatomic,strong) AlarmListTVC *alarmListViewController;
 
@@ -42,16 +52,5 @@
 -(IBAction)ReturnKeyButton:(id)sender;
 /*Para la vibracion*/
 -(IBAction)Vibrate;
-
-
-/********PRUEBAS***********/
-
-/*Para la seleccion de sonidos*/
-@property (nonatomic,strong) NSMutableArray *sounds;
-//- (IBAction)unwindSoundForAddition:(UIStoryboardSegue*)sender;
-
-
-/*Para la programación de alarmas*/
-
 
 @end

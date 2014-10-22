@@ -29,10 +29,18 @@
 /*Edit-Add Alarm*/
 "_SONIDO"="None";
 
-/*Select Sound*/
+/*SoundListTVC*/
+"_SelectSound"="Selecciona sonido";
 "_NoneSound"="Ninguno";
 "Clock_Ringing"="Despertador";
 "Baby_Crying"="Bebé llorando";
 "Card_Reader"="Lector de tarjetas";
 "Curch_Bells"="Campanas de iglesia";
 "Police"="Policía";
+
+/*AddAlarmTVC*/
+"_elijaSonido"="Elija sonido";
+"_Activada"="activada";
+"_Desactivada"="desactivada";
+"_AlarmaCreada"="Alarma creada";
+"_Vibracion"="Vibración";

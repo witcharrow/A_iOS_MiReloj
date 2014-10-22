@@ -32,6 +32,12 @@
 		A9AD80B919A1299F00A059AB /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AD80A919A1299F00A059AB /* iTunesArtwork@2x.png */; };
 		A9E4343B19A3D3CF0022C1FE /* AddAlarmTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E4343A19A3D3CF0022C1FE /* AddAlarmTVC.m */; };
 		A9E54E2C19A0B22900B86244 /* Main_iPad_Version.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9E54E2A19A0B22900B86244 /* Main_iPad_Version.storyboard */; };
+		E0050D2319E00EF700062D86 /* alarm_clock_ringing.caf in Resources */ = {isa = PBXBuildFile; fileRef = E0050D1E19E00EF700062D86 /* alarm_clock_ringing.caf */; };
+		E0050D2419E00EF700062D86 /* baby_crying.caf in Resources */ = {isa = PBXBuildFile; fileRef = E0050D1F19E00EF700062D86 /* baby_crying.caf */; };
+		E0050D2519E00EF700062D86 /* card_reader_alarm.caf in Resources */ = {isa = PBXBuildFile; fileRef = E0050D2019E00EF700062D86 /* card_reader_alarm.caf */; };
+		E0050D2619E00EF700062D86 /* church_bells.caf in Resources */ = {isa = PBXBuildFile; fileRef = E0050D2119E00EF700062D86 /* church_bells.caf */; };
+		E0050D2719E00EF700062D86 /* police.caf in Resources */ = {isa = PBXBuildFile; fileRef = E0050D2219E00EF700062D86 /* police.caf */; };
+		E00A3C4F19E0663F007AD1C6 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E00A3C4E19E0663F007AD1C6 /* libsqlite3.dylib */; };
 		E0201E23190D0F2C00D00A69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0201E22190D0F2C00D00A69 /* Foundation.framework */; };
 		E0201E25190D0F2C00D00A69 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0201E24190D0F2C00D00A69 /* CoreGraphics.framework */; };
 		E0201E27190D0F2C00D00A69 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0201E26190D0F2C00D00A69 /* UIKit.framework */; };
@@ -65,11 +71,6 @@
 		E072F282190D863300FE1D24 /* CellDetailRelojOptionTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E072F281190D863300FE1D24 /* CellDetailRelojOptionTVC.m */; };
 		E07FB127191FAD7E00FFA667 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E07FB129191FAD7E00FFA667 /* Localizable.strings */; };
 		E07FB12D191FAFAD00FFA667 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E07FB12B191FAFAD00FFA667 /* Main_iPhone.storyboard */; };
-		E0BECF22191FFF8D001B47E7 /* alarm_clock_ringing.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0BECF1D191FFF8D001B47E7 /* alarm_clock_ringing.wav */; };
-		E0BECF23191FFF8D001B47E7 /* baby_crying.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0BECF1E191FFF8D001B47E7 /* baby_crying.wav */; };
-		E0BECF24191FFF8D001B47E7 /* card_reader_alarm.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0BECF1F191FFF8D001B47E7 /* card_reader_alarm.wav */; };
-		E0BECF25191FFF8D001B47E7 /* church_bells.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0BECF20191FFF8D001B47E7 /* church_bells.wav */; };
-		E0BECF26191FFF8D001B47E7 /* police.wav in Resources */ = {isa = PBXBuildFile; fileRef = E0BECF21191FFF8D001B47E7 /* police.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,12 @@
 		A9E4343919A3D3CF0022C1FE /* AddAlarmTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddAlarmTVC.h; path = ALARMS/Controllers/AddAlarmTVC.h; sourceTree = SOURCE_ROOT; };
 		A9E4343A19A3D3CF0022C1FE /* AddAlarmTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddAlarmTVC.m; path = ALARMS/Controllers/AddAlarmTVC.m; sourceTree = SOURCE_ROOT; };
 		A9E54E2B19A0B22900B86244 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = MiReloj/Base.lproj/Main_iPad_Version.storyboard; sourceTree = "<group>"; };
+		E0050D1E19E00EF700062D86 /* alarm_clock_ringing.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm_clock_ringing.caf; sourceTree = "<group>"; };
+		E0050D1F19E00EF700062D86 /* baby_crying.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = baby_crying.caf; sourceTree = "<group>"; };
+		E0050D2019E00EF700062D86 /* card_reader_alarm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = card_reader_alarm.caf; sourceTree = "<group>"; };
+		E0050D2119E00EF700062D86 /* church_bells.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = church_bells.caf; sourceTree = "<group>"; };
+		E0050D2219E00EF700062D86 /* police.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = police.caf; sourceTree = "<group>"; };
+		E00A3C4E19E0663F007AD1C6 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E0201E1F190D0F2C00D00A69 /* MiReloj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiReloj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0201E22190D0F2C00D00A69 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E0201E24190D0F2C00D00A69 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -159,11 +166,6 @@
 		E07FB128191FAD7E00FFA667 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E07FB12A191FAD8300FFA667 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E07FB12C191FAFAD00FFA667 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		E0BECF1D191FFF8D001B47E7 /* alarm_clock_ringing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alarm_clock_ringing.wav; sourceTree = "<group>"; };
-		E0BECF1E191FFF8D001B47E7 /* baby_crying.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = baby_crying.wav; sourceTree = "<group>"; };
-		E0BECF1F191FFF8D001B47E7 /* card_reader_alarm.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = card_reader_alarm.wav; sourceTree = "<group>"; };
-		E0BECF20191FFF8D001B47E7 /* church_bells.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = church_bells.wav; sourceTree = "<group>"; };
-		E0BECF21191FFF8D001B47E7 /* police.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = police.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E00A3C4F19E0663F007AD1C6 /* libsqlite3.dylib in Frameworks */,
 				A94B49E619AD04C20041500C /* AudioToolbox.framework in Frameworks */,
 				A94B49E419ACFC0F0041500C /* AVFoundation.framework in Frameworks */,
 				E0201E25190D0F2C00D00A69 /* CoreGraphics.framework in Frameworks */,
@@ -265,6 +268,7 @@
 		E0201E21190D0F2C00D00A69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E00A3C4E19E0663F007AD1C6 /* libsqlite3.dylib */,
 				A94B49E519AD04C20041500C /* AudioToolbox.framework */,
 				A94B49E319ACFC0F0041500C /* AVFoundation.framework */,
 				E0201E22190D0F2C00D00A69 /* Foundation.framework */,
@@ -387,11 +391,11 @@
 		E0BECF1C191FFF8D001B47E7 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				E0BECF1D191FFF8D001B47E7 /* alarm_clock_ringing.wav */,
-				E0BECF1E191FFF8D001B47E7 /* baby_crying.wav */,
-				E0BECF1F191FFF8D001B47E7 /* card_reader_alarm.wav */,
-				E0BECF20191FFF8D001B47E7 /* church_bells.wav */,
-				E0BECF21191FFF8D001B47E7 /* police.wav */,
+				E0050D1E19E00EF700062D86 /* alarm_clock_ringing.caf */,
+				E0050D1F19E00EF700062D86 /* baby_crying.caf */,
+				E0050D2019E00EF700062D86 /* card_reader_alarm.caf */,
+				E0050D2119E00EF700062D86 /* church_bells.caf */,
+				E0050D2219E00EF700062D86 /* police.caf */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -474,25 +478,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9AD80AE19A1299F00A059AB /* AppIcon50x50.png in Resources */,
-				E0BECF26191FFF8D001B47E7 /* police.wav in Resources */,
 				A9AD80B519A1299F00A059AB /* AppIcon72x72@2x.png in Resources */,
 				A9AD80B619A1299F00A059AB /* AppIcon76x76.png in Resources */,
-				E0BECF25191FFF8D001B47E7 /* church_bells.wav in Resources */,
-				E0BECF24191FFF8D001B47E7 /* card_reader_alarm.wav in Resources */,
-				E0BECF23191FFF8D001B47E7 /* baby_crying.wav in Resources */,
+				E0050D2319E00EF700062D86 /* alarm_clock_ringing.caf in Resources */,
 				A9E54E2C19A0B22900B86244 /* Main_iPad_Version.storyboard in Resources */,
 				E0201E79190D10D900D00A69 /* Add.png in Resources */,
 				A9AD80AD19A1299F00A059AB /* AppIcon40x40@2x.png in Resources */,
 				A9AD80B119A1299F00A059AB /* AppIcon57x57@2x.png in Resources */,
+				E0050D2719E00EF700062D86 /* police.caf in Resources */,
+				E0050D2419E00EF700062D86 /* baby_crying.caf in Resources */,
 				A9AD80B419A1299F00A059AB /* AppIcon72x72.png in Resources */,
 				A9AD80B719A1299F00A059AB /* AppIcon76x76@2x.png in Resources */,
 				A9AD80B219A1299F00A059AB /* AppIcon60x60.png in Resources */,
 				A9AD80B319A1299F00A059AB /* AppIcon60x60@2x.png in Resources */,
 				A9AD80B819A1299F00A059AB /* iTunesArtwork.png in Resources */,
-				E0BECF22191FFF8D001B47E7 /* alarm_clock_ringing.wav in Resources */,
 				E0201E7A190D10D900D00A69 /* Add@2x.png in Resources */,
 				E0201E41190D0F2D00D00A69 /* Images.xcassets in Resources */,
 				E0201E7B190D10D900D00A69 /* Alarm.png in Resources */,
+				E0050D2619E00EF700062D86 /* church_bells.caf in Resources */,
 				E07FB12D191FAFAD00FFA667 /* Main_iPhone.storyboard in Resources */,
 				E0201E7F190D10D900D00A69 /* New.png in Resources */,
 				E0201E81190D10D900D00A69 /* Next.png in Resources */,
@@ -514,6 +517,7 @@
 				A9AD80AF19A1299F00A059AB /* AppIcon50x50@2x.png in Resources */,
 				E0201E7E190D10D900D00A69 /* Clock@2x.png in Resources */,
 				E0201E88190D10D900D00A69 /* Timer@2x.png in Resources */,
+				E0050D2519E00EF700062D86 /* card_reader_alarm.caf in Resources */,
 				E0201E85190D10D900D00A69 /* Previous.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

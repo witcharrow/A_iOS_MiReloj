@@ -15,6 +15,7 @@
 @synthesize alarmTimeToShow=_alarmTimeToShow;
 @synthesize alarmTimeToParse=_alarmTimeToParse;
 @synthesize sound=_sound;
+@synthesize soundPath=_soundPath;
 @synthesize activated=_activated;
 @synthesize vibrationOn=_vibrationOn;
 
@@ -23,6 +24,7 @@ initWithNameToShow:(NSString *)nameToShow
  initWithalarmTime:(NSString *)alarmTimeToShow
     initWithString:(NSString *)alarmTimeToParse
      initWithSound:(NSString *)sound
+ initWithSoundPath:(NSString *)soundPath
          activated:(BOOL)activated
        vibrationOn:(BOOL)vibrationOn{
     
@@ -34,6 +36,7 @@ initWithNameToShow:(NSString *)nameToShow
         self.alarmTimeToShow=alarmTimeToShow;
         self.alarmTimeToParse=alarmTimeToParse;
         self.sound=sound;
+        self.soundPath=soundPath;
         self.activated=activated;
     }
     

@@ -64,6 +64,44 @@ enum{RELOJ,ALARMAS};
                                             action:@selector(swipeRecognized:)];
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:swipeRight];
+    
+    //***********Creamos la BBDD de alarmas
+    NSString *docsDir;
+    NSArray *dirPaths;
+    
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    docsDir = [dirPaths objectAtIndex:0];
+    
+    // Build the path to the database file
+    alarmsDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"alarmsDB.db"]];
+    
+    NSFileManager *filemgr = [NSFileManager defaultManager];
+    
+    if ([filemgr fileExistsAtPath: alarmsDatabasePath ] == NO){
+        NSLog(@"Creamos DB: %@",alarmsDatabasePath);
+        const char *dbpath = [alarmsDatabasePath UTF8String];
+        if (sqlite3_open(dbpath, &alarmsDB) == SQLITE_OK){
+            char *errMsg;
+            const char *sql_stmt = "CREATE TABLE IF NOT EXISTS ALARMS (ID INTEGER PRIMARY KEY AUTOINCREMENT, ALARMNAME TEXT, HH int, MM int, SOUND TEXT)";
+            if (sqlite3_exec(alarmsDB, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK){
+                _statusDB = @"Failed to create table";
+            }
+            sqlite3_close(alarmsDB);
+            
+        } else {
+            _statusDB = @"Failed to open/create database";
+        }
+        NSLog(@"CREADA DB con _statusDB: %@",_statusDB);
+    }
+    else {
+        NSLog(@"Ya existe la DB: %@",alarmsDatabasePath);
+        NSLog(@"EXISTE DB con _statusDB: %@",_statusDB);
+        
+    }
+    
+    [super viewDidLoad];
 }
 - (void) viewWillAppear:(BOOL)animated{
     NSLog(@"************************************************************** AlarmListTVC");
@@ -104,6 +142,10 @@ enum{RELOJ,ALARMAS};
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     cell.textLabel.text = currentAlarm.nameToShow;
     cell.detailTextLabel.text = currentAlarm.alarmTimeToShow;
+    _alarmToParse=currentAlarm.alarmTimeToParse;
+    //currentAlarm.sound..OBTENER EL PATH!!!!
+    //Guardamos la información de la alarma en la BD.
+    [self saveDataInAlarmDB:self];
     
     return cell;
 }
@@ -162,6 +204,13 @@ enum{RELOJ,ALARMAS};
     }
 }
 
+#pragma mark - IBAction Methods
+-(IBAction)editButtonPressed:(id)sender{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** editButtonPressed");
+    self.editing = !self.editing;
+}
+
 #pragma mark - Help Methods
 /*Reconoce el gesto de deslizar para moverse entre pestañas*/
 -(void)swipeRecognized:(UISwipeGestureRecognizer *)swipe{
@@ -176,12 +225,105 @@ enum{RELOJ,ALARMAS};
         [(UITabBarController *)self.tabBarController setSelectedIndex:RELOJ];
     }
 }
-
-#pragma mark - IBAction Methods
--(IBAction)editButtonPressed:(id)sender{
+/*Guardamos la información de la alarma en la BD*/
+-(void)saveDataInAlarmDB:(id)sender{
     NSLog(@"************************************************************** AlarmListTVC");
-    NSLog(@"****************************** editButtonPressed");
-    self.editing = !self.editing;
+    NSLog(@"****************************** saveDataInAlarmDB");
+    _statusDB=@"alarm_empty";
+    
+    NSArray *alarmaItems = [_alarmToParse componentsSeparatedByString:@"|"];
+    NSString *nameAlarm=[alarmaItems objectAtIndex:0];
+    int hour = [[alarmaItems objectAtIndex:1] integerValue];
+    int minute = [[alarmaItems objectAtIndex:2] integerValue];
+    /*AQUI HAY QUE OBTENER EL PATH DEL SONIDO!!!
+    NSArray *soundItems = [alarmaItems objectAtIndex:5] componentsSeparatedByString:@"_";
+    */
+    NSLog(@"ALARMA Info: %@ (%d:%d) - [FALTA SONIDO]",nameAlarm,hour,minute);
+    
+    
+    sqlite3_stmt    *statement;
+    const char *dbpath = [alarmsDatabasePath UTF8String];
+    
+    if (sqlite3_open(dbpath, &alarmsDB) == SQLITE_OK){
+        NSString *insertSQL = [NSString stringWithFormat: @"INSERT INTO ALARMS (ALARMNAME, HH, MM, SOUND) VALUES (\"%@\", \"%d\", \"%d\", \"alarm_clock_ringing.caf\")", nameAlarm,hour,minute];
+        NSLog(@"insertSQL: %@",insertSQL);
+        const char *insert_stmt = [insertSQL UTF8String];
+        
+        sqlite3_prepare_v2(alarmsDB, insert_stmt, -1, &statement, NULL);
+        if (sqlite3_step(statement) == SQLITE_DONE){
+            NSLog(@"SQLITE_DONE ");
+            _statusDB = @"Alarm added";
+            nameAlarm = [alarmaItems objectAtIndex:0];
+            hour = [[alarmaItems objectAtIndex:1] integerValue];
+            minute = [[alarmaItems objectAtIndex:2] integerValue];
+            _soundAlarm = @"alarm_clock_ringing.caf";
+            /*
+            //--******************************************************
+            NSLog(@"Programamos Alarma %@ (%d:%d) -- %@", nameAlarm,
+                  hour, minute ,_soundAlarm);
+            NSCalendar *gregCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDateComponents *dateComponent = [gregCalendar components:NSYearCalendarUnit |
+                                               NSMonthCalendarUnit  |   NSDayCalendarUnit |
+                                               NSHourCalendarUnit   |   NSMinuteCalendarUnit fromDate:[NSDate date]];
+            [dateComponent setYear:2014];
+            [dateComponent setMonth:10];
+            [dateComponent setDay:13];
+            [dateComponent setHour:hour];
+            [dateComponent setMinute:minute];
+            UIDatePicker *HHMM = [[UIDatePicker alloc]init];
+            [HHMM setDate:[gregCalendar dateFromComponents:dateComponent]];
+            
+            //enum{NSMinuteCalendarUnit=1};
+            
+            UILocalNotification *notification = [[UILocalNotification alloc]init];
+            [notification setAlertBody:_nameAlarm];
+            [notification setFireDate:HHMM.date];
+            [notification setTimeZone:[NSTimeZone defaultTimeZone]];
+            //no veo que funcione...[notification setRepeatInterval:NSMinuteCalendarUnit];
+            //FUNCIONA??
+            [notification setSoundName:_soundAlarm];
+            //[notification setAlertLaunchImage:@"clockbird.gif"];
+            //[notification setAlertAction:@"HOLA FEO"];
+            [[UIApplication sharedApplication ] scheduleLocalNotification:notification];
+            ///--***********************************************************************************
+            */
+            NSCalendar *gregCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDateComponents *dateComponent = [gregCalendar components:NSYearCalendarUnit |
+                                               NSMonthCalendarUnit  |   NSDayCalendarUnit |
+                                               NSHourCalendarUnit   |   NSMinuteCalendarUnit fromDate:[NSDate date]];
+            [dateComponent setYear:2014];
+            [dateComponent setMonth:10];
+            [dateComponent setDay:20];
+            [dateComponent setHour:21];
+            [dateComponent setMinute:20];
+            UIDatePicker *HHMM = [[UIDatePicker alloc]init];
+            [HHMM setDate:[gregCalendar dateFromComponents:dateComponent]];
+            
+            //enum{NSMinuteCalendarUnit=1};
+            NSLog(@"Progamo ALARMA en AlarmListTVC");
+            UILocalNotification *notification = [[UILocalNotification alloc]init];
+            [notification setAlertBody:@"HOLA FEO"];
+            [notification setFireDate:HHMM.date];
+            [notification setTimeZone:[NSTimeZone defaultTimeZone]];
+            //no veo que funcione...[notification setRepeatInterval:NSMinuteCalendarUnit];
+            //FUNCIONA??
+            [notification setSoundName:@"alarm_clock_ringing.caf"];
+            //[notification setAlertLaunchImage:@"clockbird.gif"];
+            //[notification setAlertAction:@"HOLA FEO"];
+            [[UIApplication sharedApplication ] scheduleLocalNotification:notification];
+            
+            
+        } else {
+            NSLog(@"SQLITE_ERROR ");
+            _statusDB = @"Failed to add alarm";
+        }
+        
+        NSLog(@"_statusDB:%@",_statusDB);
+        sqlite3_finalize(statement);
+        sqlite3_close(alarmsDB);
+    }
+    
+    
 }
 
 @end
