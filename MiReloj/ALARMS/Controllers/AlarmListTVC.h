@@ -15,15 +15,12 @@
 }
 
 @property (nonatomic,strong)  NSMutableArray *alarms;
-
 @property (strong, nonatomic) NSString *statusDB;
-
 @property (strong, nonatomic) NSString *alarmToParse;
 @property (strong, nonatomic) NSString *nameAlarm;
 @property (strong, nonatomic) NSString *hour;
 @property (strong, nonatomic) NSString *minute;
 @property (strong, nonatomic) NSString *soundAlarm;
-/*TODO para seguir...*/
 @property (strong, nonatomic) NSString *soundAlarmPath;
 
 -(IBAction)editButtonPressed:(id)sender;

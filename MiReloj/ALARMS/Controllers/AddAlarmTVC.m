@@ -330,6 +330,77 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
     [alertView show];
+    
+    //Guardamos la información de la alarma en la BD.
+    [self saveDataInAlarmDB:self];
+}
+
+/*Guardamos la información de la alarma en la BD*/
+-(void)saveDataInAlarmDB:(id)sender{
+    NSLog(@"************************************************************** AddAlarmTVC");
+    NSLog(@"****************************** saveDataInAlarmDB");
+    
+    NSArray *alarmaItems = [_hhmmAlarmToParse componentsSeparatedByString:@"|"];
+    NSString *nameAlarm=[alarmaItems objectAtIndex:0];
+    int hour = [[alarmaItems objectAtIndex:1] integerValue];
+    int minute = [[alarmaItems objectAtIndex:2] integerValue];
+    
+    NSLog(@"ALARMA Info: %@ (%d:%d) - [%@] - [%@]",nameAlarm,hour,minute,_soundName,_soundPath);
+    //***********Accedemos a la BBDD de alarmas***********//
+    NSString *docsDir;
+    NSArray *dirPaths;
+    
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    docsDir = [dirPaths objectAtIndex:0];
+    // Build the path to the database file
+    alarmsDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"alarmsDB_20141025_1.db"]];
+    
+    sqlite3_stmt    *statement;
+    const char *dbpath = [alarmsDatabasePath UTF8String];
+    
+    if (sqlite3_open(dbpath, &alarmsDB) == SQLITE_OK){
+        NSString *insertSQL = [NSString stringWithFormat: @"INSERT INTO ALARMS (ALARMNAME, HH, MM, SOUND, SOUNDPATH) VALUES (\"%@\", \"%d\", \"%d\", \"%@\", \"%@\")", nameAlarm,hour,minute,_soundName,_soundPath];
+        NSLog(@"insertSQL: %@",insertSQL);
+        const char *insert_stmt = [insertSQL UTF8String];
+        
+        sqlite3_prepare_v2(alarmsDB, insert_stmt, -1, &statement, NULL);
+        if (sqlite3_step(statement) == SQLITE_DONE){
+            NSLog(@"SQLITE_DONE ");
+            _statusDB = @"Alarm added";
+            //--***********************************************************************************
+            NSLog(@"Programamos Alarma %@ (%d:%d) -- [%@]-[%@]", nameAlarm,
+                  hour, minute ,_soundName,_soundPath);
+            
+            NSCalendar *gregCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDateComponents *dateComponent = [gregCalendar components:NSYearCalendarUnit |
+                                               NSMonthCalendarUnit  |   NSDayCalendarUnit |
+                                               NSHourCalendarUnit   |   NSMinuteCalendarUnit fromDate:[NSDate date]];
+            [dateComponent setYear:2014];
+            [dateComponent setMonth:10];
+            [dateComponent setDay:25];
+            [dateComponent setHour:hour];
+            [dateComponent setMinute:minute];
+            UIDatePicker *HHMM = [[UIDatePicker alloc]init];
+            [HHMM setDate:[gregCalendar dateFromComponents:dateComponent]];
+            
+            //enum{NSMinuteCalendarUnit=1};
+            NSLog(@"Progamo ALARMA en AlarmListTVC");
+            UILocalNotification *notification = [[UILocalNotification alloc]init];
+            [notification setAlertBody:_textNameAlarm];
+            [notification setFireDate:HHMM.date];
+            [notification setTimeZone:[NSTimeZone defaultTimeZone]];
+            [notification setSoundName:_soundPath];
+            [[UIApplication sharedApplication ] scheduleLocalNotification:notification];
+            ///--***********************************************************************************
+        } else {
+            NSLog(@"SQLITE_ERROR ");
+            _statusDB = @"Failed to add alarm";
+        }
+        NSLog(@"_statusDB:%@",_statusDB);
+        sqlite3_finalize(statement);
+        sqlite3_close(alarmsDB);
+    }
 }
 
 @end
