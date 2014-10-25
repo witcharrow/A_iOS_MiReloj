@@ -93,8 +93,6 @@
 		A91C7E1019AA545C002B34A1 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Sound.m; path = ALARMS/Controllers/Sound.m; sourceTree = SOURCE_ROOT; };
 		A921DB2D19A67CAB00D40908 /* EditAlarmTvC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditAlarmTvC.h; path = ALARMS/Controllers/EditAlarmTvC.h; sourceTree = SOURCE_ROOT; };
 		A921DB2E19A67CAB00D40908 /* EditAlarmTvC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditAlarmTvC.m; path = ALARMS/Controllers/EditAlarmTvC.m; sourceTree = SOURCE_ROOT; };
-		A9392FF319A8A70900D3CCBE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
-		A9392FF519A8A70C00D3CCBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		A94B49E319ACFC0F0041500C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A94B49E519AD04C20041500C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A9983F4D19A29F0B00CF6BC0 /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alarm.h; path = ALARMS/Controllers/Alarm.h; sourceTree = SOURCE_ROOT; };
@@ -172,6 +170,8 @@
 		E0B3662F19FC2D250098A781 /* iphonePortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphonePortrait.png; sourceTree = "<group>"; };
 		E0B3663119FC2E2C0098A781 /* ipadPortrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadPortrait.png; sourceTree = "<group>"; };
 		E0B3663319FC2F2C0098A781 /* ipadLandScape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadLandScape.png; sourceTree = "<group>"; };
+		E0B3663619FC37A00098A781 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
+		E0B3663819FC37A20098A781 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -623,8 +623,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E07FB12C191FAFAD00FFA667 /* Base */,
-				A9392FF319A8A70900D3CCBE /* es */,
-				A9392FF519A8A70C00D3CCBE /* en */,
+				E0B3663619FC37A00098A781 /* es */,
+				E0B3663819FC37A20098A781 /* en */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
