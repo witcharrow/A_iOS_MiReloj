@@ -31,7 +31,7 @@
 
 /*SoundListTVC*/
 "_SelectSound"="Select sound";
-"_NoneSound"="None";
+"_NoneSound"="- Silence";
 "Clock_Ringing"="Clock Ringing";
 "Baby_Crying"="Baby Crying";
 "Card_Reader"="Card Reader";

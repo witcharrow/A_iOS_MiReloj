@@ -40,10 +40,7 @@
 @synthesize sounds = _sounds;
 /*Para acceder a la BD de alarmas*/
 @synthesize statusDB = _statusDB;
-
 @synthesize alarmListViewController=_alarmListViewController;
-
-
 
 -(id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
@@ -244,6 +241,9 @@
         _soundCellText.text=[NSString stringWithFormat:@"%@ %@", @"\ue333", NSLocalizedString(@"_NoneSound",@"Titulo SONIDO EN/SP")];
         
     }
+    if(_soundName.length<1){
+        _soundName= [NSString stringWithFormat:@"%@ %@", @"\ue333", NSLocalizedString(@"_NoneSound",@"Titulo SONIDO EN/SP")];
+    }
     
     _textNameAlarmToShow = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM,_textNameAlarm];
     _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",_soundCellText.text];
@@ -321,7 +321,7 @@
 
 #pragma mark - Help Methods
 /*Muestra una alerta al usuario confirmando la creación de la alarma con los datos introducidos*/
--(void) alertAlarmCreated:(Alarm *)newAlarmInfo{
+-(void)alertAlarmCreated:(Alarm *)newAlarmInfo{
     NSLog(@"************************************************************** AddAlarmTvC");
     NSLog(@"****************************** setAndSaveAlarm");
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"_AlarmaCreada",@"_AlarmaCreada EN/SP")
@@ -334,7 +334,6 @@
     //Guardamos la información de la alarma en la BD.
     [self saveDataInAlarmDB:self];
 }
-
 /*Guardamos la información de la alarma en la BD*/
 -(void)saveDataInAlarmDB:(id)sender{
     NSLog(@"************************************************************** AddAlarmTVC");
@@ -354,13 +353,13 @@
     dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     docsDir = [dirPaths objectAtIndex:0];
     // Build the path to the database file
-    alarmsDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"alarmsDB_20141025_1.db"]];
+    alarmsDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"alarmsDB.db"]];
     
     sqlite3_stmt    *statement;
     const char *dbpath = [alarmsDatabasePath UTF8String];
     
     if (sqlite3_open(dbpath, &alarmsDB) == SQLITE_OK){
-        NSString *insertSQL = [NSString stringWithFormat: @"INSERT INTO ALARMS (ALARMNAME, HH, MM, SOUND, SOUNDPATH) VALUES (\"%@\", \"%d\", \"%d\", \"%@\", \"%@\")", nameAlarm,hour,minute,_soundName,_soundPath];
+        NSString *insertSQL = [NSString stringWithFormat: @"INSERT INTO ALARMS (ALARMNAME, HH, MM, SOUND, SOUNDPATH, ACTIVATED, VIBRATION_ON, NAMETOSHOW, ALARMTIMETOSHOW, ALARMTIMETOPARSE) VALUES (\"%@\", \"%d\", \"%d\", \"%@\", \"%@\", \"%d\", \"%d\", \"%@\", \"%@\", \"%@\")", nameAlarm,hour,minute,_soundName,_soundPath, 1, self.vibrationSwitch.isOn?1:0,_textNameAlarmToShow,_hhmmAlarmToShow,_hhmmAlarmToParse];
         NSLog(@"insertSQL: %@",insertSQL);
         const char *insert_stmt = [insertSQL UTF8String];
         
@@ -376,9 +375,6 @@
             NSDateComponents *dateComponent = [gregCalendar components:NSYearCalendarUnit |
                                                NSMonthCalendarUnit  |   NSDayCalendarUnit |
                                                NSHourCalendarUnit   |   NSMinuteCalendarUnit fromDate:[NSDate date]];
-            [dateComponent setYear:2014];
-            [dateComponent setMonth:10];
-            [dateComponent setDay:25];
             [dateComponent setHour:hour];
             [dateComponent setMinute:minute];
             UIDatePicker *HHMM = [[UIDatePicker alloc]init];
@@ -387,10 +383,11 @@
             //enum{NSMinuteCalendarUnit=1};
             NSLog(@"Progamo ALARMA en AlarmListTVC");
             UILocalNotification *notification = [[UILocalNotification alloc]init];
-            [notification setAlertBody:_textNameAlarm];
+            [notification setAlertBody:[NSString stringWithFormat: @"%@\n%@", _textNameAlarmToShow,_soundName]];
             [notification setFireDate:HHMM.date];
             [notification setTimeZone:[NSTimeZone defaultTimeZone]];
             [notification setSoundName:_soundPath];
+            [notification setRepeatInterval:NSDayCalendarUnit];//la alarma se repite por defecto cada 24 horas
             [[UIApplication sharedApplication ] scheduleLocalNotification:notification];
             ///--***********************************************************************************
         } else {
