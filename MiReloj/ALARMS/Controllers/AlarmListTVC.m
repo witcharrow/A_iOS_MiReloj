@@ -157,10 +157,16 @@ enum{RELOJ,ALARMAS};
     NSLog(@"************************************************************** AlarmListTVC");
     NSLog(@"****************************** commitEditingStyle");
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        // Delete the row from the database of Alarms
+        Alarm *currentAlarm = [self.alarms objectAtIndex:indexPath.row];
+        NSLog(@"recordIDToDelete: %@",currentAlarm.nameToShow);
+        [self deleteEmployee:currentAlarm.nameToShow];
+        // Delete the row from the List of Alarms
         [self.alarms removeObjectAtIndex:indexPath.row];
+        NSLog(@"indexPath.row: %d", indexPath.row);
         [tableView deleteRowsAtIndexPaths:@[indexPath]
                          withRowAnimation:UITableViewRowAnimationFade];
+        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
@@ -222,8 +228,6 @@ enum{RELOJ,ALARMAS};
         [(UITabBarController *)self.tabBarController setSelectedIndex:RELOJ];
     }
 }
-
-
 /*Recoge toda la lista de alarmas en la base de datos*/
 -(NSMutableArray *) getAlarmsFromDB:(id)sender{
     NSLog(@"************************************************************** AlarmListTVC");
@@ -295,5 +299,42 @@ enum{RELOJ,ALARMAS};
     NSLog(@"_statusDB: %@",_statusDB);
     return self.alarms;
 }
-
+//delete the employee from the database
+- (BOOL) deleteEmployee:(NSString *)nameToShow{
+    NSLog(@"************************************************************** AlarmListTVC");
+    NSLog(@"****************************** deleteEmployee");
+    BOOL success = false;
+    sqlite3_stmt *statement;
+    const char *dbpath = [alarmsDatabasePath UTF8String];
+    
+    if (sqlite3_open(dbpath, &(alarmsDB)) == SQLITE_OK){
+        NSString *deleteSQL = [NSString stringWithFormat:@"DELETE from ALARMS WHERE NAMETOSHOW = \"%@\"",nameToShow];
+        NSLog(@"deleteSQL: %@",deleteSQL);
+        const char *query_stmt = [deleteSQL UTF8String];
+        
+        if (sqlite3_prepare_v2(alarmsDB, query_stmt, -1, &statement, NULL) == SQLITE_OK){
+            _statusDB = @"Resultados de la query obtenidos";
+            const char *delete_stmt = [deleteSQL UTF8String];
+            sqlite3_prepare_v2(alarmsDB, delete_stmt, -1, &statement, NULL );
+            if (sqlite3_step(statement) == SQLITE_DONE){
+                NSLog(@"success");
+                success = true;
+            }
+            else{
+                NSLog(@"NO success");
+                success = false;
+            }
+            
+        }else {
+            _statusDB = @"error en la query";
+        }
+        sqlite3_finalize(statement);
+        sqlite3_close(alarmsDB);
+    }
+    else {
+        _statusDB = @"Failed to open/create database";
+    }
+    NSLog(@"_statusDB: %@",_statusDB);
+    return success;
+}
 @end
