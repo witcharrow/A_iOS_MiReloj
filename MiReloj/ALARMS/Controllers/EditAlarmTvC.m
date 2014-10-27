@@ -19,6 +19,7 @@
 @synthesize nameAlarm=_nameAlarm;
 @synthesize textNameAlarm=_textNameAlarm;
 @synthesize textNameAlarmToShow=_textNameAlarmToShow;
+@synthesize textNameAlarmToShow_PREVIOUS=_textNameAlarmToShow_PREVIOUS;
 @synthesize hhAlarm=_hhAlarm;
 @synthesize mmAlarm=_mmAlarm;
 @synthesize textHHAlarm=_textHHAlarm;
@@ -29,18 +30,22 @@
 @synthesize activatedSwitch=_activatedSwitch;
 @synthesize vibrationSwitch=_vibrationSwitch;
 @synthesize vibrationStatus=_vibrationStatus;
+@synthesize activationStatus=_activationStatus;
 @synthesize vibrationCellText=_vibrationCellText;
 @synthesize soundName=_soundName;
+@synthesize soundPath=_soundPath;
 @synthesize alarm=_alarm;
+@synthesize statusDB=_statusDB;
 
-- (id)initWithStyle:(UITableViewStyle)style{
+-(id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
     }
     return self;
 }
-- (void)viewDidLoad{
+/*Cargamos la información de la Alarma para ser parseada y mostrada*/
+-(void)viewDidLoad{
     [super viewDidLoad];
     NSLog(@"************************************************************** EditAlarmTvC");
     NSLog(@"****************************** viewDidLoad");
@@ -51,11 +56,13 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.nameAlarm.text = self.alarm.name;
-    
+    NSLog(@"alarmTimeToParse: %@",self.alarm.alarmTimeToParse);
+
     NSArray *alarmaItems = [self.alarm.alarmTimeToParse componentsSeparatedByString:@"|"];
     _textHHAlarm = [alarmaItems objectAtIndex:1];
     _textMMAlarm = [alarmaItems objectAtIndex:2];
     _vibrationStatus = [alarmaItems objectAtIndex:4];
+    _soundName=[alarmaItems objectAtIndex:5];
 
     self.hhAlarm.text = _textHHAlarm;
     self.mmAlarm.text = _textMMAlarm;
@@ -67,98 +74,58 @@
     else{
         self.amPM.text=@" AM";
     }
-    /*Alarma Activada/Desactivada*/
+/*Alarma Activada/Desactivada*/
     [self.activatedSwitch setOn:self.alarm.activated];
-    /*Vibracion Activada/Desactivada*/
+/*Vibracion Activada/Desactivada*/
     [self.vibrationSwitch setOn:_vibrationStatus.boolValue];
     NSLog(self.activatedSwitch  ? @"self.activatedSwitch =Yes" : @"self.activatedSwitch =No");
     NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
     NSLog(_vibrationStatus.boolValue ? @"_vibrationStatus=Yes" : @"_vibrationStatus=No");
-    
-    /*Sonido seleccionado*/
-    NSUserDefaults *userPreferences=[NSUserDefaults standardUserDefaults];
-    _soundName=[userPreferences stringForKey:@"sonidoSeleccionado"];
-    NSLog(@"_soundName: %@",_soundName);
-    self.soundCellText.text = _soundName;
-    if (_soundName.length<1){
-        self.soundCellText.text = [NSString stringWithFormat:@"\uE325 %@",NSLocalizedString(@"_elijaSonido",@"_elijaSonido EN/SP")];
-    }
-    NSLog(@"self.soundCellText.text: %@",self.soundCellText.text);
-    
-}
-/*Cargamos la vibración de inicio como apagada (ahorramos así batería)*/
-- (void)viewWillAppear:(BOOL)animated{
-    NSLog(@"************************************************************** EditAlarmTvC");
-    NSLog(@"****************************** viewWillAppear");
-    [super viewWillAppear:animated];
-    
-    NSLog(self.vibrationSwitch.isOn ? @"self.vibrationSwitch=Yes" : @"self.vibrationSwitch=No");
-    NSLog(_vibrationStatus.boolValue ? @"_vibrationStatus.boolValue=Yes" : @"_vibrationStatus.boolValue=No");
-    NSLog(@"self.nameAlarm.text: %@",self.nameAlarm.text);
-    NSLog(@"_textHHAlarm: %@",_textHHAlarm);
-    NSLog(@"_textMMAlarm: %@",_textMMAlarm);
-    
     if (self.vibrationSwitch.isOn){
         self.vibrationCellText.text = [NSString stringWithFormat:@"\ue141 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")];
     }
     else{
         self.vibrationCellText.text = [NSString stringWithFormat:@"\U0001F507 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Desactivada",@"_DESACTIVADA EN/SP")];
     }
+/*Sonido seleccionado*/
+    self.soundCellText.text = _soundName;
+    if (_soundName.length<1){
+        self.soundCellText.text = [NSString stringWithFormat:@"%@ %@", @"\ue333", NSLocalizedString(@"_NoneSound",@"Titulo SONIDO EN/SP")];
+    }
     
+
+    NSLog(@"self.nameAlarm.text: %@",self.nameAlarm.text);
+    NSLog(@"_textHHAlarm: %@",_textHHAlarm);
+    NSLog(@"_textMMAlarm: %@",_textMMAlarm);
     NSLog(@"_soundName: %@",_soundName);
     NSLog(@"self.soundCellText.text: %@",self.soundCellText.text);
+    
+    /*Guardamos el valor de la alarma antes de ser editada*/
+    _textNameAlarmToShow_PREVIOUS = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM.text,self.nameAlarm.text];
+    NSLog(@"_textNameAlarmToShow_PREVIOUS: %@",_textNameAlarmToShow_PREVIOUS);
+}
+/*Cargamos las filas de la tabla*/
+-(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"****************************** viewWillAppear");
+    [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
-- (void)viewWillDisappear:(BOOL)animated{
+/*Recargamos los datos en la lista de alarmas*/
+-(void)viewWillDisappear:(BOOL)animated{
     NSLog(@"************************************************************** EditAlarmTvC");
     NSLog(@"****************************** viewWillDisappear");
     [super viewWillDisappear:animated];
     [self.parentViewController reloadInputViews];
-    
-    
-    NSUserDefaults *userPreferences=[NSUserDefaults standardUserDefaults];
-/*
-        _activatedDOW.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedDOW"]):([userPreferences setBool:NO forKey:@"userHasActivatedDOW"]);
-        _activatedDOM.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedDOM"]):([userPreferences setBool:NO forKey:@"userHasActivatedDOM"]);
-        _activatedMM.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedMM"]):([userPreferences setBool:NO forKey:@"userHasActivatedMM"]);
-        _activatedYY.isOn? ([userPreferences setBool:YES forKey:@"userHasActivatedYY"]):([userPreferences setBool:NO forKey:@"userHasActivatedYY"]);
-        
-        _userHasActivatedDOW=[userPreferences boolForKey:@"userHasActivatedDOW"];
-        _userHasActivatedDOM=[userPreferences boolForKey:@"userHasActivatedDOM"];
-        _userHasActivatedMM = [userPreferences boolForKey:@"userHasActivatedMM"];
-        _userHasActivatedYY = [userPreferences boolForKey:@"userHasActivatedYY"];
-        
-        //NSLog(_userHasActivatedDOW ? @"_userHasActivatedDOW=Yes" : @"_userHasActivatedDOW=No");
-        //NSLog(_userHasActivatedDOM ? @"_userHasActivatedDOM=Yes" : @"_userHasActivatedDOM=No");
-        //NSLog(_userHasActivatedMM ? @"_userHasActivatedMM=Yes" : @"_userHasActivatedMM=No");
-        //NSLog(_userHasActivatedYY ? @"_userHasActivatedYY=Yes" : @"_userHasActivatedYY=No");
-        
-        [self.activatedDOW setOn:_userHasActivatedDOW];
-        [self.activatedDOM setOn:_userHasActivatedDOM];
-        [self.activatedMM setOn:_userHasActivatedMM];
-        [self.activatedYY setOn:_userHasActivatedYY];
-*/
-        
-        //Guardamos la información de la alarma.
-    _textNameAlarmToShow=self.alarm.nameToShow;
-    _hhmmAlarmToShow=self.alarm.alarmTimeToShow;
-    
-    self.alarm.nameToShow=_textNameAlarmToShow;
-    self.alarm.alarmTimeToShow=_hhmmAlarmToShow;
-    self.soundCellText.text=_soundName;
-    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@",self.alarm.vibrationOn?@"\ue141":@"\U0001F507",_soundName];
-    
+/*Revisamos la información de la alarma*/
     NSLog(@"_textNameAlarmToShow: %@",_textNameAlarmToShow);
     NSLog(@"_hhmmAlarmToShow: %@",_hhmmAlarmToShow);
-    
     NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
     NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
     NSLog(@"_soundName: %@",_soundName);
-    
-    [userPreferences synchronize];
-
+    NSLog(@"_soundPath: %@",_soundPath);
 }
-- (void)didReceiveMemoryWarning{
+-(void)didReceiveMemoryWarning{
     NSLog(@"************************************************************** EditAlarmTvC");
     NSLog(@"****************************** didReceiveMemoryWarning");
     [super didReceiveMemoryWarning];
@@ -243,89 +210,6 @@
  ************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****/
 
 #pragma mark - IBActions
--(IBAction)alarmDataChanged:(id)sender{
-    NSLog(@"************************************************************** EditAlarmTvC");
-    NSLog(@"****************************** alarmDataChanged");
-    _textNameAlarm = self.nameAlarm.text;
-    _textHHAlarm = self.hhAlarm.text;
-    _textMMAlarm = self.mmAlarm.text;
-    /*GUARDAMOS VALORES*/
-    self.alarm.activated = self.activatedSwitch.isOn;
-    self.alarm.vibrationOn=self.vibrationSwitch.isOn;
-    
-    /*Opciones para el nombre de la alarma*/
-    if ([_textNameAlarm isEqualToString:@""] || [_textNameAlarm isEqualToString:@" "]){
-        _textNameAlarm=NSLocalizedString(@"_nuevaAlarma",@"Nueva Alarma EN/SP");
-    }
-    
-    /*Opciones del control de la hora*/
-    if ([_textHHAlarm isEqualToString:@""] || [_textHHAlarm isEqualToString:@" "] || _textHHAlarm.length>2 || _textHHAlarm.intValue>23){
-        _textHHAlarm= @"00";
-    }
-    if (_textHHAlarm.length<2) {
-        _textHHAlarm = [NSString stringWithFormat:@"0%@",_textHHAlarm];
-    }
-    
-    /*Opciones del control de los minutos*/
-    if ([_textMMAlarm isEqualToString:@""] || [_textMMAlarm isEqualToString:@" "] || _textMMAlarm.length>2 || _textMMAlarm.intValue>59){
-        _textMMAlarm= @"00";
-    }
-    if (_textMMAlarm.length<2) {
-        _textMMAlarm = [NSString stringWithFormat:@"0%@",_textMMAlarm];
-    }
-    
-    /*Opciones formato AM/PM*/
-    if((_textHHAlarm.intValue>11)&&(_textHHAlarm.intValue<24)){
-        self.amPM.text=@"";
-    }
-    else{
-        self.amPM.text=@" AM";
-    }
-    
-    
-    /*Opciones de control para la vibracion*/
-    if(self.alarm.vibrationOn){
-        _vibrationStatus=@"YES";
-    }
-    else{
-        _vibrationStatus=@"NO";
-    }
-    NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
-    NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
-    
-    if (self.vibrationSwitch.isOn){
-        self.vibrationCellText.text = [NSString stringWithFormat:@"\ue141 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")];
-    }
-    else{
-        self.vibrationCellText.text = [NSString stringWithFormat:@"\U0001F507 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Desactivada",@"_DESACTIVADA EN/SP")];
-    }
-    
-    
-    /*Opciones de control para el sonido*/
-    if([_soundName isEqualToString:[NSString stringWithFormat:@"\uE325 %@",NSLocalizedString(@"_elijaSonido",[@"_elijaSonido EN/SP"])]]){
-        _soundName=[NSString stringWithFormat:@"%@ %@", @"\ue333", NSLocalizedString(@"_NoneSound",@"Titulo SONIDO EN/SP")];
-        
-    }
-    
-    NSLog(@"_textNameAlarm: %@",_textNameAlarm);
-    NSLog(@"_textHHAlarm: %@",_textHHAlarm);
-    NSLog(@"_textMMAlarm: %@",_textMMAlarm);
-    NSLog(@"_soundName: %@",_soundName);
-    
-    
-    
-    _textNameAlarmToShow = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM.text,_textNameAlarm];
-    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",_soundName];
-    _hhmmAlarmToParse = [NSString stringWithFormat:@"%@|%@|%@|%@|%@|%@",_textNameAlarm,_textHHAlarm,_textMMAlarm,self.amPM.text,_vibrationStatus,_soundName];
-    NSLog(@"_hhmmAlarmToShow: %@",_hhmmAlarmToShow);
-    NSLog(@"_hhmmAlarmToParse: %@",_hhmmAlarmToParse);
-    
-    self.alarm.name=_textNameAlarm;
-    self.alarm.nameToShow=_textNameAlarmToShow;
-    self.alarm.alarmTimeToShow=_hhmmAlarmToShow;
-    self.alarm.alarmTimeToParse=_hhmmAlarmToParse;
-    
-}
 /*Hace desaparecer el teclado cuando pulsamos intro*/
 -(IBAction)ReturnKeyButton:(id)sender{
         NSLog(@"************************************************************** EditAlarmTvC");
@@ -363,6 +247,7 @@
         SoundListTVC *soundListTVC = sender.sourceViewController;
         self.soundCellText.text=soundListTVC.sonidoSeleccionadoString;
         _soundName = self.soundCellText.text;
+        _soundPath = soundListTVC.rutaSonidoSeleccionadoString;
         if (_soundName.length<1){
             self.soundCellText.text = [NSString stringWithFormat:@"\uE325 %@",NSLocalizedString(@"_elijaSonido",@"_elijaSonido EN/SP")];
         }
@@ -395,70 +280,66 @@
     _textNameAlarm = self.nameAlarm.text;
     _textHHAlarm = self.hhAlarm.text;
     _textMMAlarm = self.mmAlarm.text;
-    /*GUARDAMOS VALORES*/
+/*GUARDAMOS VALORES de los SWITCH*/
     self.alarm.activated = self.activatedSwitch.isOn;
     self.alarm.vibrationOn=self.vibrationSwitch.isOn;
-    
-    /*Opciones para el nombre de la alarma*/
+/*Opciones para el nombre de la alarma*/
     if ([_textNameAlarm isEqualToString:@""] || [_textNameAlarm isEqualToString:@" "]){
         _textNameAlarm=NSLocalizedString(@"_nuevaAlarma",@"Nueva Alarma EN/SP");
     }
-    
-    /*Opciones del control de la hora*/
+/*Opciones del control de la hora*/
     if ([_textHHAlarm isEqualToString:@""] || [_textHHAlarm isEqualToString:@" "] || _textHHAlarm.length>2 || _textHHAlarm.intValue>23){
         _textHHAlarm= @"00";
     }
     if (_textHHAlarm.length<2) {
         _textHHAlarm = [NSString stringWithFormat:@"0%@",_textHHAlarm];
     }
-    
-    /*Opciones del control de los minutos*/
+/*Opciones del control de los minutos*/
     if ([_textMMAlarm isEqualToString:@""] || [_textMMAlarm isEqualToString:@" "] || _textMMAlarm.length>2 || _textMMAlarm.intValue>59){
         _textMMAlarm= @"00";
     }
     if (_textMMAlarm.length<2) {
         _textMMAlarm = [NSString stringWithFormat:@"0%@",_textMMAlarm];
     }
-    
-    /*Opciones formato AM/PM*/
+/*Opciones formato AM/PM*/
     if((_textHHAlarm.intValue>11)&&(_textHHAlarm.intValue<24)){
         self.amPM.text=@"";
     }
     else{
         self.amPM.text=@" AM";
     }
-    
-    
-    /*Opciones de control para la vibracion*/
+/*Opciones para la activación de la alarma*/
+    if(self.alarm.activated){
+        _activationStatus=@"YES";
+    }
+    else{
+        _activationStatus=@"NO";
+    }
+/*Opciones de control para la vibracion*/
     if(self.alarm.vibrationOn){
         _vibrationStatus=@"YES";
     }
     else{
         _vibrationStatus=@"NO";
     }
-    NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
-    NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
-    
     if (self.vibrationSwitch.isOn){
         self.vibrationCellText.text = [NSString stringWithFormat:@"\ue141 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Activada",@"_ACTIVADA EN/SP")];
     }
     else{
         self.vibrationCellText.text = [NSString stringWithFormat:@"\U0001F507 %@ %@",NSLocalizedString(@"_Vibracion",@"_Vibracion SONIDO EN/SP"), NSLocalizedString(@"_Desactivada",@"_DESACTIVADA EN/SP")];
     }
-    
-    
-    /*Opciones de control para el sonido*/
+/*Opciones de control para el sonido*/
     if([_soundName isEqualToString:[NSString stringWithFormat:@"\uE325 %@",NSLocalizedString(@"_elijaSonido",[@"_elijaSonido EN/SP"])]]){
         _soundName=[NSString stringWithFormat:@"%@ %@", @"\ue333", NSLocalizedString(@"_NoneSound",@"Titulo SONIDO EN/SP")];
         
     }
-    
+    NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
+    NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
     NSLog(@"_textNameAlarm: %@",_textNameAlarm);
     NSLog(@"_textHHAlarm: %@",_textHHAlarm);
     NSLog(@"_textMMAlarm: %@",_textMMAlarm);
     NSLog(@"_soundName: %@",_soundName);
-    
-    
+    NSLog(@"_soundPath: %@",_soundPath);
     
     _textNameAlarmToShow = [NSString stringWithFormat:@"%@:%@%@ - %@",_textHHAlarm,_textMMAlarm,self.amPM.text,_textNameAlarm];
     _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@",_vibrationStatus.boolValue?@"\ue141":@"\U0001F507",_soundName];
@@ -471,8 +352,147 @@
     self.alarm.alarmTimeToShow=_hhmmAlarmToShow;
     self.alarm.alarmTimeToParse=_hhmmAlarmToParse;
     
+    Alarm *updatedAlarm = [[Alarm alloc] initWithName:_textNameAlarm
+                               initWithNameToShow:_textNameAlarmToShow
+                                initWithalarmTime:_hhmmAlarmToShow
+                                   initWithString:_hhmmAlarmToParse
+                                    initWithSound:_soundName
+                                initWithSoundPath:_soundPath
+                                        activated:_activationStatus.boolValue
+                                      vibrationOn:_vibrationStatus.boolValue];
+    
+    [self alertAlarmUpdated:updatedAlarm];
     
     [self.navigationController popViewControllerAnimated:YES ];
 }
 
+#pragma mark - Help Methods
+/*Muestra una alerta al usuario confirmando la creación de la alarma con los datos introducidos*/
+-(void)alertAlarmUpdated:(Alarm *)newAlarmInfo{
+    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"****************************** setAndSaveAlarm");
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"_AlarmaActualizada",@"_AlarmaActualizada EN/SP")
+                                                        message:_textNameAlarmToShow
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
+    //Borramos la alarma existente de la BD.
+    [self deleteAlarm:_textNameAlarmToShow_PREVIOUS];
+    //Guardamos la información de la alarma en la BD.
+    [self saveDataInAlarmDB:self];
+}
+/*Guardamos la información de la alarma en la BD*/
+-(void)saveDataInAlarmDB:(id)sender{
+    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"****************************** saveDataInAlarmDB");
+    
+    NSArray *alarmaItems = [_hhmmAlarmToParse componentsSeparatedByString:@"|"];
+    NSString *nameAlarm=[alarmaItems objectAtIndex:0];
+    int hour = [[alarmaItems objectAtIndex:1] integerValue];
+    int minute = [[alarmaItems objectAtIndex:2] integerValue];
+    
+    NSLog(@"ALARMA Info: %@ (%d:%d) - [%@] - [%@]",nameAlarm,hour,minute,_soundName,_soundPath);
+    //***********Accedemos a la BBDD de alarmas***********//
+    NSString *docsDir;
+    NSArray *dirPaths;
+    
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    docsDir = [dirPaths objectAtIndex:0];
+    // Build the path to the database file
+    alarmsDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"alarmsDB.db"]];
+    
+    sqlite3_stmt    *statement;
+    const char *dbpath = [alarmsDatabasePath UTF8String];
+    
+    if (sqlite3_open(dbpath, &alarmsDB) == SQLITE_OK){
+        NSString *insertSQL = [NSString stringWithFormat: @"INSERT INTO ALARMS (ALARMNAME, HH, MM, SOUND, SOUNDPATH, ACTIVATED, VIBRATION_ON, NAMETOSHOW, ALARMTIMETOSHOW, ALARMTIMETOPARSE) VALUES (\"%@\", \"%d\", \"%d\", \"%@\", \"%@\", \"%d\", \"%d\", \"%@\", \"%@\", \"%@\")", nameAlarm,hour,minute,_soundName,_soundPath, 1, self.vibrationSwitch.isOn?1:0,_textNameAlarmToShow,_hhmmAlarmToShow,_hhmmAlarmToParse];
+        NSLog(@"insertSQL: %@",insertSQL);
+        const char *insert_stmt = [insertSQL UTF8String];
+        
+        sqlite3_prepare_v2(alarmsDB, insert_stmt, -1, &statement, NULL);
+        if (sqlite3_step(statement) == SQLITE_DONE){
+            NSLog(@"SQLITE_DONE ");
+            _statusDB = @"Alarm added";
+            //--***********************************************************************************
+            NSLog(@"Programamos Alarma %@ (%d:%d) -- [%@]-[%@]", nameAlarm,
+                  hour, minute ,_soundName,_soundPath);
+            
+            NSCalendar *gregCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDateComponents *dateComponent = [gregCalendar components:NSYearCalendarUnit |
+                                               NSMonthCalendarUnit  |   NSDayCalendarUnit |
+                                               NSHourCalendarUnit   |   NSMinuteCalendarUnit fromDate:[NSDate date]];
+            [dateComponent setHour:hour];
+            [dateComponent setMinute:minute];
+            UIDatePicker *HHMM = [[UIDatePicker alloc]init];
+            [HHMM setDate:[gregCalendar dateFromComponents:dateComponent]];
+            
+            //enum{NSMinuteCalendarUnit=1};
+            NSLog(@"Progamo ALARMA en AlarmListTVC");
+            UILocalNotification *notification = [[UILocalNotification alloc]init];
+            [notification setAlertBody:[NSString stringWithFormat: @"%@\n%@", _textNameAlarmToShow,_soundName]];
+            [notification setFireDate:HHMM.date];
+            [notification setTimeZone:[NSTimeZone defaultTimeZone]];
+            [notification setSoundName:_soundPath];
+            [notification setRepeatInterval:NSDayCalendarUnit];//la alarma se repite por defecto cada 24 horas
+            [[UIApplication sharedApplication ] scheduleLocalNotification:notification];
+            ///--***********************************************************************************
+        } else {
+            NSLog(@"SQLITE_ERROR ");
+            _statusDB = @"Failed to add alarm";
+        }
+        NSLog(@"_statusDB:%@",_statusDB);
+        sqlite3_finalize(statement);
+        sqlite3_close(alarmsDB);
+    }
+}
+//delete the alarm from the database
+-(BOOL)deleteAlarm:(NSString *)nameToShow{
+    NSLog(@"************************************************************** EditAlarmTvC");
+    NSLog(@"****************************** deleteAlarm");
+    BOOL success = false;
+    //***********Accedemos a la BBDD de alarmas***********//
+    NSString *docsDir;
+    NSArray *dirPaths;
+    
+    // Get the documents directory
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    docsDir = [dirPaths objectAtIndex:0];
+    // Build the path to the database file
+    alarmsDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"alarmsDB.db"]];
+    
+    sqlite3_stmt    *statement;
+    const char *dbpath = [alarmsDatabasePath UTF8String];
+    
+    if (sqlite3_open(dbpath, &(alarmsDB)) == SQLITE_OK){
+        NSString *deleteSQL = [NSString stringWithFormat:@"DELETE from ALARMS WHERE NAMETOSHOW = \"%@\"",nameToShow];
+        NSLog(@"deleteSQL: %@",deleteSQL);
+        const char *query_stmt = [deleteSQL UTF8String];
+        
+        if (sqlite3_prepare_v2(alarmsDB, query_stmt, -1, &statement, NULL) == SQLITE_OK){
+            _statusDB = @"Resultados de la query obtenidos";
+            const char *delete_stmt = [deleteSQL UTF8String];
+            sqlite3_prepare_v2(alarmsDB, delete_stmt, -1, &statement, NULL );
+            if (sqlite3_step(statement) == SQLITE_DONE){
+                NSLog(@"success");
+                success = true;
+            }
+            else{
+                NSLog(@"NO success");
+                success = false;
+            }
+            
+        }else {
+            _statusDB = @"error en la query";
+        }
+        sqlite3_finalize(statement);
+        sqlite3_close(alarmsDB);
+    }
+    else {
+        _statusDB = @"Failed to open/create database";
+    }
+    NSLog(@"_statusDB: %@",_statusDB);
+    return success;
+}
 @end

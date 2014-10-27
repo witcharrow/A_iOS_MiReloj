@@ -29,7 +29,7 @@
 enum{RELOJ,ALARMAS};
 
 #pragma mark - View lifecycle
-- (id)initWithStyle:(UITableViewStyle)style{
+-(id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -37,7 +37,7 @@ enum{RELOJ,ALARMAS};
     return self;
 }
 /*Array de Alarmas, Transición entre pestañas y Creación de la Base de datos para las alarmas*/
-- (void)viewDidLoad{
+-(void)viewDidLoad{
     NSLog(@"************************************************************** AlarmListTVC");
     NSLog(@"****************************** viewDidLoad");
     [super viewDidLoad];
@@ -98,13 +98,13 @@ enum{RELOJ,ALARMAS};
     [super viewDidLoad];
 }
 /*Actualiza la vista de la lista de alarmas*/
-- (void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
     NSLog(@"************************************************************** AlarmListTVC");
     NSLog(@"****************************** viewWillAppear");
     [super viewWillAppear:animated];
     [self.tableView reloadData];/*Necesario para que el prepareForSegue funcione y actualice la vista de la lista de alarmas*/
 }
-- (void)didReceiveMemoryWarning{
+-(void)didReceiveMemoryWarning{
     NSLog(@"************************************************************** AlarmListTVC");
     NSLog(@"****************************** didReceiveMemoryWarning");
     [super didReceiveMemoryWarning];
@@ -113,19 +113,19 @@ enum{RELOJ,ALARMAS};
 
 #pragma mark - Table view data source
 /*Devuelve el numero de secciones*/
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     NSLog(@"************************************************************** AlarmListTVC");
     NSLog(@"****************************** numberOfSectionsInTableView");
     return 1;
 }
 /*Devuelve el número de filas por seccion*/
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSLog(@"************************************************************** AlarmListTVC");
     NSLog(@"****************************** numberOfRowsInSection");
     return self.alarms.count;
 }
 /*Establecemos los valores de las filas*/
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"************************************************************** AlarmListTVC");
     NSLog(@"****************************** cellForRowAtIndexPath");
     
@@ -153,14 +153,14 @@ enum{RELOJ,ALARMAS};
 }
 */
 /*Opciones para editar la lista de alarmas*/
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"************************************************************** AlarmListTVC");
     NSLog(@"****************************** commitEditingStyle");
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the database of Alarms
         Alarm *currentAlarm = [self.alarms objectAtIndex:indexPath.row];
         NSLog(@"recordIDToDelete: %@",currentAlarm.nameToShow);
-        [self deleteEmployee:currentAlarm.nameToShow];
+        [self deleteAlarm:currentAlarm.nameToShow];
         // Delete the row from the List of Alarms
         [self.alarms removeObjectAtIndex:indexPath.row];
         NSLog(@"indexPath.row: %d", indexPath.row);
@@ -172,7 +172,7 @@ enum{RELOJ,ALARMAS};
     }   
 }
 /*Permite mover las filas de la lista de alarmas*/
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
     NSLog(@"************************************************************** AlarmListTVC");
     NSLog(@"****************************** moveRowAtIndexPath");
     Alarm *movedAlarm = [self.alarms objectAtIndex:fromIndexPath.row];
@@ -180,7 +180,7 @@ enum{RELOJ,ALARMAS};
     [self. alarms insertObject:movedAlarm atIndex:toIndexPath.row];
 }
 /*Metodo para reorganizar las alarmas*/
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"************************************************************** AlarmListTVC");
     NSLog(@"****************************** canMoveRowAtIndexPath");
     // Return NO if you do not want the item to be re-orderable.
@@ -229,7 +229,7 @@ enum{RELOJ,ALARMAS};
     }
 }
 /*Recoge toda la lista de alarmas en la base de datos*/
--(NSMutableArray *) getAlarmsFromDB:(id)sender{
+-(NSMutableArray *)getAlarmsFromDB:(id)sender{
     NSLog(@"************************************************************** AlarmListTVC");
     NSLog(@"****************************** getAlarmsFromDB");
     NSMutableArray *alarmList = [[NSMutableArray alloc] init];
@@ -299,10 +299,10 @@ enum{RELOJ,ALARMAS};
     NSLog(@"_statusDB: %@",_statusDB);
     return self.alarms;
 }
-//delete the employee from the database
-- (BOOL) deleteEmployee:(NSString *)nameToShow{
+//delete the alarm from the database
+-(BOOL)deleteAlarm:(NSString *)nameToShow{
     NSLog(@"************************************************************** AlarmListTVC");
-    NSLog(@"****************************** deleteEmployee");
+    NSLog(@"****************************** deleteAlarm");
     BOOL success = false;
     sqlite3_stmt *statement;
     const char *dbpath = [alarmsDatabasePath UTF8String];

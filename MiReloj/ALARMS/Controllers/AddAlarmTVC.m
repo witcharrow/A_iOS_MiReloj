@@ -40,6 +40,7 @@
 @synthesize sounds = _sounds;
 /*Para acceder a la BD de alarmas*/
 @synthesize statusDB = _statusDB;
+/*Lista de alarmas*/
 @synthesize alarmListViewController=_alarmListViewController;
 
 -(id)initWithStyle:(UITableViewStyle)style{

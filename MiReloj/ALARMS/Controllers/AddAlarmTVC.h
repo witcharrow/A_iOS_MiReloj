@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AudioToolbox/AudioToolbox.h"
 #import "sqlite3.h"
+#import "AudioToolbox/AudioToolbox.h"
 
 @class AlarmListTVC;
 @interface AddAlarmTVC : UITableViewController{
@@ -41,7 +41,7 @@
 @property (nonatomic,strong) NSMutableArray *sounds;
 /*Para acceder a la BD de alarmas*/
 @property (strong, nonatomic) NSString *statusDB;
-
+/*Lista de alarmas*/
 @property (nonatomic,strong) AlarmListTVC *alarmListViewController;
 
 /*Descarta las opciones pulsadas*/

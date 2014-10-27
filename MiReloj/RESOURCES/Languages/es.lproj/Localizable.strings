@@ -44,3 +44,6 @@
 "_Desactivada"="desactivada";
 "_AlarmaCreada"="Alarma creada";
 "_Vibracion"="Vibración";
+
+/*EditAlarmTvC*/
+"_AlarmaActualizada"="Alarma actualizada";
