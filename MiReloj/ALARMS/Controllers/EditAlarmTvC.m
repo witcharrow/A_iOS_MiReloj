@@ -9,6 +9,7 @@
 #import "EditAlarmTVC.h"
 #import "Alarm.h"
 #import "SoundListTVC.h"
+#define kTimerNameKey @"kTimerNameKey"
 
 @interface EditAlarmTVC ()
 
@@ -416,27 +417,44 @@
             NSLog(@"SQLITE_DONE ");
             _statusDB = @"Alarm added";
             //--***********************************************************************************
-            NSLog(@"Programamos Alarma %@ (%d:%d) -- [%@]-[%@]", nameAlarm,
+            if (_activationStatus.boolValue){
+                NSLog(@"Programamos Alarma %@ (%d:%d) -- [%@]-[%@]", nameAlarm,
                   hour, minute ,_soundName,_soundPath);
             
-            NSCalendar *gregCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
-            NSDateComponents *dateComponent = [gregCalendar components:NSYearCalendarUnit |
+                NSCalendar *gregCalendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+                NSDateComponents *dateComponent = [gregCalendar components:NSYearCalendarUnit |
                                                NSMonthCalendarUnit  |   NSDayCalendarUnit |
                                                NSHourCalendarUnit   |   NSMinuteCalendarUnit fromDate:[NSDate date]];
-            [dateComponent setHour:hour];
-            [dateComponent setMinute:minute];
-            UIDatePicker *HHMM = [[UIDatePicker alloc]init];
-            [HHMM setDate:[gregCalendar dateFromComponents:dateComponent]];
+                [dateComponent setHour:hour];
+                [dateComponent setMinute:minute];
+                UIDatePicker *HHMM = [[UIDatePicker alloc]init];
+                [HHMM setDate:[gregCalendar dateFromComponents:dateComponent]];
             
-            //enum{NSMinuteCalendarUnit=1};
-            NSLog(@"Progamo ALARMA en AlarmListTVC");
-            UILocalNotification *notification = [[UILocalNotification alloc]init];
-            [notification setAlertBody:[NSString stringWithFormat: @"%@\n%@", _textNameAlarmToShow,_soundName]];
-            [notification setFireDate:HHMM.date];
-            [notification setTimeZone:[NSTimeZone defaultTimeZone]];
-            [notification setSoundName:_soundPath];
-            [notification setRepeatInterval:NSDayCalendarUnit];//la alarma se repite por defecto cada 24 horas
-            [[UIApplication sharedApplication ] scheduleLocalNotification:notification];
+                
+                NSLog(@"Progamo ALARMA en AlarmListTVC");
+                /*
+                UILocalNotification *notification = [[UILocalNotification alloc]init];
+                [notification setAlertBody:[NSString stringWithFormat: @"%@\n%@", _textNameAlarmToShow,_soundName]];
+                [notification setFireDate:HHMM.date];
+                [notification setTimeZone:[NSTimeZone defaultTimeZone]];
+                [notification setSoundName:_soundPath];
+                [notification setRepeatInterval:NSDayCalendarUnit];//la alarma se repite por defecto cada 24 horas
+                [[UIApplication sharedApplication ] scheduleLocalNotification:notification];
+                 */
+                [self cancelAlarm]; //clear any previous alarms
+                UILocalNotification *alarm = [[UILocalNotification alloc] init];
+                alarm.alertBody=[NSString stringWithFormat: @"%@\n%@", _textNameAlarmToShow,_soundName];
+                alarm.fireDate = HHMM.date;
+                alarm.timeZone = [NSTimeZone defaultTimeZone];
+                alarm.soundName=_soundPath;
+                alarm.repeatInterval=NSDayCalendarUnit;//la alarma se repite por defecto cada 24 horas
+                //alarm.alertBody = @"alert msg";
+                //alarm.fireDate = [NSDate dateWithTimeInterval:alarmDuration sinceDate:startTime];
+                //alarm.soundName = UILocalNotificationDefaultSoundName;
+                NSDictionary *userInfo = [NSDictionary dictionaryWithObject:_textNameAlarmToShow forKey:kTimerNameKey];
+                alarm.userInfo = userInfo;
+                [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
+            }
             ///--***********************************************************************************
         } else {
             NSLog(@"SQLITE_ERROR ");
@@ -493,6 +511,42 @@
         _statusDB = @"Failed to open/create database";
     }
     NSLog(@"_statusDB: %@",_statusDB);
+    
+    /*Desactivar la notificación
+    NSArray *notifArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    for (int i = 0; i < [notifArray count]; i++){
+        UILocalNotification *aEvent = [notifArray objectAtIndex:i];
+        NSLog(@"aEvent.alertBody: %@",aEvent.alertBody);
+        NSString *actualNotificationBody=nameToShow;
+        if ([actualNotificationBody isEqualToString:aEvent.alertBody]){
+            NSLog(@"FOUND!!");
+            [[UIApplication sharedApplication] cancelLocalNotification:aEvent];
+            break;
+        }
+        //NSDictionary *userInfo = aEvent.userInfo;
+        //NSString *notifId=[NSString stringWithFormat:@"%@",[userInfo valueForKey:@"id"]];
+        //NSLog(@"notifId: %@",notifId);
+       // if ([id isEqualToString:cancelId]){
+       //     [[UIApplication sharedApplication] cancelLocalNotification:aEvent];
+       //     break;
+      //  }
+    }*/
+
+    
+    [self cancelAlarm]; //clear any previous alarms
     return success;
 }
+
+-(void)cancelAlarm{
+    NSLog(@"************************************************************** AddAlarmTVC");
+    NSLog(@"****************************** cancelAlarm");
+    for (UILocalNotification *notification in [[[UIApplication sharedApplication] scheduledLocalNotifications] copy]){
+        NSDictionary *userInfo = notification.userInfo;
+        if ([_textNameAlarmToShow_PREVIOUS isEqualToString:[userInfo objectForKey:kTimerNameKey]]){
+            NSLog(@"cancelamos la notificación: %@",_textNameAlarmToShow_PREVIOUS);
+            [[UIApplication sharedApplication] cancelLocalNotification:notification];
+        }
+    }
+}
+
 @end

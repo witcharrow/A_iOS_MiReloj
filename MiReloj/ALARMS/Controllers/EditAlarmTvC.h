@@ -23,6 +23,7 @@
 @property (nonatomic,strong) NSString *textNameAlarmToShow;
 /*Guardamos el valor de la alarma antes de ser editada*/
 @property (nonatomic,strong) NSString *textNameAlarmToShow_PREVIOUS;
+@property (nonatomic,strong) NSString *p_PREVIOUS;
 /*Horas y minutos de la alarma*/
 @property (nonatomic,strong) IBOutlet UITextField *hhAlarm;
 @property (nonatomic,strong) IBOutlet UITextField *mmAlarm;
