@@ -332,7 +332,6 @@
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
     [alertView show];
-    
     //Guardamos la información de la alarma en la BD.
     [self saveDataInAlarmDB:self];
 }
@@ -370,9 +369,6 @@
             NSLog(@"SQLITE_DONE ");
             _statusDB = @"Alarm added";
             //--***********************************************************************************
-            //NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
-            //[userInfo setObject:_textNameAlarmToShow forKey:@"id"];
-            
             NSLog(@"Programamos Alarma %@ (%d:%d) -- [%@]-[%@]", nameAlarm,
                   hour, minute ,_soundName,_soundPath);
             
@@ -386,19 +382,7 @@
             [HHMM setDate:[gregCalendar dateFromComponents:dateComponent]];
             
             NSLog(@"Progamo ALARMA en AlarmListTVC: %@",_textNameAlarmToShow);
-
-            /*
-            UILocalNotification *notification = [[UILocalNotification alloc]init];             
-            [notification setAlertBody:[NSString stringWithFormat: @"%@\n%@", _textNameAlarmToShow,_soundName]];
-            [notification setFireDate:HHMM.date];
-            [notification setTimeZone:[NSTimeZone defaultTimeZone]];
-            [notification setSoundName:_soundPath];
-            [notification setRepeatInterval:NSDayCalendarUnit];//la alarma se repite por defecto cada 24 horas
-            //[notification userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"setNotificationForEveryDay", @"key", nil]];
-            [[UIApplication sharedApplication ] scheduleLocalNotification:notification];
-             */
-            ///--***********************************************************************************
-            
+           
             [self cancelAlarm]; //clear any previous alarms
             UILocalNotification *alarm = [[UILocalNotification alloc] init];
             alarm.alertBody=[NSString stringWithFormat: @"%@\n%@", _textNameAlarmToShow,_soundName];
@@ -406,16 +390,14 @@
             alarm.timeZone = [NSTimeZone defaultTimeZone];
             alarm.soundName=_soundPath;
             alarm.repeatInterval=NSDayCalendarUnit;//la alarma se repite por defecto cada 24 horas
-            //alarm.alertBody = @"alert msg";
-            //alarm.fireDate = [NSDate dateWithTimeInterval:alarmDuration sinceDate:startTime];
-            //alarm.soundName = UILocalNotificationDefaultSoundName;
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:_textNameAlarmToShow forKey:kTimerNameKey];
             alarm.userInfo = userInfo;
             [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
-            
-            
-            
-            
+            /*if(_vibrationStatus.boolValue){
+                NSLog(@"####Estoy vibrando");
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+            }*/
+            //--***********************************************************************************
         } else {
             NSLog(@"SQLITE_ERROR ");
             _statusDB = @"Failed to add alarm";
@@ -425,7 +407,7 @@
         sqlite3_close(alarmsDB);
     }
 }
-
+/*Elimina la notificación antigua asociada a la alarma*/
 -(void)cancelAlarm{
     NSLog(@"************************************************************** AddAlarmTVC");
     NSLog(@"****************************** cancelAlarm");
@@ -437,5 +419,6 @@
         }
     }
 }
+
 
 @end

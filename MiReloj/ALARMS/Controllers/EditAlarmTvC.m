@@ -133,83 +133,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****
- 
- #pragma mark - Table view data source
-
- - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
- // Return the number of sections.
-     return 1;
- }
- 
- - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
- // Return the number of rows in the section.
-     return self.sounds.count;
- }
- 
- //COMENTADO POR DEFECTO
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *selectSoundCell=@"selectSoundCell";
-    Sound *currentSound = [self.sounds objectAtIndex:indexPath.row];
-    NSString *cellIdentifier = selectSoundCell;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.textLabel.text =
-    cell.detailTextLabel.text = currentAlarm.alarmTimeToShow;
-    
-    return cell;
- }
- */
-/*
- //COMENTADO POR DEFECTO
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- 
- ///COMENTADO POR DEFECTO
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- 
- 
- //COMENTADO POR DEFECTO
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- 
- 
- //COMENTADO POR DEFECTO
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- 
- 
- //COMENTADO POR DEFECTO
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- 
- ************************************************************************************************************************************BORRAMOS ESTO POR AHORA, NO NECESARIO¿?****/
-
 #pragma mark - IBActions
 /*Hace desaparecer el teclado cuando pulsamos intro*/
 -(IBAction)ReturnKeyButton:(id)sender{
@@ -262,22 +185,7 @@
 -(IBAction)saveAndCloseButton:(id)sender{
     NSLog(@"************************************************************** EditAlarmTvC");
     NSLog(@"****************************** saveAndCloseButton");
-    /**Guardamos la información de la alarma.
-    _textNameAlarmToShow=self.alarm.nameToShow;
-    _hhmmAlarmToShow=self.alarm.alarmTimeToShow;
-    
-    self.alarm.nameToShow=_textNameAlarmToShow;
-    self.alarm.alarmTimeToShow=_hhmmAlarmToShow;
-    self.soundCellText.text=_soundName;
-    _hhmmAlarmToShow  = [NSString stringWithFormat:@"%@ - %@",self.alarm.vibrationOn?@"\ue141":@"\U0001F507",_soundName];
-    
-    NSLog(@"_textNameAlarmToShow: %@",_textNameAlarmToShow);
-    NSLog(@"_hhmmAlarmToShow: %@",_hhmmAlarmToShow);
-    
-    NSLog(self.alarm.activated ? @"self.alarm.activated=Yes" : @"self.alarm.activated=No");
-    NSLog(self.alarm.vibrationOn ? @"self.alarm.vibrationOn=Yes" : @"self.alarm.vibrationOn=No");
-    NSLog(@"_soundName: %@",_soundName);
-     **/
+/**Guardamos la información de la alarma**/
     _textNameAlarm = self.nameAlarm.text;
     _textHHAlarm = self.hhAlarm.text;
     _textMMAlarm = self.mmAlarm.text;
@@ -429,31 +337,24 @@
                 [dateComponent setMinute:minute];
                 UIDatePicker *HHMM = [[UIDatePicker alloc]init];
                 [HHMM setDate:[gregCalendar dateFromComponents:dateComponent]];
-            
                 
                 NSLog(@"Progamo ALARMA en AlarmListTVC");
-                /*
-                UILocalNotification *notification = [[UILocalNotification alloc]init];
-                [notification setAlertBody:[NSString stringWithFormat: @"%@\n%@", _textNameAlarmToShow,_soundName]];
-                [notification setFireDate:HHMM.date];
-                [notification setTimeZone:[NSTimeZone defaultTimeZone]];
-                [notification setSoundName:_soundPath];
-                [notification setRepeatInterval:NSDayCalendarUnit];//la alarma se repite por defecto cada 24 horas
-                [[UIApplication sharedApplication ] scheduleLocalNotification:notification];
-                 */
-                [self cancelAlarm]; //clear any previous alarms
                 UILocalNotification *alarm = [[UILocalNotification alloc] init];
                 alarm.alertBody=[NSString stringWithFormat: @"%@\n%@", _textNameAlarmToShow,_soundName];
                 alarm.fireDate = HHMM.date;
                 alarm.timeZone = [NSTimeZone defaultTimeZone];
                 alarm.soundName=_soundPath;
                 alarm.repeatInterval=NSDayCalendarUnit;//la alarma se repite por defecto cada 24 horas
-                //alarm.alertBody = @"alert msg";
-                //alarm.fireDate = [NSDate dateWithTimeInterval:alarmDuration sinceDate:startTime];
-                //alarm.soundName = UILocalNotificationDefaultSoundName;
                 NSDictionary *userInfo = [NSDictionary dictionaryWithObject:_textNameAlarmToShow forKey:kTimerNameKey];
                 alarm.userInfo = userInfo;
                 [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
+                /*if(_vibrationStatus.boolValue){
+                    NSLog(@"####Estoy vibrando");
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                }*/
+            }
+            else{
+                [self cancelAlarm];
             }
             ///--***********************************************************************************
         } else {
@@ -465,7 +366,7 @@
         sqlite3_close(alarmsDB);
     }
 }
-//delete the alarm from the database
+/*Borra la alarma de la base de datos*/
 -(BOOL)deleteAlarm:(NSString *)nameToShow{
     NSLog(@"************************************************************** EditAlarmTvC");
     NSLog(@"****************************** deleteAlarm");
@@ -495,6 +396,7 @@
             if (sqlite3_step(statement) == SQLITE_DONE){
                 NSLog(@"success");
                 success = true;
+                [self cancelAlarm]; //clear any previous alarms. Deactivate notification.
             }
             else{
                 NSLog(@"NO success");
@@ -511,34 +413,11 @@
         _statusDB = @"Failed to open/create database";
     }
     NSLog(@"_statusDB: %@",_statusDB);
-    
-    /*Desactivar la notificación
-    NSArray *notifArray = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    for (int i = 0; i < [notifArray count]; i++){
-        UILocalNotification *aEvent = [notifArray objectAtIndex:i];
-        NSLog(@"aEvent.alertBody: %@",aEvent.alertBody);
-        NSString *actualNotificationBody=nameToShow;
-        if ([actualNotificationBody isEqualToString:aEvent.alertBody]){
-            NSLog(@"FOUND!!");
-            [[UIApplication sharedApplication] cancelLocalNotification:aEvent];
-            break;
-        }
-        //NSDictionary *userInfo = aEvent.userInfo;
-        //NSString *notifId=[NSString stringWithFormat:@"%@",[userInfo valueForKey:@"id"]];
-        //NSLog(@"notifId: %@",notifId);
-       // if ([id isEqualToString:cancelId]){
-       //     [[UIApplication sharedApplication] cancelLocalNotification:aEvent];
-       //     break;
-      //  }
-    }*/
-
-    
-    [self cancelAlarm]; //clear any previous alarms
     return success;
 }
-
+/*Elimina la notificación antigua asociada a la alarma*/
 -(void)cancelAlarm{
-    NSLog(@"************************************************************** AddAlarmTVC");
+    NSLog(@"************************************************************** EditAlarmTvC");
     NSLog(@"****************************** cancelAlarm");
     for (UILocalNotification *notification in [[[UIApplication sharedApplication] scheduledLocalNotifications] copy]){
         NSDictionary *userInfo = notification.userInfo;
